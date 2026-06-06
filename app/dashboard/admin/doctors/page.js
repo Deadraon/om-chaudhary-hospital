@@ -1,6 +1,8 @@
 import AdminDoctorsClient from './AdminDoctorsClient';
 import { queryD1 } from '@/lib/d1';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Manage Doctors | Hospital Portal',
 };

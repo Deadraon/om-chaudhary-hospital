@@ -2,6 +2,8 @@ import PatientProfileClient from './PatientProfileClient';
 import { queryD1First } from '@/lib/d1';
 import { headers } from 'next/headers';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'My Profile | Hospital Portal',
 };

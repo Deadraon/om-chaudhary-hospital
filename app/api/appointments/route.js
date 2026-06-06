@@ -4,6 +4,8 @@ import { getCurrentUser } from '@/lib/auth';
 import { sendAppointmentSMS } from '@/lib/sms';
 import { generateId, now } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * GET: Retrieve appointments
  * - Public: query?phone=1234567890 (no auth)

@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -156,5 +157,17 @@ export default function LoginPage() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-[85vh] items-center justify-center bg-gray-50/50 py-12">
+        <LoadingSpinner size="lg" text="Loading login form..." />
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }

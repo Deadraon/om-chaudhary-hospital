@@ -1,6 +1,8 @@
 import AdminAppointmentsClient from './AdminAppointmentsClient';
 import { queryD1 } from '@/lib/d1';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Manage Appointments | Hospital Portal',
 };

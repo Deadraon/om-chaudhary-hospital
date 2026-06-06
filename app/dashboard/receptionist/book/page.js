@@ -1,6 +1,8 @@
 import AppointmentForm from '@/components/AppointmentForm';
 import { queryD1 } from '@/lib/d1';
 
+export const dynamic = 'force-dynamic';
+
 const FALLBACK_DEPARTMENTS = [
   { id: 'dept-emergency', name: 'Emergency & Trauma' },
   { id: 'dept-cardiology', name: 'Cardiology' },

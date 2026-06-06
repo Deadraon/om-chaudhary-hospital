@@ -2,6 +2,8 @@ import AppointmentForm from '@/components/AppointmentForm';
 import { queryD1 } from '@/lib/d1';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 const HOSPITAL_NAME = process.env.NEXT_PUBLIC_HOSPITAL_NAME || 'Om Chaudhary Hospital & Trauma Centre';
 
 const FALLBACK_DEPARTMENTS = [

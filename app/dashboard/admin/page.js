@@ -1,6 +1,8 @@
 import AdminOverviewClient from './AdminOverviewClient';
 import { queryD1, queryD1First } from '@/lib/d1';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Admin Overview | Hospital Portal',
 };

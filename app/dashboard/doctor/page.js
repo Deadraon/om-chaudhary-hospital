@@ -2,6 +2,8 @@ import DoctorOverviewClient from './DoctorOverviewClient';
 import { queryD1, queryD1First } from '@/lib/d1';
 import { headers } from 'next/headers';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Doctor Schedule | Hospital Portal',
 };

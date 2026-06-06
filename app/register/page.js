@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
-export default function RegisterPage() {
+function RegisterForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -168,5 +169,17 @@ export default function RegisterPage() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-[90vh] items-center justify-center bg-gray-50/50 py-12">
+        <LoadingSpinner size="lg" text="Loading signup form..." />
+      </div>
+    }>
+      <RegisterForm />
+    </Suspense>
   );
 }

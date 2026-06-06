@@ -2,6 +2,8 @@ import AdminStaffClient from './AdminStaffClient';
 import { queryD1 } from '@/lib/d1';
 import { headers } from 'next/headers';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Manage Staff | Hospital Portal',
 };

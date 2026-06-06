@@ -1,6 +1,8 @@
 import ReceptionistOverviewClient from './ReceptionistOverviewClient';
 import { queryD1, queryD1First } from '@/lib/d1';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Receptionist Dashboard | Hospital Portal',
 };
