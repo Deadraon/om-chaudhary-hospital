@@ -252,27 +252,28 @@ export default function Header() {
                   & Trauma Centre
                 </p>
               </div>
-            </Link>            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1.5">
+            </Link>
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2 flex-shrink-0">
               {/* Home */}
-              <Link href="/" className={`px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${pathname === '/' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/" className={`px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 Home
               </Link>
               
               {/* About Us */}
-              <Link href="/about" className={`px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${pathname === '/about' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
-                About Us
+              <Link href="/about" className={`px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/about' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+                About
               </Link>
 
               {/* Sarvodaya Group Dropdown */}
               <div className="relative group py-4">
-                <button className="px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1">
+                <button className="px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
                   Sarvodaya Group
-                  <svg className="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <svg className="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute top-[100%] left-0 w-[480px] bg-white border border-gray-150 rounded-2xl shadow-2xl p-5 grid grid-cols-2 gap-4 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
+                <div className="absolute top-[100%] left-0 w-[420px] bg-white border border-gray-150 rounded-2xl shadow-2xl p-5 grid grid-cols-2 gap-4 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
                   <div>
                     <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-1.5 border-b border-gray-100 mb-2">Hospitals</h4>
                     <ul className="space-y-1.5 text-xs font-semibold text-gray-600">
@@ -293,19 +294,19 @@ export default function Header() {
               </div>
 
               {/* Doctors */}
-              <Link href="/doctors" className={`px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${pathname === '/doctors' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/doctors" className={`px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/doctors' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 Doctors
               </Link>
 
               {/* Specialities Hover Mega Menu */}
               <div className="relative group py-4">
-                <button className="px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1">
+                <button className="px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
                   Specialities
-                  <svg className="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <svg className="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute top-[100%] left-1/2 -translate-x-1/2 w-[650px] bg-white border border-gray-150 rounded-2xl shadow-2xl p-5 grid grid-cols-3 gap-5 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
+                <div className="absolute top-[100%] left-1/2 -translate-x-1/2 w-[600px] bg-white border border-gray-150 rounded-2xl shadow-2xl p-5 grid grid-cols-3 gap-5 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
                   <div>
                     <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-1.5 border-b border-gray-100 mb-2">Centres of Excellence</h4>
                     <ul className="space-y-1.5 text-xs font-semibold text-gray-600">
@@ -339,13 +340,13 @@ export default function Header() {
 
               {/* News & Media Dropdown */}
               <div className="relative group py-4">
-                <button className="px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1">
+                <button className="px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
                   News & Media
-                  <svg className="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <svg className="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute top-[100%] left-0 w-[200px] bg-white border border-gray-150 rounded-xl shadow-2xl p-3 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
+                <div className="absolute top-[100%] left-0 w-[180px] bg-white border border-gray-150 rounded-xl shadow-2xl p-3 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
                   <ul className="space-y-1 text-xs font-semibold text-gray-600">
                     <li><Link href="/" className="hover:text-sarvodaya-blue block py-1 px-2 hover:bg-slate-50 rounded-md">Blogs</Link></li>
                     <li><Link href="/" className="hover:text-sarvodaya-blue block py-1 px-2 hover:bg-slate-50 rounded-md">News</Link></li>
@@ -356,42 +357,42 @@ export default function Header() {
               </div>
 
               {/* Contact */}
-              <Link href="/contact" className={`px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${pathname === '/contact' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
-                Contact Us
+              <Link href="/contact" className={`px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/contact' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+                Contact
               </Link>
             </nav>
 
             {/* Right Actions */}
-            <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-              {/* Emergency Hotline (Desktop XL) */}
+            <div className="flex items-center gap-1.5 xl:gap-2.5 flex-shrink-0">
+              {/* Emergency Hotline (Desktop XL - Compact version to save width) */}
               <a
                 href={`tel:${EMERGENCY_NUMBER}`}
-                className="hidden xl:flex items-center gap-2 px-3.5 py-2 bg-red-50 text-red-600 rounded-xl text-xs font-bold tracking-wide hover:bg-red-100 hover:scale-105 hover:shadow-sm transition-all glow-red"
+                className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-650 rounded-xl text-[11px] font-black tracking-wide hover:bg-red-100 hover:scale-105 hover:shadow-sm transition-all whitespace-nowrap"
               >
-                <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse"></span>
+                <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse flex-shrink-0"></span>
                 Emergency Call: {EMERGENCY_NUMBER}
               </a>
 
-              {/* Book Appointment CTA Button (styled in brand orange) */}
+              {/* Book Appointment CTA Button */}
               <Link
                 href="/book-appointment"
-                className="hidden sm:flex inline-flex items-center justify-center px-4 py-2 bg-sarvodaya-orange text-white text-xs font-bold rounded-xl hover:bg-sarvodaya-orange-hover hover:scale-105 hover:shadow-md transition-all whitespace-nowrap shadow-sm"
+                className="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 bg-sarvodaya-orange text-white text-[11px] font-black rounded-xl hover:bg-sarvodaya-orange-hover hover:scale-105 hover:shadow-md transition-all whitespace-nowrap shadow-sm"
               >
                 Book Appointment
               </Link>
 
               {/* Auth Buttons */}
               {user ? (
-                <div className="hidden md:flex items-center gap-1.5">
-                  <Link href={getDashboardLink()} className="inline-flex items-center justify-center px-3.5 py-2 border border-gray-200 text-gray-700 text-xs font-bold rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
+                <div className="hidden md:flex items-center gap-1">
+                  <Link href={getDashboardLink()} className="inline-flex items-center justify-center px-3 py-1.5 border border-gray-200 text-gray-700 text-[11px] font-black rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
                     Dashboard
                   </Link>
-                  <button onClick={handleLogout} className="text-gray-500 hover:text-gray-900 text-xs font-bold px-2 py-2 transition-colors">
+                  <button onClick={handleLogout} className="text-gray-500 hover:text-gray-900 text-[11px] font-black px-1.5 py-1.5 transition-colors whitespace-nowrap">
                     Logout
                   </button>
                 </div>
               ) : (
-                <Link href="/login" className="hidden md:flex inline-flex items-center justify-center px-3.5 py-2 border border-gray-200 text-gray-700 text-xs font-bold rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
+                <Link href="/login" className="hidden md:inline-flex items-center justify-center px-3 py-1.5 border border-gray-200 text-gray-700 text-[11px] font-black rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
                   Login
                 </Link>
               )}
