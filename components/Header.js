@@ -413,6 +413,31 @@ export default function Header() {
             >
               Book Appointment
             </Link>
+            
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsDrawerOpen(true);
+              }}
+              className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50 transition-colors flex items-center gap-2"
+            >
+              <span className="w-2 h-2 rounded-full bg-sarvodaya-orange animate-pulse"></span>
+              Get Second Opinion
+            </button>
+
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsChairmanOpen(true);
+              }}
+              className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-slate-50 transition-colors flex items-center gap-2"
+            >
+              <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
+              </svg>
+              Write to Chairman
+            </button>
+
             <hr className="my-2 border-gray-100" />
             {user ? (
               <>
