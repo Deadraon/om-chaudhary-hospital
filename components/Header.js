@@ -64,33 +64,40 @@ export default function Header() {
   return (
     <>
       {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-2 px-4 text-center text-sm font-medium z-50 relative">
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
-          <svg className="w-4 h-4 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-          </svg>
-          <span>Emergency? Call <a href={`tel:${EMERGENCY_NUMBER}`} className="font-bold underline underline-offset-2">{EMERGENCY_NUMBER}</a> — 24/7 Ambulance Service Available</span>
+      <div className="bg-gradient-to-r from-red-650 to-red-700 text-white py-2 px-4 text-center text-sm font-medium z-50 relative shadow-md">
+        <div className="max-w-7xl mx-auto flex items-center justify-center gap-3">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-100"></span>
+          </span>
+          <span className="tracking-wide">
+            <strong>EMERGENCY?</strong> Call <a href={`tel:${EMERGENCY_NUMBER}`} className="font-extrabold underline underline-offset-4 hover:text-red-100 transition-colors">{EMERGENCY_NUMBER}</a> — 24/7 Rapid Ambulance & Trauma Services
+          </span>
         </div>
       </div>
 
       {/* Main Header */}
-      <header className={`sticky top-0 z-40 transition-all duration-300 ${
+      <header className={`sticky top-0 z-40 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-          : 'bg-white shadow-sm'
+          ? 'bg-white/85 backdrop-blur-lg border-b border-gray-100 shadow-md py-2' 
+          : 'bg-white border-b border-gray-50 py-4'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center shadow-medical group-hover:shadow-medical-lg transition-shadow duration-300">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary-600 to-cyan-500 flex items-center justify-center shadow-lg group-hover:scale-105 transition-all duration-300 border border-white/10 glow-primary-soft">
+                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                 </svg>
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-lg font-bold text-gray-900 leading-tight">Om Chaudhary Hospital</h1>
-                <p className="text-xs text-primary-600 font-medium">& Trauma Centre</p>
+                <h1 className="text-base font-extrabold text-gray-900 leading-tight group-hover:text-primary-600 transition-colors">
+                  Om Chaudhary Hospital
+                </h1>
+                <p className="text-[10px] text-cyan-600 font-bold uppercase tracking-widest">
+                  & Trauma Centre
+                </p>
               </div>
             </Link>
 
@@ -100,13 +107,16 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  className={`px-4 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${
                     pathname === link.href
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-600 hover:text-primary-600 hover:bg-gray-50'
+                      ? 'text-primary-600 bg-primary-50/50'
+                      : 'text-gray-600 hover:text-primary-600 hover:bg-gray-50/50'
                   }`}
                 >
                   {link.label}
+                  {pathname === link.href && (
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-primary-600 rounded-full"></span>
+                  )}
                 </Link>
               ))}
             </nav>
@@ -116,27 +126,25 @@ export default function Header() {
               {/* Emergency Phone (Desktop) */}
               <a
                 href={`tel:${EMERGENCY_NUMBER}`}
-                className="hidden md:flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-xl text-sm font-semibold hover:bg-red-100 transition-colors"
+                className="hidden md:flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-xl text-xs font-bold tracking-wide hover:bg-red-100 hover:scale-102 hover:shadow-sm transition-all glow-red"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                </svg>
-                {EMERGENCY_NUMBER}
+                <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse"></span>
+                Emergency: {EMERGENCY_NUMBER}
               </a>
 
               {/* Auth Buttons */}
               {user ? (
                 <div className="hidden md:flex items-center gap-2">
-                  <Link href={getDashboardLink()} className="btn-primary btn-sm">
+                  <Link href={getDashboardLink()} className="btn-primary btn-sm text-xs py-2 px-4">
                     Dashboard
                   </Link>
-                  <button onClick={handleLogout} className="btn-ghost btn-sm text-gray-500">
+                  <button onClick={handleLogout} className="btn-ghost btn-sm text-gray-500 text-xs py-2 px-4">
                     Logout
                   </button>
                 </div>
               ) : (
-                <Link href="/login" className="hidden md:flex btn-primary btn-sm">
-                  Login
+                <Link href="/login" className="hidden md:flex btn-primary btn-sm text-xs py-2 px-4">
+                  Login / Register
                 </Link>
               )}
 

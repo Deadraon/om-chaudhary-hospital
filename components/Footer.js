@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { IconEmergency } from '@/components/MedicalIcons';
 
 const HOSPITAL_NAME = process.env.NEXT_PUBLIC_HOSPITAL_NAME || 'Om Chaudhary Hospital & Trauma Centre';
 const EMERGENCY_NUMBER = process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108';
@@ -39,8 +40,9 @@ export default function Footer() {
               <Link href="/book-appointment" className="btn-primary btn-lg whitespace-nowrap">
                 Book Appointment
               </Link>
-              <a href={`tel:${EMERGENCY_NUMBER}`} className="btn-danger btn-lg whitespace-nowrap">
-                🚑 Emergency: {EMERGENCY_NUMBER}
+              <a href={`tel:${EMERGENCY_NUMBER}`} className="btn-danger btn-lg whitespace-nowrap flex items-center justify-center gap-2">
+                <IconEmergency className="w-5 h-5 text-white" />
+                Emergency: {EMERGENCY_NUMBER}
               </a>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import DepartmentCard from '@/components/DepartmentCard';
 import { queryD1 } from '@/lib/d1';
 import Link from 'next/link';
+import { IconEmergency } from '@/components/MedicalIcons';
 
 export const dynamic = 'force-dynamic';
 
@@ -75,7 +76,9 @@ export default async function DepartmentsPage() {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4 text-center md:text-left">
-            <span className="text-4xl">🚨</span>
+            <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center border border-white/15 flex-shrink-0">
+              <IconEmergency className="w-6 h-6 text-white" />
+            </div>
             <div>
               <h2 className="text-2xl font-bold">Need Immediate Emergency or Trauma Care?</h2>
               <p className="text-white/80 mt-1">Our emergency department is open 24 hours a day, 30 days a month.</p>

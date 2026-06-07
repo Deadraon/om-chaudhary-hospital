@@ -18,7 +18,52 @@ const ROLE_DASHBOARDS = {
   patient: '/dashboard/patient',
 };
 
-export function middleware(request) {
+// Verify HMAC SHA-256 JWT signature using standard Web Crypto API (Edge-safe)
+async function verifyHS256(token, secretStr) {
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return false;
+
+    const [headerB64, payloadB64, signatureB64] = parts;
+    const encoder = new TextEncoder();
+    const secretKeyData = encoder.encode(secretStr);
+
+    const key = await crypto.subtle.importKey(
+      'raw',
+      secretKeyData,
+      { name: 'HMAC', hash: { name: 'SHA-256' } },
+      false,
+      ['verify']
+    );
+
+    const base64UrlToUint8Array = (base64Url) => {
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const padLength = (4 - (base64.length % 4)) % 4;
+      const padded = base64 + '='.repeat(padLength);
+      const binary = atob(padded);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+      }
+      return bytes;
+    };
+
+    const dataToVerify = encoder.encode(`${headerB64}.${payloadB64}`);
+    const signature = base64UrlToUint8Array(signatureB64);
+
+    return await crypto.subtle.verify(
+      'HMAC',
+      key,
+      signature,
+      dataToVerify
+    );
+  } catch (err) {
+    console.error('Crypto verification error:', err);
+    return false;
+  }
+}
+
+export async function middleware(request) {
   const { pathname } = request.nextUrl;
 
   // Only protect /dashboard/* routes
@@ -43,14 +88,19 @@ export function middleware(request) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Decode JWT payload (without full verification — verification happens in API routes)
-  // Middleware runs on edge, so we do a simple base64 decode of the payload
+  // Cryptographically verify the JWT signature using the environment's JWT_SECRET
+  const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-change-this';
+  const isValid = await verifyHS256(token, jwtSecret);
+  if (!isValid) {
+    console.warn('Middleware: JWT signature verification failed');
+    const loginUrl = new URL('/login', request.url);
+    loginUrl.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  // Decode JWT payload (already verified)
   try {
     const parts = token.split('.');
-    if (parts.length !== 3) {
-      throw new Error('Invalid token format');
-    }
-
     const payloadBase64 = parts[1];
     const payloadJson = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
     const payload = JSON.parse(payloadJson);

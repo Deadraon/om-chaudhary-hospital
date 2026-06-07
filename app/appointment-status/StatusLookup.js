@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { IconGeneralMedicine } from '@/components/MedicalIcons';
 
 export default function StatusLookup() {
   const [phone, setPhone] = useState('');
@@ -127,8 +128,8 @@ export default function StatusLookup() {
                   </div>
 
                   {apt.doctor_name && (
-                    <div className="mt-4 p-3 bg-gray-50/50 rounded-xl flex items-center gap-2">
-                      <span className="text-sm">👨‍⚕️</span>
+                    <div className="mt-4 p-3 bg-gray-50/50 rounded-xl flex items-center gap-2 border border-gray-100">
+                      <IconGeneralMedicine className="w-5 h-5 text-primary-600 flex-shrink-0" />
                       <p className="text-gray-700 text-xs">
                         Assigned Doctor: <span className="font-semibold text-gray-900">Dr. {apt.doctor_name}</span> ({apt.doctor_speciality || 'General'})
                       </p>
@@ -146,8 +147,10 @@ export default function StatusLookup() {
             </div>
           ) : (
             <div className="bg-white text-center py-12 rounded-3xl border border-gray-100 shadow-sm">
-              <div className="w-16 h-16 bg-gray-50 text-gray-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
-                🗓️
+              <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-100">
+                <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-1">No appointments found</h3>
               <p className="text-gray-500 max-w-sm mx-auto text-sm">

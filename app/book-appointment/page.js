@@ -1,6 +1,7 @@
 import AppointmentForm from '@/components/AppointmentForm';
 import { queryD1 } from '@/lib/d1';
 import Link from 'next/link';
+import { IconEmergency } from '@/components/MedicalIcons';
 
 export const dynamic = 'force-dynamic';
 
@@ -84,7 +85,7 @@ export default async function BookAppointmentPage() {
               {/* Emergency reminder */}
               <div className="bg-red-50 border border-red-200 rounded-3xl p-6 shadow-sm">
                 <h3 className="font-bold text-red-900 text-base mb-2 flex items-center gap-2">
-                  <span>🚨</span> Medical Emergency?
+                  <IconEmergency className="w-5 h-5 text-red-650" /> Medical Emergency?
                 </h3>
                 <p className="text-red-700 text-sm leading-relaxed mb-4">
                   If you have a life-threatening emergency, please do not use this booking form. Contact our emergency division immediately.
