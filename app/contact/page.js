@@ -18,7 +18,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="relative py-24 bg-gradient-to-br from-slate-900 via-primary-950 to-slate-950 text-center overflow-hidden">
+      <section className="relative py-24 bg-gradient-to-br from-slate-900 via-sarvodaya-dark to-slate-950 text-center overflow-hidden">
         {/* Tech Grid Overlay */}
         <div className="absolute inset-0 grid-medical-pattern-dark opacity-10 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent z-0"></div>
@@ -61,16 +61,16 @@ export default function ContactPage() {
               {/* General Inquiry Card */}
               <div className="bg-white border border-gray-150 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-primary-50 text-primary-600 border border-primary-100/50 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 bg-sky-50 text-sarvodaya-blue border border-sky-100/50 rounded-xl flex items-center justify-center flex-shrink-0">
                     <IconPhone className="w-5 h-5" />
                   </div>
                   <div>
                     <h3 className="font-extrabold text-gray-900 text-base mb-1.5">Phone Numbers</h3>
                     <p className="text-gray-500 text-xs mb-2 font-semibold uppercase tracking-wider">OPD & Reception Desk:</p>
-                    <p className="text-gray-900 font-extrabold text-sm hover:text-primary-600 transition-colors">
+                    <p className="text-gray-900 font-extrabold text-sm hover:text-sarvodaya-blue transition-colors">
                       <a href="tel:+919876543210">+91-9876543210</a>
                     </p>
-                    <p className="text-gray-900 font-extrabold text-sm hover:text-primary-600 transition-colors">
+                    <p className="text-gray-900 font-extrabold text-sm hover:text-sarvodaya-blue transition-colors">
                       <a href="tel:+91120123456">+91-120-123456</a>
                     </p>
                   </div>

@@ -3,14 +3,15 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Modal from '@/components/Modal';
 
-const HOSPITAL_NAME = process.env.NEXT_PUBLIC_HOSPITAL_NAME || 'Om Chaudhary Hospital & Trauma Centre';
 const EMERGENCY_NUMBER = process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108';
+const HELPLINE_NUMBER = '9654511414';
 
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/departments', label: 'Departments' },
+  { href: '/departments', label: 'Specialities' },
   { href: '/doctors', label: 'Doctors' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -21,6 +22,16 @@ export default function Header() {
   const [user, setUser] = useState(null);
   const pathname = usePathname();
 
+  // New features state
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isChairmanOpen, setIsChairmanOpen] = useState(false);
+  
+  // Form submission states
+  const [secondOpinionData, setSecondOpinionData] = useState({ name: '', phone: '', specialty: '', fileName: '' });
+  const [secondOpinionSuccess, setSecondOpinionSuccess] = useState(false);
+  const [chairmanData, setChairmanData] = useState({ name: '', email: '', message: '' });
+  const [chairmanSuccess, setChairmanSuccess] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -30,7 +41,6 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    // Check if user is logged in
     fetch('/api/auth/me')
       .then(res => res.ok ? res.json() : null)
       .then(data => {
@@ -41,6 +51,7 @@ export default function Header() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsDrawerOpen(false);
   }, [pathname]);
 
   const handleLogout = async () => {
@@ -60,38 +71,181 @@ export default function Header() {
     return paths[user.role] || '/login';
   };
 
+  // Submit handlers
+  const handleSecondOpinionSubmit = (e) => {
+    e.preventDefault();
+    setSecondOpinionSuccess(true);
+    setTimeout(() => {
+      setSecondOpinionSuccess(false);
+      setSecondOpinionData({ name: '', phone: '', specialty: '', fileName: '' });
+      setIsDrawerOpen(false);
+    }, 4000);
+  };
+
+  const handleChairmanSubmit = (e) => {
+    e.preventDefault();
+    setChairmanSuccess(true);
+    setTimeout(() => {
+      setChairmanSuccess(false);
+      setChairmanData({ name: '', email: '', message: '' });
+      setIsChairmanOpen(false);
+    }, 4000);
+  };
+
   return (
     <>
-      {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-2 px-4 text-center text-sm font-medium z-50 relative shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-3">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-100"></span>
-          </span>
-          <span className="tracking-wide text-xs md:text-sm">
-            <strong>EMERGENCY?</strong> Call <a href={`tel:${EMERGENCY_NUMBER}`} className="font-extrabold underline underline-offset-4 hover:text-red-100 transition-colors">{EMERGENCY_NUMBER}</a> — 24/7 Rapid Ambulance & Trauma Services
-          </span>
+      {/* ==================== DOUBLE HEADER: TOP SUB-HEADER BAR ==================== */}
+      <div className="bg-sarvodaya-dark text-white py-2 px-4 z-50 relative border-b border-white/5 text-[11px] md:text-xs">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          {/* Left: Get Second Opinion Trigger */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => {
+                setIsDrawerOpen(!isDrawerOpen);
+                setSecondOpinionSuccess(false);
+              }}
+              className="flex items-center gap-1.5 font-bold hover:text-sarvodaya-blue transition-colors text-white"
+            >
+              <span className="w-2 h-2 rounded-full bg-sarvodaya-orange animate-pulse"></span>
+              Get Second Opinion By Experts
+              <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${isDrawerOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <span className="hidden sm:inline text-white/20">|</span>
+            {/* Middle: Write to Chairman Trigger */}
+            <button
+              onClick={() => {
+                setIsChairmanOpen(true);
+                setChairmanSuccess(false);
+              }}
+              className="hover:text-sarvodaya-blue transition-colors font-bold text-white flex items-center gap-1.5"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Write to Chairman
+            </button>
+          </div>
+
+          {/* Right: Helpline Number Display */}
+          <div className="flex items-center gap-2">
+            <span className="text-white/60 font-medium">24*7 Helpline:</span>
+            <a href={`tel:${HELPLINE_NUMBER}`} className="font-extrabold text-sarvodaya-orange hover:text-white transition-colors">
+              +91-{HELPLINE_NUMBER}
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Main Header */}
+      {/* ==================== RETRACTABLE SECOND OPINION DRAWER ==================== */}
+      <div className={`transition-all duration-500 overflow-hidden bg-slate-900 text-white relative z-40 border-b border-slate-800 ${
+        isDrawerOpen ? 'max-h-[500px] py-6' : 'max-h-0'
+      }`}>
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="border border-white/10 rounded-2xl p-6 bg-slate-950/50">
+            <h3 className="text-sm md:text-base font-extrabold text-white mb-2 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-sarvodaya-blue"></span>
+              Upload Medical Reports for a Specialist Second Opinion
+            </h3>
+            <p className="text-[11px] text-gray-400 mb-6 max-w-xl">
+              Get diagnostic confirmation and treatment reviews from senior clinical consultants. Fill in the form and attach your prescription or radiology PDF scans.
+            </p>
+
+            {secondOpinionSuccess ? (
+              <div className="bg-emerald-950/50 border border-emerald-500/50 rounded-xl p-4 text-center space-y-1">
+                <p className="text-emerald-400 font-bold text-xs sm:text-sm">✓ Report Submitted Successfully!</p>
+                <p className="text-gray-300 text-xs">Our clinical coordinator will call you back on your registered phone within 24 hours.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSecondOpinionSubmit} className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-end">
+                <div>
+                  <label className="block text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1.5">Name *</label>
+                  <input
+                    type="text"
+                    required
+                    value={secondOpinionData.name}
+                    onChange={e => setSecondOpinionData({ ...secondOpinionData, name: e.target.value })}
+                    className="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-sarvodaya-blue"
+                    placeholder="Patient Name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1.5">Phone Number *</label>
+                  <input
+                    type="tel"
+                    required
+                    pattern="[0-9]{10}"
+                    value={secondOpinionData.phone}
+                    onChange={e => setSecondOpinionData({ ...secondOpinionData, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
+                    className="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-sarvodaya-blue"
+                    placeholder="10-digit mobile"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1.5">Choose Specialty *</label>
+                  <select
+                    required
+                    value={secondOpinionData.specialty}
+                    onChange={e => setSecondOpinionData({ ...secondOpinionData, specialty: e.target.value })}
+                    className="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-sarvodaya-blue"
+                  >
+                    <option value="">Choose Speciality</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Orthopedics">Orthopedics</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="Gynecology">Gynecology</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1.5">Upload Reports *</label>
+                  <input
+                    type="file"
+                    required
+                    onChange={e => setSecondOpinionData({ ...secondOpinionData, fileName: e.target.files[0]?.name || '' })}
+                    className="w-full text-xs text-gray-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-[10px] file:font-bold file:bg-white/10 file:text-white hover:file:bg-white/20 file:cursor-pointer"
+                  />
+                </div>
+                <div className="sm:col-span-4 flex justify-end gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsDrawerOpen(false)}
+                    className="py-2 px-4 rounded-xl text-xs text-gray-400 hover:text-white"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="py-2 px-6 bg-sarvodaya-blue hover:bg-sarvodaya-dark text-white text-xs font-bold rounded-xl shadow-md transition-colors"
+                  >
+                    Submit Request
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* ==================== MAIN HEADER & NAVBAR ==================== */}
       <header className={`sticky top-0 z-40 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-white/85 backdrop-blur-lg border-b border-gray-100 shadow-md py-2' 
-          : 'bg-white border-b border-gray-50 py-4'
+          ? 'bg-white/90 backdrop-blur-md border-b border-gray-150 shadow-md py-2' 
+          : 'bg-white border-b border-gray-50 py-4.5'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
+            
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary-600 to-cyan-500 flex items-center justify-center shadow-lg group-hover:scale-105 transition-all duration-300 border border-white/10 glow-primary-soft">
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-sarvodaya-blue to-cyan-500 flex items-center justify-center shadow-lg group-hover:scale-105 transition-all duration-300 border border-white/10 glow-primary-soft">
                 <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                 </svg>
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-sm md:text-base font-extrabold text-gray-900 leading-tight group-hover:text-primary-600 transition-colors">
+                <h1 className="text-sm md:text-base font-extrabold text-gray-900 leading-tight group-hover:text-sarvodaya-blue transition-colors">
                   Om Chaudhary Hospital
                 </h1>
                 <p className="text-[9px] md:text-[10px] text-cyan-600 font-bold uppercase tracking-widest">
@@ -101,40 +255,92 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1">
-              {navLinks.map(link => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-3 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${
-                    pathname === link.href
-                      ? 'text-primary-600 bg-primary-50/50'
-                      : 'text-gray-600 hover:text-primary-600 hover:bg-gray-50/50'
-                  }`}
-                >
-                  {link.label}
-                  {pathname === link.href && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-primary-600 rounded-full"></span>
-                  )}
-                </Link>
-              ))}
+            <nav className="hidden lg:flex items-center gap-1.5">
+              {navLinks.map(link => {
+                if (link.label === 'Specialities') {
+                  // Specialties Mega Menu dropdown wrapper
+                  return (
+                    <div key={link.href} className="relative group py-4">
+                      <button className="px-3 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-650 hover:text-sarvodaya-blue flex items-center gap-1">
+                        {link.label}
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      
+                      {/* Mega Menu Dropdown Panel */}
+                      <div className="absolute top-[100%] left-1/2 -translate-x-1/2 w-[680px] bg-white border border-gray-150 rounded-3xl shadow-2xl p-6 grid grid-cols-3 gap-6 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
+                        {/* Col 1: Centres of Excellence */}
+                        <div>
+                          <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-2 border-b border-gray-100 mb-3">Centres of Excellence</h4>
+                          <ul className="space-y-2 text-xs font-semibold text-gray-600">
+                            <li><Link href="/departments" className="hover:text-sarvodaya-blue transition-colors block">Emergency & Trauma</Link></li>
+                            <li><Link href="/departments" className="hover:text-sarvodaya-blue transition-colors block">Cardiology Sciences</Link></li>
+                            <li><Link href="/departments" className="hover:text-sarvodaya-blue transition-colors block">Orthopedic Clinic</Link></li>
+                            <li><Link href="/departments" className="hover:text-sarvodaya-blue transition-colors block">Neurology & Spine</Link></li>
+                            <li><Link href="/departments" className="hover:text-sarvodaya-blue transition-colors block">Pediatrics & Neonatal</Link></li>
+                          </ul>
+                        </div>
+                        {/* Col 2: Major Treatments */}
+                        <div>
+                          <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-2 border-b border-gray-100 mb-3">Key Treatments</h4>
+                          <ul className="space-y-2 text-xs text-gray-550 font-medium">
+                            <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue transition-colors block">Joint Replacement</Link></li>
+                            <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue transition-colors block">Angioplasty & Bypass</Link></li>
+                            <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue transition-colors block">Awake Brain Surgery</Link></li>
+                            <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue transition-colors block">High-Risk Pregnancy</Link></li>
+                            <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue transition-colors block">Pediatric Cardiac Care</Link></li>
+                          </ul>
+                        </div>
+                        {/* Col 3: Diagnostics & Info */}
+                        <div className="bg-slate-50 p-4.5 rounded-2xl border border-gray-100 flex flex-col justify-between">
+                          <div>
+                            <h4 className="text-[11px] font-black text-gray-800 uppercase tracking-wider mb-1">Diagnostics Desk</h4>
+                            <p className="text-[10px] text-gray-500 leading-relaxed">Fast path reports, advanced MRI and blood screening facilities active 24/7.</p>
+                          </div>
+                          <Link href="/appointment-status" className="mt-4 w-full py-2 bg-sarvodaya-blue text-white text-[10px] font-bold text-center rounded-xl hover:bg-sarvodaya-dark shadow-sm transition-colors">
+                            Check Lab Reports
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`px-3 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${
+                      pathname === link.href
+                        ? 'text-sarvodaya-blue bg-primary-50/50'
+                        : 'text-gray-600 hover:text-sarvodaya-blue hover:bg-gray-50/50'
+                    }`}
+                  >
+                    {link.label}
+                    {pathname === link.href && (
+                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-sarvodaya-blue rounded-full"></span>
+                    )}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Right Actions */}
             <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-              {/* Emergency Phone (Desktop) */}
+              {/* Emergency Hotline (Desktop XL) */}
               <a
                 href={`tel:${EMERGENCY_NUMBER}`}
-                className="hidden xl:flex items-center gap-2 px-3 py-2 bg-red-50 text-red-650 rounded-xl text-xs font-bold tracking-wide hover:bg-red-100 hover:scale-105 hover:shadow-sm transition-all glow-red"
+                className="hidden xl:flex items-center gap-2 px-3.5 py-2 bg-red-50 text-red-600 rounded-xl text-xs font-bold tracking-wide hover:bg-red-100 hover:scale-105 hover:shadow-sm transition-all glow-red"
               >
                 <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse"></span>
-                Emergency: {EMERGENCY_NUMBER}
+                Emergency Call: {EMERGENCY_NUMBER}
               </a>
 
-              {/* Book Appointment CTA Button */}
+              {/* Book Appointment CTA Button (styled in brand orange) */}
               <Link
                 href="/book-appointment"
-                className="hidden sm:flex inline-flex items-center justify-center px-4 py-2 bg-primary-600 text-white text-xs font-bold rounded-xl hover:bg-primary-750 hover:scale-105 hover:shadow-md transition-all whitespace-nowrap shadow-sm"
+                className="hidden sm:flex inline-flex items-center justify-center px-4 py-2 bg-sarvodaya-orange text-white text-xs font-bold rounded-xl hover:bg-sarvodaya-orange-hover hover:scale-105 hover:shadow-md transition-all whitespace-nowrap shadow-sm"
               >
                 Book Appointment
               </Link>
@@ -186,7 +392,7 @@ export default function Header() {
                 href={link.href}
                 className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                   pathname === link.href
-                    ? 'text-primary-600 bg-primary-50'
+                    ? 'text-sarvodaya-blue bg-primary-50'
                     : 'text-gray-600 hover:bg-gray-50'
                 }`}
               >
@@ -195,9 +401,7 @@ export default function Header() {
             ))}
             <Link
               href="/book-appointment"
-              className={`block px-4 py-3 rounded-xl text-sm font-bold text-primary-600 bg-primary-50/50 transition-colors ${
-                pathname === '/book-appointment' ? 'bg-primary-50 text-primary-750' : ''
-              }`}
+              className={`block px-4 py-3 rounded-xl text-sm font-bold text-white bg-sarvodaya-orange transition-colors`}
             >
               Book Appointment
             </Link>
@@ -219,6 +423,75 @@ export default function Header() {
           </div>
         </div>
       </header>
+
+      {/* ==================== WRITE TO CHAIRMAN MODAL ==================== */}
+      <Modal
+        isOpen={isChairmanOpen}
+        onClose={() => setIsChairmanOpen(false)}
+        title="Direct Message to Hospital Chairman"
+        size="md"
+      >
+        {chairmanSuccess ? (
+          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center space-y-2">
+            <p className="text-emerald-700 font-extrabold text-base">✓ Grievance / Feedback Registered!</p>
+            <p className="text-gray-500 text-xs leading-relaxed">Your message has been securely sent directly to the chairman\'s office. We value your feedback and will review this with clinical directors immediately.</p>
+          </div>
+        ) : (
+          <form onSubmit={handleChairmanSubmit} className="space-y-4">
+            <p className="text-xs text-gray-500 leading-relaxed mb-4">
+              Write directly to our Chairman for feedback, quality issues, or clinical recommendations. Your message is monitored directly by executive leadership.
+            </p>
+            <div>
+              <label className="block text-[10px] uppercase tracking-wider text-gray-700 font-bold mb-1">Your Name *</label>
+              <input
+                type="text"
+                required
+                value={chairmanData.name}
+                onChange={e => setChairmanData({ ...chairmanData, name: e.target.value })}
+                className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-xs text-gray-900 focus:outline-none focus:ring-2 focus:ring-sarvodaya-blue"
+                placeholder="Full Name"
+              />
+            </div>
+            <div>
+              <label className="block text-[10px] uppercase tracking-wider text-gray-700 font-bold mb-1">Your Email Address *</label>
+              <input
+                type="email"
+                required
+                value={chairmanData.email}
+                onChange={e => setChairmanData({ ...chairmanData, email: e.target.value })}
+                className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-xs text-gray-900 focus:outline-none focus:ring-2 focus:ring-sarvodaya-blue"
+                placeholder="email@example.com"
+              />
+            </div>
+            <div>
+              <label className="block text-[10px] uppercase tracking-wider text-gray-700 font-bold mb-1">Message Content *</label>
+              <textarea
+                required
+                rows={4}
+                value={chairmanData.message}
+                onChange={e => setChairmanData({ ...chairmanData, message: e.target.value })}
+                className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-xs text-gray-900 focus:outline-none focus:ring-2 focus:ring-sarvodaya-blue"
+                placeholder="Please write your detailed feedback or grievance here..."
+              ></textarea>
+            </div>
+            <div className="flex gap-3 pt-2">
+              <button
+                type="button"
+                onClick={() => setIsChairmanOpen(false)}
+                className="flex-1 py-3 border border-gray-200 rounded-xl text-xs font-bold text-gray-600 hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="flex-1 py-3 bg-sarvodaya-dark text-white font-bold rounded-xl text-xs hover:bg-slate-800 shadow-md"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        )}
+      </Modal>
     </>
   );
 }

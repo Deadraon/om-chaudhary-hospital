@@ -28,6 +28,12 @@ module.exports = {
           light: '#f0f9ff',
           dark: '#0f172a',
         },
+        sarvodaya: {
+          blue: '#0091c6',
+          dark: '#0f3b5f',
+          orange: '#F58220',
+          'orange-hover': '#d66f19',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],

@@ -15,7 +15,7 @@ const coreValues = [
   { icon: IconCompassion, title: 'Compassion', description: 'Treating every patient with dignity, empathy, and absolute warmth.', style: 'bg-rose-50 text-rose-600 border-rose-100' },
   { icon: IconAward, title: 'Clinical Excellence', description: 'Striving for the highest benchmark in medicine, diagnostics, and service.', style: 'bg-amber-50 text-amber-600 border-amber-100' },
   { icon: IconShield, title: 'Absolute Integrity', description: 'Maintaining complete honesty, transparent billing, and ethical protocols.', style: 'bg-emerald-50 text-emerald-600 border-emerald-100' },
-  { icon: IconSparkles, title: 'Innovative Practice', description: 'Embracing modern surgical technology and advanced clinical workflows.', style: 'bg-primary-50 text-primary-600 border-primary-100' },
+  { icon: IconSparkles, title: 'Innovative Practice', description: 'Embracing modern surgical technology and advanced clinical workflows.', style: 'bg-sky-50 text-sarvodaya-blue border-sky-100' },
 ];
 
 const medicalDirectors = [
@@ -46,7 +46,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="relative py-24 bg-gradient-to-br from-slate-900 via-primary-950 to-slate-950 text-center overflow-hidden">
+      <section className="relative py-24 bg-gradient-to-br from-slate-900 via-sarvodaya-dark to-slate-950 text-center overflow-hidden">
         {/* Tech Grid Overlay */}
         <div className="absolute inset-0 grid-medical-pattern-dark opacity-10 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent z-0"></div>
@@ -69,8 +69,8 @@ export default function AboutPage() {
             
             {/* Left Narrative Box */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary-50 text-primary-700 rounded-full text-xs font-bold tracking-wide">
-                <span className="w-1.5 h-1.5 bg-primary-600 rounded-full"></span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sky-50 text-sarvodaya-blue rounded-full text-xs font-bold tracking-wide">
+                <span className="w-1.5 h-1.5 bg-sarvodaya-blue rounded-full"></span>
                 Our Hospital Legacy
               </div>
               <h2 className="text-3xl font-extrabold text-gray-900 leading-tight">
@@ -91,7 +91,7 @@ export default function AboutPage() {
 
             {/* Right side - Mission/Vision card */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="bg-gradient-to-br from-primary-600 to-cyan-500 text-white p-8 rounded-3xl shadow-xl relative overflow-hidden">
+              <div className="bg-gradient-to-br from-sarvodaya-dark to-sarvodaya-blue text-white p-8 rounded-3xl shadow-xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>
                 <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-5 border border-white/10">
                   <IconShield className="w-5 h-5 text-white" />
@@ -149,8 +149,8 @@ export default function AboutPage() {
       <section className="section bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary-50 text-primary-700 rounded-full text-xs font-bold tracking-wide">
-              <span className="w-1.5 h-1.5 bg-primary-600 rounded-full"></span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sky-50 text-sarvodaya-blue rounded-full text-xs font-bold tracking-wide">
+              <span className="w-1.5 h-1.5 bg-sarvodaya-blue rounded-full"></span>
               Medical Leadership
             </div>
             <h2 className="text-3xl font-extrabold text-gray-900 mt-4">Clinical Directors & Founders</h2>
@@ -168,7 +168,7 @@ export default function AboutPage() {
                   </div>
                   <div className="text-center sm:text-left space-y-1">
                     <h3 className="text-xl font-extrabold text-gray-900">{director.name}</h3>
-                    <p className="text-primary-600 font-bold text-xs">{director.role}</p>
+                    <p className="text-sarvodaya-blue font-bold text-xs">{director.role}</p>
                     <p className="text-gray-500 text-[11px] font-semibold">{director.speciality} • {director.experience}</p>
                   </div>
                 </div>
@@ -204,10 +204,10 @@ export default function AboutPage() {
             Schedule a consult online with our expert medical team members and receive the personalized clinical attention you deserve.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2">
-            <Link href="/book-appointment" className="btn-primary btn-lg shadow-lg hover:shadow-xl text-sm py-4 px-8 flex items-center justify-center">
+            <Link href="/book-appointment" className="btn-orange btn-lg shadow-lg hover:shadow-xl text-sm py-4 px-8 flex items-center justify-center">
               Schedule Appointment
             </Link>
-            <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 font-bold text-gray-800 bg-gray-100 hover:bg-gray-200 transition-all duration-300 rounded-2xl">
+            <Link href="/contact" className="btn-secondary btn-lg shadow-md hover:shadow-lg text-sm py-4 px-8 flex items-center justify-center">
               Contact Desk
             </Link>
           </div>

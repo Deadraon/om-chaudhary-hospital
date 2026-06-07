@@ -37,7 +37,7 @@ export default function Footer() {
               <p className="text-gray-400">Our team of expert doctors is ready to help you 24/7</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/book-appointment" className="btn-primary btn-lg whitespace-nowrap">
+              <Link href="/book-appointment" className="btn-orange btn-lg whitespace-nowrap">
                 Book Appointment
               </Link>
               <a href={`tel:${EMERGENCY_NUMBER}`} className="btn-danger btn-lg whitespace-nowrap flex items-center justify-center gap-2">
@@ -62,7 +62,7 @@ export default function Footer() {
               </div>
               <div>
                 <h3 className="text-white font-bold text-lg leading-tight">Om Chaudhary Hospital</h3>
-                <p className="text-primary-400 text-xs font-medium">& Trauma Centre</p>
+                <p className="text-sarvodaya-blue text-xs font-medium">& Trauma Centre</p>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
@@ -71,7 +71,7 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex gap-3">
               {['facebook', 'twitter', 'instagram', 'youtube'].map(social => (
-                <a key={social} href="#" className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white transition-all duration-300">
+                <a key={social} href="#" className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-sarvodaya-blue hover:text-white transition-all duration-300">
                   <span className="text-xs font-bold uppercase">{social[0]}</span>
                 </a>
               ))}
@@ -81,14 +81,14 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="text-white font-semibold text-lg mb-6 flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-primary-600 rounded-full"></span>
+              <span className="w-8 h-0.5 bg-sarvodaya-blue rounded-full"></span>
               Quick Links
             </h4>
             <ul className="space-y-3">
               {quickLinks.map(link => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-gray-400 hover:text-primary-400 text-sm transition-colors duration-200 flex items-center gap-2">
-                    <svg className="w-3 h-3 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                  <Link href={link.href} className="text-gray-400 hover:text-sarvodaya-blue text-sm transition-colors duration-200 flex items-center gap-2">
+                    <svg className="w-3 h-3 text-sarvodaya-blue" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                     </svg>
                     {link.label}
@@ -101,13 +101,13 @@ export default function Footer() {
           {/* Departments */}
           <div>
             <h4 className="text-white font-semibold text-lg mb-6 flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-primary-600 rounded-full"></span>
+              <span className="w-8 h-0.5 bg-sarvodaya-blue rounded-full"></span>
               Departments
             </h4>
             <ul className="space-y-3">
               {departments.map(dept => (
                 <li key={dept}>
-                  <Link href="/departments" className="text-gray-400 hover:text-primary-400 text-sm transition-colors duration-200 flex items-center gap-2">
+                  <Link href="/departments" className="text-gray-400 hover:text-sarvodaya-blue text-sm transition-colors duration-200 flex items-center gap-2">
                     <svg className="w-3 h-3 text-medical-green" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
@@ -121,34 +121,34 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h4 className="text-white font-semibold text-lg mb-6 flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-primary-600 rounded-full"></span>
+              <span className="w-8 h-0.5 bg-sarvodaya-blue rounded-full"></span>
               Contact
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <svg className="w-4 h-4 text-sarvodaya-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
                 <span className="text-gray-400 text-sm">{HOSPITAL_ADDRESS}</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4 text-sarvodaya-blue" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
                 </div>
-                <a href={`tel:${HOSPITAL_PHONE}`} className="text-gray-400 text-sm hover:text-primary-400 transition-colors">{HOSPITAL_PHONE}</a>
+                <a href={`tel:${HOSPITAL_PHONE}`} className="text-gray-400 text-sm hover:text-sarvodaya-blue transition-colors">{HOSPITAL_PHONE}</a>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  <svg className="w-4 h-4 text-sarvodaya-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <a href={`mailto:${HOSPITAL_EMAIL}`} className="text-gray-400 text-sm hover:text-primary-400 transition-colors">{HOSPITAL_EMAIL}</a>
+                <a href={`mailto:${HOSPITAL_EMAIL}`} className="text-gray-400 text-sm hover:text-sarvodaya-blue transition-colors">{HOSPITAL_EMAIL}</a>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-red-900/50 flex items-center justify-center flex-shrink-0">
@@ -169,8 +169,8 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
             <p>&copy; {new Date().getFullYear()} {HOSPITAL_NAME}. All rights reserved.</p>
             <div className="flex gap-6">
-              <Link href="/about" className="hover:text-primary-400 transition-colors">Privacy Policy</Link>
-              <Link href="/about" className="hover:text-primary-400 transition-colors">Terms of Service</Link>
+              <Link href="/about" className="hover:text-sarvodaya-blue transition-colors">Privacy Policy</Link>
+              <Link href="/about" className="hover:text-sarvodaya-blue transition-colors">Terms of Service</Link>
             </div>
           </div>
         </div>

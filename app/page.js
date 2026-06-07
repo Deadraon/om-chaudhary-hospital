@@ -125,7 +125,7 @@ export default function HomePage() {
             {/* Left Content Column (7 cols) */}
             <div className="lg:col-span-7 space-y-8 animate-fade-in-up">
               {/* Patient Trust Badge */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-primary-50/80 border border-primary-100/50 rounded-full text-primary-800 text-xs font-bold shadow-sm backdrop-blur-xs">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-sky-50/80 border border-sky-100/50 rounded-full text-sarvodaya-dark text-xs font-bold shadow-sm backdrop-blur-xs">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -136,7 +136,7 @@ export default function HomePage() {
               {/* Main Heading */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.15] tracking-tight text-balance">
                 Your Health, Our <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-cyan-500">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-sarvodaya-dark to-sarvodaya-blue">
                   Ultimate Commitment
                 </span>
               </h1>
@@ -148,13 +148,13 @@ export default function HomePage() {
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Link href="/book-appointment" className="btn-primary btn-lg shadow-lg hover:shadow-xl hover:shadow-primary-600/10 text-base py-4 px-8 flex items-center justify-center">
+                <Link href="/book-appointment" className="btn-orange btn-lg shadow-lg hover:shadow-xl hover:shadow-sarvodaya-orange/20 text-base py-4 px-8 flex items-center justify-center">
                   <svg className="w-5 h-5 mr-2.5 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                   Schedule Appointment
                 </Link>
-                <Link href="/doctors" className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-gray-750 bg-white border border-gray-200 rounded-2xl hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-all duration-300">
+                <Link href="/doctors" className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-sarvodaya-blue bg-white border border-sarvodaya-blue/30 rounded-2xl hover:bg-slate-50 hover:border-sarvodaya-blue/50 shadow-sm transition-all duration-300">
                   Meet Our Specialists
                   <svg className="w-5 h-5 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -186,7 +186,7 @@ export default function HomePage() {
             <div className="lg:col-span-5 relative mt-6 lg:mt-0 animate-fade-in">
               <div className="relative mx-auto max-w-[440px] lg:max-w-none">
                 {/* Accent background box */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary-500 to-cyan-400 rounded-3xl transform rotate-3 scale-[1.02] opacity-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-sarvodaya-blue to-cyan-400 rounded-3xl transform rotate-3 scale-[1.02] opacity-10"></div>
                 
                 {/* Main Premium Medical Photo */}
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/60 bg-white">
@@ -201,7 +201,7 @@ export default function HomePage() {
 
                 {/* Floating Interactive Widget: Active OPD indicator */}
                 <div className="absolute bottom-6 -left-6 bg-white/90 backdrop-blur-md border border-gray-150 p-4.5 rounded-2xl shadow-xl max-w-[200px] flex items-center gap-3.5 hover-lift">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center text-cyan-600 flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sarvodaya-blue flex-shrink-0">
                     <IconClock className="w-5 h-5" />
                   </div>
                   <div>
@@ -231,11 +231,11 @@ export default function HomePage() {
       <section className="relative -mt-8 z-20 px-4">
         <div className="max-w-6xl mx-auto bg-white border border-gray-150 rounded-3xl shadow-xl p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <Link href="/book-appointment" className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors group">
-            <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform border border-primary-100/50">
+            <div className="w-11 h-11 rounded-xl bg-sky-50 text-sarvodaya-blue flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform border border-sky-100/50">
               <IconGeneralMedicine className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-sm font-extrabold text-gray-900 group-hover:text-primary-600 transition-colors">Book OPD</h3>
+              <h3 className="text-sm font-extrabold text-gray-900 group-hover:text-sarvodaya-blue transition-colors">Book OPD</h3>
               <p className="text-[11px] text-gray-500 mt-0.5">Schedule online appointments</p>
             </div>
           </Link>
@@ -273,7 +273,7 @@ export default function HomePage() {
       <section className="section bg-white pt-24 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-50 text-primary-700 rounded-full text-xs font-bold tracking-wider mb-4 border border-primary-100/30">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-sky-50 text-sarvodaya-blue rounded-full text-xs font-bold tracking-wider mb-4 border border-sky-100/30">
               <IconSparkles className="w-3.5 h-3.5" />
               Clinical Quality
             </div>
@@ -319,7 +319,7 @@ export default function HomePage() {
                 onClick={() => setActiveDeptTab(d.id)}
                 className={`py-2.5 px-5 rounded-2xl text-xs font-bold tracking-wide transition-all ${
                   activeDeptTab === d.id
-                    ? 'bg-primary-600 text-white shadow-md shadow-primary-600/15'
+                    ? 'bg-sarvodaya-blue text-white shadow-md shadow-sarvodaya-blue/15'
                     : 'bg-white text-gray-600 border border-gray-200/80 hover:bg-gray-50'
                 }`}
               >
@@ -331,7 +331,7 @@ export default function HomePage() {
           {/* spotlight details box */}
           <div className="max-w-4xl mx-auto bg-white border border-gray-100 rounded-3xl shadow-xl p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="space-y-5">
-              <div className="inline-flex px-3 py-1 bg-primary-50 text-primary-700 text-[10px] font-extrabold uppercase tracking-wider rounded-md">
+              <div className="inline-flex px-3 py-1 bg-sky-50 text-sarvodaya-blue text-[10px] font-extrabold uppercase tracking-wider rounded-md">
                 Featured Specialty
               </div>
               <h3 className="text-2xl font-black text-gray-900">{activeDeptInfo.name}</h3>
@@ -349,10 +349,10 @@ export default function HomePage() {
               </div>
 
               <div className="pt-4 flex gap-4">
-                <Link href="/book-appointment" className="btn-primary py-3 px-6 text-xs">
+                <Link href="/book-appointment" className="btn-orange py-3 px-6 text-xs">
                   Book Slot Now
                 </Link>
-                <Link href="/departments" className="inline-flex items-center text-xs font-bold text-gray-600 hover:text-primary-600 transition-colors">
+                <Link href="/departments" className="inline-flex items-center text-xs font-bold text-gray-600 hover:text-sarvodaya-blue transition-colors">
                   View All Specialties &rarr;
                 </Link>
               </div>
@@ -422,7 +422,7 @@ export default function HomePage() {
       <section className="section bg-slate-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-50 text-primary-700 rounded-full text-xs font-bold tracking-wider mb-4 border border-primary-100/30">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-sky-50 text-sarvodaya-blue rounded-full text-xs font-bold tracking-wider mb-4 border border-sky-100/30">
               <IconSparkles className="w-3.5 h-3.5" />
               Patient Success
             </div>
@@ -447,7 +447,7 @@ export default function HomePage() {
                 </div>
                 {/* Author */}
                 <div className="flex items-center gap-3 pt-4 border-t border-gray-50">
-                  <div className="w-9 h-9 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-extrabold text-xs">
+                  <div className="w-9 h-9 rounded-full bg-sky-100 text-sarvodaya-blue flex items-center justify-center font-extrabold text-xs">
                     {t.name.charAt(0)}
                   </div>
                   <div>
@@ -482,7 +482,7 @@ export default function HomePage() {
                     className="w-full px-6 py-4.5 text-left flex justify-between items-center hover:bg-slate-50/50 transition-colors"
                   >
                     <span className="font-extrabold text-gray-950 text-sm sm:text-base">{faq.question}</span>
-                    <span className={`w-6 h-6 rounded-lg bg-gray-50 flex items-center justify-center text-gray-500 transition-transform duration-300 ${isOpen ? 'rotate-180 bg-primary-50 text-primary-600' : ''}`}>
+                    <span className={`w-6 h-6 rounded-lg bg-gray-50 flex items-center justify-center text-gray-500 transition-transform duration-300 ${isOpen ? 'rotate-180 bg-sky-50 text-sarvodaya-blue' : ''}`}>
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
@@ -501,7 +501,7 @@ export default function HomePage() {
       {/* ==================== CALL TO ACTION PORTAL ==================== */}
       <section className="section bg-white pb-24 pt-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary-700 via-primary-800 to-slate-900 p-8 md:p-16 shadow-2xl">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-sarvodaya-dark via-slate-800 to-slate-900 p-8 md:p-16 shadow-2xl">
             {/* Grid overlay */}
             <div className="absolute inset-0 grid-medical-pattern-dark opacity-10"></div>
             <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
@@ -514,7 +514,7 @@ export default function HomePage() {
                 Skip phone lines. Schedule consultations, search for specialist doctor timings, and track appointments in real time.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Link href="/book-appointment" className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-700 font-bold rounded-2xl text-base hover:bg-gray-50 transition-all duration-300 shadow-md">
+                <Link href="/book-appointment" className="btn-orange btn-lg shadow-lg hover:shadow-xl hover:shadow-sarvodaya-orange/20 text-base py-4 px-8 flex items-center justify-center">
                   Book Slot Online
                 </Link>
                 <Link href="/appointment-status" className="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-bold rounded-2xl text-base hover:bg-white/10 transition-all duration-300">

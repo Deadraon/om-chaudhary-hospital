@@ -15,7 +15,7 @@ export default function DoctorCard({ doctor }) {
 
   return (
     <>
-      <div className="group rounded-3xl bg-white border border-gray-100 overflow-hidden hover:shadow-xl hover:border-primary-100 transition-all duration-300 hover-lift">
+      <div className="group rounded-3xl bg-white border border-gray-100 overflow-hidden hover:shadow-xl hover:border-sarvodaya-blue/30 transition-all duration-300 hover-lift">
         {/* Photo Container */}
         <div className="relative h-64 bg-gradient-to-br from-blue-50 to-cyan-50/50 overflow-hidden flex items-center justify-center">
           {photoUrl ? (
@@ -25,7 +25,7 @@ export default function DoctorCard({ doctor }) {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-primary-400 group-hover:text-primary-500 transition-colors">
+            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-sarvodaya-blue/40 group-hover:text-sarvodaya-blue/60 transition-colors">
               {/* Custom Medical Doctor SVG Avatar */}
               <svg className="w-24 h-24 mb-2 opacity-80 group-hover:scale-105 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -42,10 +42,10 @@ export default function DoctorCard({ doctor }) {
 
         {/* Info */}
         <div className="p-6 text-center">
-          <h3 className="text-base font-extrabold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors">
+          <h3 className="text-base font-extrabold text-gray-900 mb-1 group-hover:text-sarvodaya-blue transition-colors">
             Dr. {doctor.name}
           </h3>
-          <p className="text-cyan-600 font-bold text-xs mb-2 tracking-wide">
+          <p className="text-sarvodaya-blue font-bold text-xs mb-2 tracking-wide">
             {doctor.speciality || 'General Physician'}
           </p>
 
@@ -59,7 +59,7 @@ export default function DoctorCard({ doctor }) {
           )}
 
           {doctor.experience && (
-            <div className="inline-flex items-center gap-1 px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4 border border-primary-100/50">
+            <div className="inline-flex items-center gap-1 px-3 py-1 bg-sky-50 text-sarvodaya-blue rounded-full text-[10px] font-bold uppercase tracking-wider mb-4 border border-sky-100/50">
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -70,7 +70,7 @@ export default function DoctorCard({ doctor }) {
           {/* Quick View Button */}
           <button
             onClick={() => setIsModalOpen(true)}
-            className="w-full mt-2 py-2 px-4 border border-gray-100 rounded-xl text-xs font-bold text-gray-700 hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-all duration-300"
+            className="w-full mt-2 py-2 px-4 border border-gray-100 rounded-xl text-xs font-bold text-gray-700 hover:bg-sarvodaya-blue hover:text-white hover:border-sarvodaya-blue transition-all duration-300"
           >
             View Profile & Details
           </button>
@@ -90,14 +90,14 @@ export default function DoctorCard({ doctor }) {
               {photoUrl ? (
                 <img src={photoUrl} alt={doctor.name} className="w-full h-full object-cover" />
               ) : (
-                <svg className="w-12 h-12 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                <svg className="w-12 h-12 text-sarvodaya-blue/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               )}
             </div>
             <div className="text-center sm:text-left">
               <h4 className="text-xl font-extrabold text-gray-900">Dr. {doctor.name}</h4>
-              <p className="text-cyan-600 font-bold text-sm">{doctor.speciality || 'General Physician'}</p>
+              <p className="text-sarvodaya-blue font-bold text-sm">{doctor.speciality || 'General Physician'}</p>
               <p className="text-gray-500 text-xs mt-1">{doctor.department_name} • {doctor.experience || 'Senior Consultant'}</p>
             </div>
           </div>
@@ -134,7 +134,7 @@ export default function DoctorCard({ doctor }) {
             </button>
             <Link
               href="/book-appointment"
-              className="flex-1 py-3 bg-primary-600 text-white font-bold rounded-xl text-xs text-center hover:bg-primary-700 shadow-medical hover:shadow-medical-lg transition-all"
+              className="flex-1 py-3 bg-sarvodaya-orange text-white font-bold rounded-xl text-xs text-center hover:bg-sarvodaya-orange-hover shadow-md transition-all"
             >
               Book Appointment
             </Link>

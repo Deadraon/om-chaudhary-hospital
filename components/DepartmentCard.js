@@ -51,7 +51,7 @@ export default function DepartmentCard({ department }) {
   const styleClasses = DEPT_STYLES[department.name] || 'bg-blue-50 text-blue-600 border-blue-100 hover:bg-blue-100/30';
 
   return (
-    <div className="group rounded-3xl bg-white border border-gray-100 p-6 hover:shadow-lg hover:border-primary-100 transition-all duration-300 hover-lift">
+    <div className="group rounded-3xl bg-white border border-gray-100 p-6 hover:shadow-lg hover:border-sarvodaya-blue/30 transition-all duration-300 hover-lift">
       <div className="flex flex-col items-center text-center">
         {/* Icon container */}
         <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-500 group-hover:scale-110 ${styleClasses}`}>
@@ -59,7 +59,7 @@ export default function DepartmentCard({ department }) {
         </div>
 
         {/* Department Name */}
-        <h3 className="text-base font-extrabold text-gray-900 mt-5 mb-2 group-hover:text-primary-600 transition-colors">
+        <h3 className="text-base font-extrabold text-gray-900 mt-5 mb-2 group-hover:text-sarvodaya-blue transition-colors">
           {department.name}
         </h3>
 
@@ -71,7 +71,7 @@ export default function DepartmentCard({ department }) {
         {/* Action Link */}
         <Link
           href="/book-appointment"
-          className="inline-flex items-center gap-1.5 text-primary-600 text-xs font-bold group-hover:gap-2.5 transition-all duration-300"
+          className="inline-flex items-center gap-1.5 text-sarvodaya-blue text-xs font-bold group-hover:gap-2.5 transition-all duration-300"
         >
           Schedule Appointment
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

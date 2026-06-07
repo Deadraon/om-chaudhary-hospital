@@ -13,7 +13,7 @@
 
   html {
     scroll-behavior: smooth;
-    scrollbar-color: #1a56db #f0f9ff;
+    scrollbar-color: #0091c6 #f0f9ff;
     scrollbar-width: thin;
   }
 
@@ -26,8 +26,8 @@
   }
 
   ::selection {
-    background-color: rgba(26, 86, 219, 0.2);
-    color: #1e3a8a;
+    background-color: rgba(0, 145, 198, 0.2);
+    color: #0f3b5f;
   }
 }
 
@@ -43,20 +43,20 @@
 
   /* Gradient Backgrounds */
   .gradient-primary {
-    background: linear-gradient(135deg, #1a56db 0%, #0891b2 50%, #059669 100%);
+    background: linear-gradient(135deg, #0091c6 0%, #0f3b5f 100%);
   }
 
   .gradient-hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 40%, #1a56db 70%, #0891b2 100%);
+    background: linear-gradient(135deg, #0f3b5f 0%, #0091c6 100%);
   }
 
   .gradient-medical {
-    background: linear-gradient(135deg, #1a56db 0%, #3b82f6 50%, #60a5fa 100%);
+    background: linear-gradient(135deg, #0091c6 0%, #3b82f6 50%, #60a5fa 100%);
   }
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background: linear-gradient(135deg, #1a56db 0%, #0891b2 100%);
+    background: linear-gradient(135deg, #0091c6 0%, #0f3b5f 100%);
   }
 
   /* Emergency Banner */
@@ -67,20 +67,28 @@
 
   /* Button Styles */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl
-           hover:bg-primary-700 active:bg-primary-800
+    @apply inline-flex items-center justify-center px-6 py-3 bg-sarvodaya-blue text-white font-semibold rounded-xl
+           hover:bg-sarvodaya-dark active:bg-sarvodaya-dark
            transition-all duration-300 ease-out
-           shadow-md hover:shadow-medical hover:-translate-y-0.5
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+           shadow-md hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-sarvodaya-blue;
+  }
+
+  .btn-orange {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-sarvodaya-orange text-white font-semibold rounded-xl
+           hover:bg-sarvodaya-orange-hover active:bg-sarvodaya-orange-hover
+           transition-all duration-300 ease-out
+           shadow-md hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-sarvodaya-orange;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-white text-primary-600 font-semibold rounded-xl
-           border-2 border-primary-600
-           hover:bg-primary-50 active:bg-primary-100
+    @apply inline-flex items-center justify-center px-6 py-3 bg-white text-sarvodaya-blue font-semibold rounded-xl
+           border-2 border-sarvodaya-blue
+           hover:bg-blue-50 active:bg-blue-100
            transition-all duration-300 ease-out
            shadow-sm hover:shadow-md hover:-translate-y-0.5
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+           focus:outline-none focus:ring-2 focus:ring-sarvodaya-blue;
   }
 
   .btn-danger {
@@ -118,7 +126,7 @@
   .input-field {
     @apply w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900
            placeholder:text-gray-400
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500
+           focus:outline-none focus:ring-2 focus:ring-sarvodaya-blue focus:border-sarvodaya-blue
            transition-all duration-200;
   }
 
@@ -186,12 +194,12 @@
   /* Sidebar */
   .sidebar-link {
     @apply flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 font-medium
-           hover:bg-primary-50 hover:text-primary-600
+           hover:bg-sky-50 hover:text-sarvodaya-blue
            transition-all duration-200;
   }
 
   .sidebar-link-active {
-    @apply bg-primary-50 text-primary-600 shadow-sm;
+    @apply bg-sky-50 text-sarvodaya-blue shadow-sm;
   }
 
   /* Table */
