@@ -261,37 +261,9 @@ export default function Header() {
               </Link>
               
               {/* About Us */}
-              <Link href="/about" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/about' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/about" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/about' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 About
               </Link>
-
-              {/* Sarvodaya Group Dropdown */}
-              <div className="relative group py-4">
-                <button className="px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
-                  Locations
-                  <svg className="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <div className="absolute top-[100%] left-0 w-[420px] bg-white border border-gray-150 rounded-2xl shadow-2xl p-5 grid grid-cols-2 gap-4 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
-                  <div>
-                    <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-1.5 border-b border-gray-100 mb-2">Hospitals</h4>
-                    <ul className="space-y-1.5 text-xs font-semibold text-gray-600">
-                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">Sector 8, Faridabad</Link></li>
-                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">Sector 19, Faridabad</Link></li>
-                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">Greater Noida West</Link></li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-1.5 border-b border-gray-100 mb-2">Clinics & Imaging</h4>
-                    <ul className="space-y-1.5 text-xs font-semibold text-gray-655">
-                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">Palwal Health Clinic</Link></li>
-                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">GK New Delhi Medicentre</Link></li>
-                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">NDMC Imaging, Moti Bagh</Link></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
 
               {/* Doctors */}
               <Link href="/doctors" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/doctors' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>

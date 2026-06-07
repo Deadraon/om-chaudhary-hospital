@@ -106,7 +106,6 @@ export default function HomePage() {
   
   // Interactive search & organ states
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedOrgan, setSelectedOrgan] = useState('');
 
   // Find active department details for spotlight
@@ -185,9 +184,9 @@ export default function HomePage() {
 
       {/* ==================== INTERSECTING CALLBACK SEARCH FORM ==================== */}
       <section className="relative z-20 px-4 -mt-12">
-        <div className="max-w-4xl mx-auto bg-white border border-gray-150 rounded-3xl shadow-2xl p-5 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+        <div className="max-w-3xl mx-auto bg-white border border-gray-150 rounded-3xl shadow-2xl p-5 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
           {/* Doctor/Specialty Search */}
-          <div className="relative">
+          <div className="relative md:col-span-2">
             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
               <svg className="w-5.5 h-5.5 text-sarvodaya-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -202,31 +201,10 @@ export default function HomePage() {
             />
           </div>
 
-          {/* Location Dropdown */}
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-              <svg className="w-5.5 h-5.5 text-sarvodaya-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <select
-              value={selectedLocation}
-              onChange={e => setSelectedLocation(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-gray-200 rounded-2xl text-xs text-gray-950 focus:outline-none focus:ring-2 focus:ring-sarvodaya-blue appearance-none cursor-pointer"
-            >
-              <option value="">Select Location</option>
-              <option value="Greater Noida West">Greater Noida West</option>
-              <option value="Sector 8, Faridabad">Sector 8, Faridabad</option>
-              <option value="Sector 19, Faridabad">Sector 19, Faridabad</option>
-              <option value="Palwal Health Clinic">Palwal Health Clinic</option>
-            </select>
-          </div>
-
           {/* Book Appointment Submit CTA */}
           <Link
-            href={`/book-appointment?location=${encodeURIComponent(selectedLocation)}&query=${encodeURIComponent(searchQuery)}`}
-            className="w-full py-3 bg-sarvodaya-orange text-white text-xs font-bold rounded-2xl text-center hover:bg-sarvodaya-orange-hover hover:scale-[1.02] shadow-md transition-all flex items-center justify-center gap-2"
+            href={`/book-appointment?query=${encodeURIComponent(searchQuery)}`}
+            className="w-full py-3 bg-sarvodaya-orange text-white text-xs font-bold rounded-2xl text-center hover:bg-sarvodaya-orange-hover hover:scale-[1.02] shadow-md transition-all flex items-center justify-center gap-2 md:col-span-1"
           >
             Book Appointment
             <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
