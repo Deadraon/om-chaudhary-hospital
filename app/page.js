@@ -35,25 +35,25 @@ const hospitalFeatures = [
     icon: IconEmergency,
     title: '24/7 Emergency Care',
     description: 'Immediate trauma response, critical care transport, and emergency surgical teams available around the clock.',
-    style: 'border-red-100 bg-red-50/30 text-red-650'
+    style: 'border-red-100 bg-red-50/30 text-red-700'
   },
   {
     icon: IconGeneralMedicine,
     title: 'Specialized Consultants',
     description: 'Direct consultations with award-winning experts in Cardiology, Orthopedics, and Neurology.',
-    style: 'border-blue-100 bg-blue-50/30 text-primary-650'
+    style: 'border-blue-100 bg-blue-50/30 text-primary-700'
   },
   {
     icon: IconShield,
     title: 'Certified Safety Standards',
     description: 'Rigorous sanitation, digital healthcare tracking, and international patient safety protocols.',
-    style: 'border-emerald-100 bg-emerald-50/30 text-emerald-650'
+    style: 'border-emerald-100 bg-emerald-50/30 text-emerald-700'
   },
   {
     icon: IconPathology,
     title: 'Advanced Diagnostics',
     description: 'Fully automated lab services, CT Scan, High-Res Ultrasound, and radiology reporting.',
-    style: 'border-purple-100 bg-purple-50/30 text-purple-650'
+    style: 'border-purple-100 bg-purple-50/30 text-purple-700'
   },
 ];
 
@@ -111,7 +111,7 @@ export default function HomePage() {
   return (
     <>
       {/* ==================== HERO SECTION ==================== */}
-      <section className="relative min-h-[92vh] flex items-center bg-gradient-to-br from-slate-50 via-blue-50/30 to-white overflow-hidden py-12 md:py-20 border-b border-gray-100/50">
+      <section className="relative min-h-[92vh] flex items-center bg-gradient-to-br from-slate-50 via-blue-50/20 to-white overflow-hidden py-12 md:py-20 border-b border-gray-100/50">
         {/* Tech Grid Background Pattern */}
         <div className="absolute inset-0 grid-medical-pattern opacity-100 pointer-events-none"></div>
         
@@ -122,10 +122,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Left Content Column (6 cols) */}
+            {/* Left Content Column (7 cols) */}
             <div className="lg:col-span-7 space-y-8 animate-fade-in-up">
               {/* Patient Trust Badge */}
-              <div className="inline-flex items-center gap-2.5 px-4.5 py-2 bg-primary-50/60 border border-primary-100/50 rounded-full text-primary-750 text-xs font-bold shadow-sm backdrop-blur-xs">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-primary-50/80 border border-primary-100/50 rounded-full text-primary-800 text-xs font-bold shadow-sm backdrop-blur-xs">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -142,7 +142,7 @@ export default function HomePage() {
               </h1>
 
               {/* Description */}
-              <p className="text-base sm:text-lg text-gray-550 max-w-xl leading-relaxed font-medium">
+              <p className="text-base sm:text-lg text-gray-650 max-w-xl leading-relaxed font-medium">
                 Om Chaudhary Hospital & Trauma Centre provides world-class clinical care, utilizing advanced medical technology and a dedicated team of expert specialist physicians.
               </p>
 
@@ -154,7 +154,7 @@ export default function HomePage() {
                   </svg>
                   Schedule Appointment
                 </Link>
-                <Link href="/doctors" className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-gray-700 bg-white border border-gray-200 rounded-2xl hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-all duration-350">
+                <Link href="/doctors" className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-gray-750 bg-white border border-gray-200 rounded-2xl hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-all duration-300">
                   Meet Our Specialists
                   <svg className="w-5 h-5 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -175,7 +175,7 @@ export default function HomePage() {
                 <div>
                   <div className="text-2xl sm:text-3xl font-black text-gray-950 flex items-center gap-1">
                     24/7
-                    <span className="w-2 h-2 rounded-full bg-red-650 inline-block animate-pulse"></span>
+                    <span className="w-2 h-2 rounded-full bg-red-600 inline-block animate-pulse"></span>
                   </div>
                   <div className="text-gray-500 text-xs font-bold uppercase tracking-wider mt-0.5">Trauma Care</div>
                 </div>
@@ -193,7 +193,7 @@ export default function HomePage() {
                   <img 
                     src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" 
                     alt="Clinical Consultation at Om Chaudhary Hospital"
-                    className="w-full h-[460px] object-cover hover:scale-[1.02] transition-transform duration-700" 
+                    className="w-full h-[460px] object-cover hover:scale-[1.02] transition-transform duration-750" 
                   />
                   {/* Subtle dark tint gradient on image bottom */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
@@ -212,7 +212,7 @@ export default function HomePage() {
 
                 {/* Floating Interactive Widget: Emergency contact */}
                 <div className="absolute -top-6 -right-6 bg-white border border-red-100 p-4.5 rounded-2xl shadow-xl max-w-[220px] flex items-center gap-3.5 hover-lift">
-                  <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-650 flex-shrink-0">
                     <IconEmergency className="w-5 h-5" />
                   </div>
                   <div>
@@ -258,11 +258,11 @@ export default function HomePage() {
             </div>
           </Link>
           <Link href="/contact" className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors group">
-            <div className="w-11 h-11 rounded-xl bg-red-50 text-red-650 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform border border-red-100/50">
+            <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform border border-red-100/50">
               <IconEmergency className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-sm font-extrabold text-gray-900 group-hover:text-red-650 transition-colors">Emergency Info</h3>
+              <h3 className="text-sm font-extrabold text-gray-900 group-hover:text-red-600 transition-colors">Emergency Info</h3>
               <p className="text-[11px] text-gray-500 mt-0.5">Trauma unit location & map</p>
             </div>
           </Link>
@@ -319,8 +319,8 @@ export default function HomePage() {
                 onClick={() => setActiveDeptTab(d.id)}
                 className={`py-2.5 px-5 rounded-2xl text-xs font-bold tracking-wide transition-all ${
                   activeDeptTab === d.id
-                    ? 'bg-primary-600 text-white shadow-md shadow-primary-650/15'
-                    : 'bg-white text-gray-650 border border-gray-200/80 hover:bg-gray-50'
+                    ? 'bg-primary-600 text-white shadow-md shadow-primary-600/15'
+                    : 'bg-white text-gray-600 border border-gray-200/80 hover:bg-gray-50'
                 }`}
               >
                 {d.name}
@@ -331,7 +331,7 @@ export default function HomePage() {
           {/* spotlight details box */}
           <div className="max-w-4xl mx-auto bg-white border border-gray-100 rounded-3xl shadow-xl p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="space-y-5">
-              <div className="inline-flex px-3 py-1 bg-primary-50 text-primary-750 text-[10px] font-extrabold uppercase tracking-wider rounded-md">
+              <div className="inline-flex px-3 py-1 bg-primary-50 text-primary-700 text-[10px] font-extrabold uppercase tracking-wider rounded-md">
                 Featured Specialty
               </div>
               <h3 className="text-2xl font-black text-gray-900">{activeDeptInfo.name}</h3>
@@ -352,7 +352,7 @@ export default function HomePage() {
                 <Link href="/book-appointment" className="btn-primary py-3 px-6 text-xs">
                   Book Slot Now
                 </Link>
-                <Link href="/departments" className="inline-flex items-center text-xs font-bold text-gray-650 hover:text-primary-650 transition-colors">
+                <Link href="/departments" className="inline-flex items-center text-xs font-bold text-gray-600 hover:text-primary-600 transition-colors">
                   View All Specialties &rarr;
                 </Link>
               </div>
@@ -443,7 +443,7 @@ export default function HomePage() {
                     ))}
                   </div>
                   {/* Quote */}
-                  <p className="text-gray-650 text-xs sm:text-sm mb-6 leading-relaxed italic">&ldquo;{t.text}&rdquo;</p>
+                  <p className="text-gray-600 text-xs sm:text-sm mb-6 leading-relaxed italic">&ldquo;{t.text}&rdquo;</p>
                 </div>
                 {/* Author */}
                 <div className="flex items-center gap-3 pt-4 border-t border-gray-50">
@@ -452,7 +452,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <p className="font-extrabold text-gray-900 text-xs">{t.name}</p>
-                    <p className="text-gray-550 text-[10px] uppercase font-bold mt-0.5">{t.role}</p>
+                    <p className="text-gray-500 text-[10px] uppercase font-bold mt-0.5">{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -475,7 +475,7 @@ export default function HomePage() {
               return (
                 <div 
                   key={index} 
-                  className="border border-gray-150 rounded-2xl overflow-hidden bg-white transition-colors duration-300"
+                  className="border border-gray-200 rounded-2xl overflow-hidden bg-white transition-colors duration-300"
                 >
                   <button
                     onClick={() => toggleFaq(index)}
@@ -489,7 +489,7 @@ export default function HomePage() {
                     </span>
                   </button>
                   <div className={`transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-48 border-t border-gray-100' : 'max-h-0'}`}>
-                    <p className="px-6 py-4.5 text-gray-600 text-xs sm:text-sm leading-relaxed bg-slate-50/20">{faq.answer}</p>
+                    <p className="px-6 py-4.5 text-gray-605 text-xs sm:text-sm leading-relaxed bg-slate-50/20">{faq.answer}</p>
                   </div>
                 </div>
               );
@@ -501,7 +501,7 @@ export default function HomePage() {
       {/* ==================== CALL TO ACTION PORTAL ==================== */}
       <section className="section bg-white pb-24 pt-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary-750 via-primary-850 to-slate-900 p-8 md:p-16 shadow-2xl">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary-700 via-primary-800 to-slate-900 p-8 md:p-16 shadow-2xl">
             {/* Grid overlay */}
             <div className="absolute inset-0 grid-medical-pattern-dark opacity-10"></div>
             <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>

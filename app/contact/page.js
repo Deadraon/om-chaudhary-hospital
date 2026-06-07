@@ -28,7 +28,7 @@ export default function ContactPage() {
         
         <div className="max-w-4xl mx-auto px-4 relative z-10 space-y-4">
           <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">Contact Us</h1>
-          <p className="text-base sm:text-lg text-gray-350 max-w-xl mx-auto font-medium">
+          <p className="text-base sm:text-lg text-gray-300 max-w-xl mx-auto font-medium">
             Get in touch with our medical reception team, general helpdesk, or find directions to our emergency unit.
           </p>
         </div>
@@ -39,7 +39,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* Left Column: Contact Cards (4 cols) */}
+            {/* Left Column: Contact Cards (5 cols) */}
             <div className="lg:col-span-5 space-y-6">
               {/* Emergency Card */}
               <div className="bg-red-50 border border-red-200/60 rounded-3xl p-6 shadow-sm relative overflow-hidden glow-red">
@@ -50,7 +50,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-extrabold text-red-950 text-base mb-1">Emergency Hotline</h3>
-                    <p className="text-red-750 text-xs mb-3 font-medium">Available 24/7 for trauma and critical ambulance requests.</p>
+                    <p className="text-red-700 text-xs mb-3 font-medium">Available 24/7 for trauma and critical ambulance requests.</p>
                     <a href={`tel:${process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108'}`} className="inline-flex items-center justify-center px-4.5 py-2.5 bg-red-600 text-white font-extrabold rounded-xl text-xs hover:bg-red-700 transition-colors shadow-sm tracking-wide">
                       Call {process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108'}
                     </a>
@@ -67,10 +67,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-extrabold text-gray-900 text-base mb-1.5">Phone Numbers</h3>
                     <p className="text-gray-500 text-xs mb-2 font-semibold uppercase tracking-wider">OPD & Reception Desk:</p>
-                    <p className="text-gray-950 font-extrabold text-sm hover:text-primary-600 transition-colors">
+                    <p className="text-gray-900 font-extrabold text-sm hover:text-primary-600 transition-colors">
                       <a href="tel:+919876543210">+91-9876543210</a>
                     </p>
-                    <p className="text-gray-950 font-extrabold text-sm hover:text-primary-600 transition-colors">
+                    <p className="text-gray-900 font-extrabold text-sm hover:text-primary-600 transition-colors">
                       <a href="tel:+91120123456">+91-120-123456</a>
                     </p>
                   </div>
@@ -86,11 +86,11 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-extrabold text-gray-900 text-base mb-1.5">Email Addresses</h3>
                     <p className="text-gray-500 text-xs mb-1 font-semibold uppercase tracking-wider">Appointments & Support:</p>
-                    <p className="text-gray-950 font-extrabold text-xs mb-3">
+                    <p className="text-gray-900 font-extrabold text-xs mb-3">
                       <a href="mailto:info@omchaudharyhospital.com" className="hover:text-cyan-600 transition-colors">info@omchaudharyhospital.com</a>
                     </p>
                     <p className="text-gray-500 text-xs mb-1 font-semibold uppercase tracking-wider">Careers & HR Desk:</p>
-                    <p className="text-gray-950 font-extrabold text-xs">
+                    <p className="text-gray-900 font-extrabold text-xs">
                       <a href="mailto:hr@omchaudharyhospital.com" className="hover:text-cyan-600 transition-colors">hr@omchaudharyhospital.com</a>
                     </p>
                   </div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-extrabold text-gray-900 text-base mb-1.5">Hospital Location</h3>
-                    <p className="text-gray-650 text-xs leading-relaxed mb-4 font-medium">
+                    <p className="text-gray-600 text-xs leading-relaxed mb-4 font-medium">
                       Om Chaudhary Hospital & Trauma Centre<br />
                       Main Bypass Road, Sector-12,<br />
                       Greater Noida, Uttar Pradesh, India - 201308

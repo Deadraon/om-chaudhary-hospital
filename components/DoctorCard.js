@@ -70,7 +70,7 @@ export default function DoctorCard({ doctor }) {
           {/* Quick View Button */}
           <button
             onClick={() => setIsModalOpen(true)}
-            className="w-full mt-2 py-2 px-4 border border-gray-100 rounded-xl text-xs font-bold text-gray-750 hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-all duration-300"
+            className="w-full mt-2 py-2 px-4 border border-gray-100 rounded-xl text-xs font-bold text-gray-700 hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-all duration-300"
           >
             View Profile & Details
           </button>

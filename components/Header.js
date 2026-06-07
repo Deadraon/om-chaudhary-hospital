@@ -13,7 +13,6 @@ const navLinks = [
   { href: '/departments', label: 'Departments' },
   { href: '/doctors', label: 'Doctors' },
   { href: '/contact', label: 'Contact' },
-  { href: '/book-appointment', label: 'Book Appointment' },
 ];
 
 export default function Header() {
@@ -64,13 +63,13 @@ export default function Header() {
   return (
     <>
       {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-red-650 to-red-700 text-white py-2 px-4 text-center text-sm font-medium z-50 relative shadow-md">
+      <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-2 px-4 text-center text-sm font-medium z-50 relative shadow-md">
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-3">
           <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-100"></span>
           </span>
-          <span className="tracking-wide">
+          <span className="tracking-wide text-xs md:text-sm">
             <strong>EMERGENCY?</strong> Call <a href={`tel:${EMERGENCY_NUMBER}`} className="font-extrabold underline underline-offset-4 hover:text-red-100 transition-colors">{EMERGENCY_NUMBER}</a> — 24/7 Rapid Ambulance & Trauma Services
           </span>
         </div>
@@ -85,17 +84,17 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
               <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary-600 to-cyan-500 flex items-center justify-center shadow-lg group-hover:scale-105 transition-all duration-300 border border-white/10 glow-primary-soft">
                 <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                 </svg>
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-base font-extrabold text-gray-900 leading-tight group-hover:text-primary-600 transition-colors">
+                <h1 className="text-sm md:text-base font-extrabold text-gray-900 leading-tight group-hover:text-primary-600 transition-colors">
                   Om Chaudhary Hospital
                 </h1>
-                <p className="text-[10px] text-cyan-600 font-bold uppercase tracking-widest">
+                <p className="text-[9px] md:text-[10px] text-cyan-600 font-bold uppercase tracking-widest">
                   & Trauma Centre
                 </p>
               </div>
@@ -107,7 +106,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${
+                  className={`px-3 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${
                     pathname === link.href
                       ? 'text-primary-600 bg-primary-50/50'
                       : 'text-gray-600 hover:text-primary-600 hover:bg-gray-50/50'
@@ -122,29 +121,37 @@ export default function Header() {
             </nav>
 
             {/* Right Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
               {/* Emergency Phone (Desktop) */}
               <a
                 href={`tel:${EMERGENCY_NUMBER}`}
-                className="hidden md:flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-xl text-xs font-bold tracking-wide hover:bg-red-100 hover:scale-102 hover:shadow-sm transition-all glow-red"
+                className="hidden xl:flex items-center gap-2 px-3 py-2 bg-red-50 text-red-650 rounded-xl text-xs font-bold tracking-wide hover:bg-red-100 hover:scale-105 hover:shadow-sm transition-all glow-red"
               >
                 <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse"></span>
                 Emergency: {EMERGENCY_NUMBER}
               </a>
 
+              {/* Book Appointment CTA Button */}
+              <Link
+                href="/book-appointment"
+                className="hidden sm:flex inline-flex items-center justify-center px-4 py-2 bg-primary-600 text-white text-xs font-bold rounded-xl hover:bg-primary-750 hover:scale-105 hover:shadow-md transition-all whitespace-nowrap shadow-sm"
+              >
+                Book Appointment
+              </Link>
+
               {/* Auth Buttons */}
               {user ? (
-                <div className="hidden md:flex items-center gap-2">
-                  <Link href={getDashboardLink()} className="btn-primary btn-sm text-xs py-2 px-4">
+                <div className="hidden md:flex items-center gap-1.5">
+                  <Link href={getDashboardLink()} className="inline-flex items-center justify-center px-3.5 py-2 border border-gray-200 text-gray-700 text-xs font-bold rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
                     Dashboard
                   </Link>
-                  <button onClick={handleLogout} className="btn-ghost btn-sm text-gray-500 text-xs py-2 px-4">
+                  <button onClick={handleLogout} className="text-gray-500 hover:text-gray-900 text-xs font-bold px-2 py-2 transition-colors">
                     Logout
                   </button>
                 </div>
               ) : (
-                <Link href="/login" className="hidden md:flex btn-primary btn-sm text-xs py-2 px-4">
-                  Login / Register
+                <Link href="/login" className="hidden md:flex inline-flex items-center justify-center px-3.5 py-2 border border-gray-200 text-gray-700 text-xs font-bold rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
+                  Login
                 </Link>
               )}
 
@@ -186,6 +193,14 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/book-appointment"
+              className={`block px-4 py-3 rounded-xl text-sm font-bold text-primary-600 bg-primary-50/50 transition-colors ${
+                pathname === '/book-appointment' ? 'bg-primary-50 text-primary-750' : ''
+              }`}
+            >
+              Book Appointment
+            </Link>
             <hr className="my-2 border-gray-100" />
             {user ? (
               <>

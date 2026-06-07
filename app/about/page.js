@@ -56,7 +56,7 @@ export default function AboutPage() {
         
         <div className="max-w-4xl mx-auto px-4 relative z-10 space-y-4">
           <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">About Our Hospital</h1>
-          <p className="text-base sm:text-lg text-gray-350 max-w-xl mx-auto font-medium">
+          <p className="text-base sm:text-lg text-gray-300 max-w-xl mx-auto font-medium">
             Serving the community with clinical dedication, advanced diagnostic equipment, and patient-first medical protocols.
           </p>
         </div>
@@ -69,14 +69,14 @@ export default function AboutPage() {
             
             {/* Left Narrative Box */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary-50 text-primary-750 rounded-full text-xs font-bold tracking-wide">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary-50 text-primary-700 rounded-full text-xs font-bold tracking-wide">
                 <span className="w-1.5 h-1.5 bg-primary-600 rounded-full"></span>
                 Our Hospital Legacy
               </div>
               <h2 className="text-3xl font-extrabold text-gray-900 leading-tight">
                 Serving Humanity with Clinical Excellence and Compassionate Care
               </h2>
-              <div className="space-y-4.5 text-gray-650 text-sm leading-relaxed font-medium">
+              <div className="space-y-4.5 text-gray-600 text-sm leading-relaxed font-medium font-medium">
                 <p>
                   Established with a vision to provide state-of-the-art medical care, <strong>{HOSPITAL_NAME}</strong> has grown to become a premier healthcare destination in the region. We offer a comprehensive range of clinical services, specializing in emergency, trauma, orthopedics, cardiology, and general medicine.
                 </p>
@@ -149,7 +149,7 @@ export default function AboutPage() {
       <section className="section bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary-50 text-primary-750 rounded-full text-xs font-bold tracking-wide">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary-50 text-primary-700 rounded-full text-xs font-bold tracking-wide">
               <span className="w-1.5 h-1.5 bg-primary-600 rounded-full"></span>
               Medical Leadership
             </div>
@@ -173,7 +173,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between">
-                  <p className="text-gray-600 text-xs leading-relaxed italic font-medium">
+                  <p className="text-gray-650 text-xs leading-relaxed italic font-medium">
                     &ldquo;{director.bio}&rdquo;
                   </p>
                 </div>
@@ -207,7 +207,7 @@ export default function AboutPage() {
             <Link href="/book-appointment" className="btn-primary btn-lg shadow-lg hover:shadow-xl text-sm py-4 px-8 flex items-center justify-center">
               Schedule Appointment
             </Link>
-            <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 font-bold text-gray-750 bg-gray-100 hover:bg-gray-200 transition-all duration-350 rounded-2xl">
+            <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 font-bold text-gray-800 bg-gray-100 hover:bg-gray-200 transition-all duration-300 rounded-2xl">
               Contact Desk
             </Link>
           </div>
