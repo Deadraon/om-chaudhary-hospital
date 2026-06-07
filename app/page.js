@@ -100,6 +100,11 @@ const faqs = [
 export default function HomePage() {
   const [activeDeptTab, setActiveDeptTab] = useState('dept-emergency');
   const [activeFaq, setActiveFaq] = useState(null);
+  
+  // Interactive search & organ states
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const [selectedOrgan, setSelectedOrgan] = useState('');
 
   // Find active department details for spotlight
   const activeDeptInfo = departments.find(d => d.id === activeDeptTab) || departments[0];
@@ -108,118 +113,62 @@ export default function HomePage() {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
+  const ORGAN_RECOMMENDATIONS = {
+    knee: { dept: 'Orthopedics', desc: 'Expert bone, joint, and spine care.' },
+    shoulder: { dept: 'Orthopedics', desc: 'Expert bone, joint, and spine care.' },
+    heart: { dept: 'Cardiology', desc: 'Comprehensive heart care and diagnostics.' },
+    brain: { dept: 'Neurology', desc: 'Specialized care for nervous system disorders.' },
+    spine: { dept: 'Neurology', desc: 'Specialized care for brain, spinal cord, and nervous system.' },
+    kidney: { dept: 'General Medicine', desc: 'Pathology, dialysis support, and internal medicine.' },
+    stomach: { dept: 'General Medicine', desc: 'Digestive tract care and internal medicine.' },
+    intestine: { dept: 'General Medicine', desc: 'Internal medicine and diagnostic pathology.' },
+    eyes: { dept: 'General Medicine', desc: 'Primary ophthalmic screenings.' },
+    ear: { dept: 'General Medicine', desc: 'ENT general wellness screenings.' },
+    nose: { dept: 'General Medicine', desc: 'ENT general wellness screenings.' },
+    throat: { dept: 'General Medicine', desc: 'ENT general wellness screenings.' },
+    skin: { dept: 'General Medicine', desc: 'Dermatological screening support.' },
+  };
+
+  const recommendedSpecialty = selectedOrgan ? ORGAN_RECOMMENDATIONS[selectedOrgan] : null;
+
   return (
     <>
-      {/* ==================== HERO SECTION ==================== */}
-      <section className="relative min-h-[92vh] flex items-center bg-gradient-to-br from-slate-50 via-blue-50/20 to-white overflow-hidden py-12 md:py-20 border-b border-gray-100/50">
+      {/* ==================== HERO SECTION (Corporate Deep Blue Banner) ==================== */}
+      <section className="relative min-h-[75vh] flex items-center bg-gradient-to-br from-sarvodaya-dark via-slate-900 to-slate-950 text-white overflow-hidden py-16 md:py-24 border-b border-white/5">
         {/* Tech Grid Background Pattern */}
-        <div className="absolute inset-0 grid-medical-pattern opacity-100 pointer-events-none"></div>
+        <div className="absolute inset-0 grid-medical-pattern opacity-10 pointer-events-none"></div>
         
         {/* Glow Spheres */}
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary-100 rounded-full blur-3xl opacity-60"></div>
-        <div className="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-cyan-100 rounded-full blur-3xl opacity-50"></div>
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-sarvodaya-blue/10 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl opacity-50"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            {/* Left Content Column (7 cols) */}
-            <div className="lg:col-span-7 space-y-8 animate-fade-in-up">
-              {/* Patient Trust Badge */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-sky-50/80 border border-sky-100/50 rounded-full text-sarvodaya-dark text-xs font-bold shadow-sm backdrop-blur-xs">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                Trusted Healthcare Partner
-              </div>
-
-              {/* Main Heading */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.15] tracking-tight text-balance">
-                Your Health, Our <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-sarvodaya-dark to-sarvodaya-blue">
-                  Ultimate Commitment
-                </span>
-              </h1>
-
-              {/* Description */}
-              <p className="text-base sm:text-lg text-gray-650 max-w-xl leading-relaxed font-medium">
-                Om Chaudhary Hospital & Trauma Centre provides world-class clinical care, utilizing advanced medical technology and a dedicated team of expert specialist physicians.
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+              <p className="text-sarvodaya-orange text-xs md:text-sm font-black uppercase tracking-widest">
+                Our Medical Experts are here for you.
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Link href="/book-appointment" className="btn-orange btn-lg shadow-lg hover:shadow-xl hover:shadow-sarvodaya-orange/20 text-base py-4 px-8 flex items-center justify-center">
-                  <svg className="w-5 h-5 mr-2.5 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  Schedule Appointment
-                </Link>
-                <Link href="/doctors" className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-sarvodaya-blue bg-white border border-sarvodaya-blue/30 rounded-2xl hover:bg-slate-50 hover:border-sarvodaya-blue/50 shadow-sm transition-all duration-300">
-                  Meet Our Specialists
-                  <svg className="w-5 h-5 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] tracking-tight">
+                Get quality medical care <br className="hidden md:inline" />
+                and treatment with us.
+              </h1>
 
-              {/* Key Stats Row */}
-              <div className="grid grid-cols-3 gap-6 pt-6 border-t border-gray-150 max-w-md">
-                <div>
-                  <div className="text-2xl sm:text-3xl font-black text-gray-900">50+</div>
-                  <div className="text-gray-500 text-xs font-bold uppercase tracking-wider mt-0.5">Specialists</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-black text-gray-900">12+</div>
-                  <div className="text-gray-500 text-xs font-bold uppercase tracking-wider mt-0.5">Departments</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-black text-gray-950 flex items-center gap-1">
-                    24/7
-                    <span className="w-2 h-2 rounded-full bg-red-600 inline-block animate-pulse"></span>
-                  </div>
-                  <div className="text-gray-500 text-xs font-bold uppercase tracking-wider mt-0.5">Trauma Care</div>
-                </div>
-              </div>
+              <p className="text-base sm:text-lg text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                Find the required doctor and schedule your appointment now.
+              </p>
             </div>
 
-            {/* Right Graphics Column (5 cols) */}
-            <div className="lg:col-span-5 relative mt-6 lg:mt-0 animate-fade-in">
-              <div className="relative mx-auto max-w-[440px] lg:max-w-none">
-                {/* Accent background box */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-sarvodaya-blue to-cyan-400 rounded-3xl transform rotate-3 scale-[1.02] opacity-10"></div>
-                
-                {/* Main Premium Medical Photo */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/60 bg-white">
-                  <img 
-                    src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" 
-                    alt="Clinical Consultation at Om Chaudhary Hospital"
-                    className="w-full h-[460px] object-cover hover:scale-[1.02] transition-transform duration-750" 
-                  />
-                  {/* Subtle dark tint gradient on image bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
-                </div>
-
-                {/* Floating Interactive Widget: Active OPD indicator */}
-                <div className="absolute bottom-6 -left-6 bg-white/90 backdrop-blur-md border border-gray-150 p-4.5 rounded-2xl shadow-xl max-w-[200px] flex items-center gap-3.5 hover-lift">
-                  <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sarvodaya-blue flex-shrink-0">
-                    <IconClock className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-black text-gray-900 leading-tight">OPD Status</h4>
-                    <p className="text-[10px] text-emerald-600 font-extrabold uppercase mt-0.5">Active & Running</p>
-                  </div>
-                </div>
-
-                {/* Floating Interactive Widget: Emergency contact */}
-                <div className="absolute -top-6 -right-6 bg-white border border-red-100 p-4.5 rounded-2xl shadow-xl max-w-[220px] flex items-center gap-3.5 hover-lift">
-                  <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-650 flex-shrink-0">
-                    <IconEmergency className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-black text-gray-900 leading-tight">Ambulance Hub</h4>
-                    <p className="text-[10px] text-red-600 font-extrabold uppercase mt-0.5">Dial 108 Emergency</p>
-                  </div>
-                </div>
+            {/* Right Graphics Column */}
+            <div className="lg:col-span-5 relative mt-6 lg:mt-0 flex justify-center">
+              <div className="relative max-w-[420px] lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-slate-900/50">
+                <img 
+                  src="/group-doctor.png" 
+                  alt="Om Chaudhary Hospital Doctors Panel"
+                  className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-500" 
+                />
               </div>
             </div>
 
@@ -227,43 +176,107 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ==================== INTERSECTING CALLBACK SEARCH FORM ==================== */}
+      <section className="relative z-20 px-4 -mt-12">
+        <div className="max-w-4xl mx-auto bg-white border border-gray-150 rounded-3xl shadow-2xl p-5 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+          {/* Doctor/Specialty Search */}
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+              <svg className="w-5.5 h-5.5 text-sarvodaya-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <input
+              type="text"
+              placeholder="Search Doctor / Specialities"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-gray-200 rounded-2xl text-xs text-gray-900 focus:outline-none focus:ring-2 focus:ring-sarvodaya-blue"
+            />
+          </div>
+
+          {/* Location Dropdown */}
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+              <svg className="w-5.5 h-5.5 text-sarvodaya-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <select
+              value={selectedLocation}
+              onChange={e => setSelectedLocation(e.target.value)}
+              className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-gray-200 rounded-2xl text-xs text-gray-950 focus:outline-none focus:ring-2 focus:ring-sarvodaya-blue appearance-none cursor-pointer"
+            >
+              <option value="">Select Location</option>
+              <option value="Greater Noida West">Greater Noida West</option>
+              <option value="Sector 8, Faridabad">Sector 8, Faridabad</option>
+              <option value="Sector 19, Faridabad">Sector 19, Faridabad</option>
+              <option value="Palwal Health Clinic">Palwal Health Clinic</option>
+            </select>
+          </div>
+
+          {/* Book Appointment Submit CTA */}
+          <Link
+            href={`/book-appointment?location=${encodeURIComponent(selectedLocation)}&query=${encodeURIComponent(searchQuery)}`}
+            className="w-full py-3 bg-sarvodaya-orange text-white text-xs font-bold rounded-2xl text-center hover:bg-sarvodaya-orange-hover hover:scale-[1.02] shadow-md transition-all flex items-center justify-center gap-2"
+          >
+            Book Appointment
+            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Link>
+        </div>
+      </section>
+
       {/* ==================== QUICK ACCESS PORTAL BAR ==================== */}
-      <section className="relative -mt-8 z-20 px-4">
-        <div className="max-w-6xl mx-auto bg-white border border-gray-150 rounded-3xl shadow-xl p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Link href="/book-appointment" className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors group">
-            <div className="w-11 h-11 rounded-xl bg-sky-50 text-sarvodaya-blue flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform border border-sky-100/50">
-              <IconGeneralMedicine className="w-5 h-5" />
+      <section className="relative py-12 px-4">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <Link href="/book-appointment" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:bg-slate-50 transition-colors group shadow-sm">
+            <div className="w-11 h-11 rounded-xl bg-sky-50 text-sarvodaya-blue flex items-center justify-center flex-shrink-0 border border-sky-100/50">
+              <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              </svg>
             </div>
             <div>
-              <h3 className="text-sm font-extrabold text-gray-900 group-hover:text-sarvodaya-blue transition-colors">Book OPD</h3>
-              <p className="text-[11px] text-gray-500 mt-0.5">Schedule online appointments</p>
+              <h3 className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-sarvodaya-blue transition-colors leading-tight">Get Health Checkup</h3>
+              <p className="text-[10px] text-gray-500 mt-0.5 leading-none">Preventive packages</p>
             </div>
           </Link>
-          <Link href="/doctors" className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors group">
-            <div className="w-11 h-11 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform border border-cyan-100/50">
-              <IconUserGroup className="w-5 h-5" />
+
+          <Link href="/contact" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:bg-slate-50 transition-colors group shadow-sm">
+            <div className="w-11 h-11 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center flex-shrink-0 border border-cyan-100/50">
+              <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
             </div>
             <div>
-              <h3 className="text-sm font-extrabold text-gray-900 group-hover:text-cyan-600 transition-colors">Find Doctors</h3>
-              <p className="text-[11px] text-gray-500 mt-0.5">Meet our medical specialist panel</p>
+              <h3 className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-cyan-600 transition-colors leading-tight">Homecare Services</h3>
+              <p className="text-[10px] text-gray-500 mt-0.5 leading-none">Clinical care at home</p>
             </div>
           </Link>
-          <Link href="/appointment-status" className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors group">
-            <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform border border-purple-100/50">
-              <IconPathology className="w-5 h-5" />
+
+          <Link href="/appointment-status" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:bg-slate-50 transition-colors group shadow-sm">
+            <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0 border border-purple-100/50">
+              <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z" />
+              </svg>
             </div>
             <div>
-              <h3 className="text-sm font-extrabold text-gray-900 group-hover:text-purple-600 transition-colors">Check Reports</h3>
-              <p className="text-[11px] text-gray-500 mt-0.5">Download diagnostic lab files</p>
+              <h3 className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-purple-600 transition-colors leading-tight">Book diagnostic Test</h3>
+              <p className="text-[10px] text-gray-500 mt-0.5 leading-none">Lab path tests active</p>
             </div>
           </Link>
-          <Link href="/contact" className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors group">
-            <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform border border-red-100/50">
-              <IconEmergency className="w-5 h-5" />
+
+          <Link href="/contact" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:bg-slate-50 transition-colors group shadow-sm">
+            <div className="w-11 h-11 rounded-xl bg-red-50 text-red-650 flex items-center justify-center flex-shrink-0 border border-red-100/50">
+              <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5A2.5 2.5 0 0019 9.5V8a2 2 0 00-2-2h-3.5A1.5 1.5 0 0112 4.5V3a2 2 0 00-2-2H8a2 2 0 00-2 2v.935" />
+              </svg>
             </div>
             <div>
-              <h3 className="text-sm font-extrabold text-gray-900 group-hover:text-red-600 transition-colors">Emergency Info</h3>
-              <p className="text-[11px] text-gray-500 mt-0.5">Trauma unit location & map</p>
+              <h3 className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-red-600 transition-colors leading-tight">International Patients</h3>
+              <p className="text-[10px] text-gray-500 mt-0.5 leading-none">Specialized assistance</p>
             </div>
           </Link>
         </div>
@@ -302,80 +315,177 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== DEPARTMENTS TAB SWITCHER SPOTLIGHT ==================== */}
+      {/* ==================== DEPARTMENTS TAB SWITCHER SPOTLIGHT & BODY PART SELECTOR ==================== */}
       <section className="section bg-slate-50/60 border-t border-b border-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl font-extrabold text-gray-900">Interactive Specialties Spotlight</h2>
-            <p className="text-gray-500 text-xs mt-2 font-medium">Click on any specialization tab below to preview our clinical offerings.</p>
-          </div>
-
-          {/* Dynamic Tabs */}
-          <div className="flex flex-wrap justify-center gap-2.5 mb-10 max-w-4xl mx-auto">
-            {departments.map(d => (
-              <button
-                key={d.id}
-                onClick={() => setActiveDeptTab(d.id)}
-                className={`py-2.5 px-5 rounded-2xl text-xs font-bold tracking-wide transition-all ${
-                  activeDeptTab === d.id
-                    ? 'bg-sarvodaya-blue text-white shadow-md shadow-sarvodaya-blue/15'
-                    : 'bg-white text-gray-600 border border-gray-200/80 hover:bg-gray-50'
-                }`}
-              >
-                {d.name}
-              </button>
-            ))}
-          </div>
-
-          {/* spotlight details box */}
-          <div className="max-w-4xl mx-auto bg-white border border-gray-100 rounded-3xl shadow-xl p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="space-y-5">
-              <div className="inline-flex px-3 py-1 bg-sky-50 text-sarvodaya-blue text-[10px] font-extrabold uppercase tracking-wider rounded-md">
-                Featured Specialty
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            {/* Left Column: Centres of Excellence (Col-span 7) */}
+            <div className="lg:col-span-7 space-y-6">
+              <div>
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-sky-50 text-sarvodaya-blue rounded-full text-xs font-bold tracking-wide mb-3">
+                  <span className="w-1.5 h-1.5 bg-sarvodaya-blue rounded-full"></span>
+                  Centres of Clinical Excellence
+                </span>
+                <h2 className="text-2xl md:text-3xl font-black text-gray-900 leading-tight">
+                  Featured Specialties Spotlight
+                </h2>
+                <p className="text-gray-500 text-xs mt-1.5 font-medium">
+                  Click on any clinical tab below to explore our major treatments, diagnostics and doctors.
+                </p>
               </div>
-              <h3 className="text-2xl font-black text-gray-900">{activeDeptInfo.name}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{activeDeptInfo.description}</p>
+
+              {/* Dynamic Tabs */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {departments.map(d => (
+                  <button
+                    key={d.id}
+                    onClick={() => setActiveDeptTab(d.id)}
+                    className={`py-2 px-4 rounded-xl text-xs font-extrabold tracking-wide transition-all ${
+                      activeDeptTab === d.id
+                        ? 'bg-sarvodaya-blue text-white shadow-md shadow-sarvodaya-blue/15'
+                        : 'bg-white text-gray-600 border border-gray-200/80 hover:bg-gray-50'
+                    }`}
+                  >
+                    {d.name}
+                  </button>
+                ))}
+              </div>
+
+              {/* Spotlight Details Card */}
+              <div className="bg-white border border-gray-150 rounded-3xl shadow-lg p-5 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                <div className="md:col-span-7 space-y-4">
+                  <div className="inline-flex px-2.5 py-1 bg-sky-50 text-sarvodaya-blue text-[9px] font-black uppercase tracking-wider rounded-md">
+                    Featured Department
+                  </div>
+                  <h3 className="text-xl font-black text-gray-900">{activeDeptInfo.name}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed font-medium">{activeDeptInfo.description}</p>
+                  
+                  <div className="space-y-2 pt-1">
+                    <div className="flex items-center gap-2 text-xs text-gray-600 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-600"></span>
+                      State-of-the-art ICU & inpatient bed facility
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-gray-600 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-600"></span>
+                      Consultations with senior board-certified specialists
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex flex-wrap gap-3">
+                    <Link href="/book-appointment" className="btn-orange py-2 px-5 text-xs font-bold">
+                      Book Slot Now
+                    </Link>
+                    <Link href="/departments" className="inline-flex items-center text-xs font-extrabold text-gray-600 hover:text-sarvodaya-blue transition-colors">
+                      View All Specialties &rarr;
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="md:col-span-5 rounded-2xl overflow-hidden h-[200px] border border-gray-100 shadow-sm">
+                  <img 
+                    src={
+                      activeDeptTab === 'dept-emergency'
+                        ? "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80"
+                        : activeDeptTab === 'dept-cardiology'
+                        ? "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=600&q=80"
+                        : activeDeptTab === 'dept-orthopedics'
+                        ? "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80"
+                        : activeDeptTab === 'dept-neurology'
+                        ? "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+                        : "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=600&q=80"
+                    } 
+                    alt={activeDeptInfo.name} 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Body Part Symptom Selector (Col-span 5) */}
+            <div className="lg:col-span-5 bg-white border border-gray-150 rounded-3xl shadow-xl p-6 md:p-8 space-y-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-sarvodaya-blue/5 rounded-full blur-2xl"></div>
               
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center gap-2 text-xs text-gray-600">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-600"></span>
-                  State-of-the-art ICU & inpatient bed facility
-                </div>
-                <div className="flex items-center gap-2 text-xs text-gray-600">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-600"></span>
-                  Consultations with senior board-certified specialists
+              <div className="space-y-1.5 relative z-10">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-sarvodaya-orange rounded-full text-[10px] font-black uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 bg-sarvodaya-orange rounded-full"></span>
+                  Symptom Guidance
+                </span>
+                <h3 className="text-xl font-black text-gray-900">Unsure of your Speciality?</h3>
+                <p className="text-gray-500 text-xs leading-relaxed font-medium">
+                  Select the body part or organ where you are experiencing symptoms, and we will recommend the right clinical specialist.
+                </p>
+              </div>
+
+              {/* Organ Selector Dropdown */}
+              <div className="relative">
+                <label className="block text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-2">Select Organ / Body Part</label>
+                <div className="relative">
+                  <select
+                    value={selectedOrgan}
+                    onChange={e => setSelectedOrgan(e.target.value)}
+                    className="w-full pl-4 pr-10 py-3.5 bg-slate-50 border border-gray-200 rounded-2xl text-xs text-gray-900 font-bold focus:outline-none focus:ring-2 focus:ring-sarvodaya-blue appearance-none cursor-pointer hover:bg-slate-100/50 transition-colors"
+                  >
+                    <option value="">Choose Symptom Location...</option>
+                    <option value="brain">Brain / Head / Spinal Cord</option>
+                    <option value="heart">Heart / Chest Pain</option>
+                    <option value="knee">Knee / Joint Pain</option>
+                    <option value="shoulder">Shoulder / Bone Fracture</option>
+                    <option value="spine">Spine / Back Ache</option>
+                    <option value="stomach">Stomach / Digestive System</option>
+                    <option value="kidney">Kidneys / Bladder / Dialysis</option>
+                    <option value="eyes">Eyes / Ophthalmic / Vision</option>
+                    <option value="ear">Ear, Nose or Throat</option>
+                    <option value="skin">Skin / Rashes / Allergy</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none text-gray-400">
+                    <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
 
-              <div className="pt-4 flex gap-4">
-                <Link href="/book-appointment" className="btn-orange py-3 px-6 text-xs">
-                  Book Slot Now
-                </Link>
-                <Link href="/departments" className="inline-flex items-center text-xs font-bold text-gray-600 hover:text-sarvodaya-blue transition-colors">
-                  View All Specialties &rarr;
-                </Link>
+              {/* Dynamic recommendation output */}
+              <div className="min-h-[140px] flex flex-col justify-center">
+                {recommendedSpecialty ? (
+                  <div className="bg-slate-50 border border-gray-150 rounded-2xl p-4.5 space-y-3 animate-scale-in">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-black text-sarvodaya-orange uppercase tracking-wider">Recommended Specialty</span>
+                      <span className="flex h-2 w-2 relative">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                      </span>
+                    </div>
+                    <div>
+                      <h4 className="text-base font-black text-sarvodaya-dark">{recommendedSpecialty.dept} Department</h4>
+                      <p className="text-gray-500 text-xs mt-1 leading-relaxed font-semibold">{recommendedSpecialty.desc}</p>
+                    </div>
+                    <Link
+                      href={`/book-appointment?query=${encodeURIComponent(recommendedSpecialty.dept)}`}
+                      className="w-full py-2.5 bg-sarvodaya-blue text-white text-xs font-bold rounded-xl text-center hover:bg-sarvodaya-dark transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                    >
+                      Book {recommendedSpecialty.dept} Specialist
+                      <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="border border-dashed border-gray-200 rounded-2xl p-6 text-center text-gray-400 space-y-2">
+                    <svg className="w-8 h-8 text-gray-300 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                    </svg>
+                    <p className="text-xs font-semibold leading-relaxed">
+                      Select your symptom location above, and we will highlight the recommended specialty path for you.
+                    </p>
+                  </div>
+                )}
               </div>
+
             </div>
 
-            <div className="rounded-2xl overflow-hidden h-[280px] border border-gray-100 shadow-md">
-              {/* Change images based on tabs for realistic look */}
-              <img 
-                src={
-                  activeDeptTab === 'dept-emergency'
-                    ? "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80"
-                    : activeDeptTab === 'dept-cardiology'
-                    ? "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=600&q=80"
-                    : activeDeptTab === 'dept-orthopedics'
-                    ? "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80"
-                    : activeDeptTab === 'dept-neurology'
-                    ? "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
-                    : "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=600&q=80"
-                } 
-                alt={activeDeptInfo.name} 
-                className="w-full h-full object-cover"
-              />
-            </div>
           </div>
 
         </div>

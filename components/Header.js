@@ -252,78 +252,113 @@ export default function Header() {
                   & Trauma Centre
                 </p>
               </div>
-            </Link>
-
-            {/* Desktop Navigation */}
+            </Link>            {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1.5">
-              {navLinks.map(link => {
-                if (link.label === 'Specialities') {
-                  // Specialties Mega Menu dropdown wrapper
-                  return (
-                    <div key={link.href} className="relative group py-4">
-                      <button className="px-3 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-650 hover:text-sarvodaya-blue flex items-center gap-1">
-                        {link.label}
-                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                      
-                      {/* Mega Menu Dropdown Panel */}
-                      <div className="absolute top-[100%] left-1/2 -translate-x-1/2 w-[680px] bg-white border border-gray-150 rounded-3xl shadow-2xl p-6 grid grid-cols-3 gap-6 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
-                        {/* Col 1: Centres of Excellence */}
-                        <div>
-                          <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-2 border-b border-gray-100 mb-3">Centres of Excellence</h4>
-                          <ul className="space-y-2 text-xs font-semibold text-gray-600">
-                            <li><Link href="/departments" className="hover:text-sarvodaya-blue transition-colors block">Emergency & Trauma</Link></li>
-                            <li><Link href="/departments" className="hover:text-sarvodaya-blue transition-colors block">Cardiology Sciences</Link></li>
-                            <li><Link href="/departments" className="hover:text-sarvodaya-blue transition-colors block">Orthopedic Clinic</Link></li>
-                            <li><Link href="/departments" className="hover:text-sarvodaya-blue transition-colors block">Neurology & Spine</Link></li>
-                            <li><Link href="/departments" className="hover:text-sarvodaya-blue transition-colors block">Pediatrics & Neonatal</Link></li>
-                          </ul>
-                        </div>
-                        {/* Col 2: Major Treatments */}
-                        <div>
-                          <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-2 border-b border-gray-100 mb-3">Key Treatments</h4>
-                          <ul className="space-y-2 text-xs text-gray-550 font-medium">
-                            <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue transition-colors block">Joint Replacement</Link></li>
-                            <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue transition-colors block">Angioplasty & Bypass</Link></li>
-                            <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue transition-colors block">Awake Brain Surgery</Link></li>
-                            <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue transition-colors block">High-Risk Pregnancy</Link></li>
-                            <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue transition-colors block">Pediatric Cardiac Care</Link></li>
-                          </ul>
-                        </div>
-                        {/* Col 3: Diagnostics & Info */}
-                        <div className="bg-slate-50 p-4.5 rounded-2xl border border-gray-100 flex flex-col justify-between">
-                          <div>
-                            <h4 className="text-[11px] font-black text-gray-800 uppercase tracking-wider mb-1">Diagnostics Desk</h4>
-                            <p className="text-[10px] text-gray-500 leading-relaxed">Fast path reports, advanced MRI and blood screening facilities active 24/7.</p>
-                          </div>
-                          <Link href="/appointment-status" className="mt-4 w-full py-2 bg-sarvodaya-blue text-white text-[10px] font-bold text-center rounded-xl hover:bg-sarvodaya-dark shadow-sm transition-colors">
-                            Check Lab Reports
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
+              {/* Home */}
+              <Link href="/" className={`px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${pathname === '/' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+                Home
+              </Link>
+              
+              {/* About Us */}
+              <Link href="/about" className={`px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${pathname === '/about' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+                About Us
+              </Link>
 
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`px-3 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${
-                      pathname === link.href
-                        ? 'text-sarvodaya-blue bg-primary-50/50'
-                        : 'text-gray-600 hover:text-sarvodaya-blue hover:bg-gray-50/50'
-                    }`}
-                  >
-                    {link.label}
-                    {pathname === link.href && (
-                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-sarvodaya-blue rounded-full"></span>
-                    )}
-                  </Link>
-                );
-              })}
+              {/* Sarvodaya Group Dropdown */}
+              <div className="relative group py-4">
+                <button className="px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1">
+                  Sarvodaya Group
+                  <svg className="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className="absolute top-[100%] left-0 w-[480px] bg-white border border-gray-150 rounded-2xl shadow-2xl p-5 grid grid-cols-2 gap-4 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
+                  <div>
+                    <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-1.5 border-b border-gray-100 mb-2">Hospitals</h4>
+                    <ul className="space-y-1.5 text-xs font-semibold text-gray-600">
+                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">Sector 8, Faridabad</Link></li>
+                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">Sector 19, Faridabad</Link></li>
+                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">Greater Noida West</Link></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-1.5 border-b border-gray-100 mb-2">Clinics & Imaging</h4>
+                    <ul className="space-y-1.5 text-xs font-semibold text-gray-650">
+                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">Palwal Health Clinic</Link></li>
+                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">GK New Delhi Medicentre</Link></li>
+                      <li><Link href="/contact" className="hover:text-sarvodaya-blue block">NDMC Imaging, Moti Bagh</Link></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Doctors */}
+              <Link href="/doctors" className={`px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${pathname === '/doctors' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+                Doctors
+              </Link>
+
+              {/* Specialities Hover Mega Menu */}
+              <div className="relative group py-4">
+                <button className="px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1">
+                  Specialities
+                  <svg className="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className="absolute top-[100%] left-1/2 -translate-x-1/2 w-[650px] bg-white border border-gray-150 rounded-2xl shadow-2xl p-5 grid grid-cols-3 gap-5 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
+                  <div>
+                    <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-1.5 border-b border-gray-100 mb-2">Centres of Excellence</h4>
+                    <ul className="space-y-1.5 text-xs font-semibold text-gray-600">
+                      <li><Link href="/departments" className="hover:text-sarvodaya-blue block">Emergency & Trauma</Link></li>
+                      <li><Link href="/departments" className="hover:text-sarvodaya-blue block">Cardiology Sciences</Link></li>
+                      <li><Link href="/departments" className="hover:text-sarvodaya-blue block">Orthopedic Clinic</Link></li>
+                      <li><Link href="/departments" className="hover:text-sarvodaya-blue block">Neurology & Spine</Link></li>
+                      <li><Link href="/departments" className="hover:text-sarvodaya-blue block">Pediatrics & Neonatal</Link></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-1.5 border-b border-gray-100 mb-2">Key Treatments</h4>
+                    <ul className="space-y-1.5 text-xs text-gray-550 font-medium">
+                      <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue block">Joint Replacement</Link></li>
+                      <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue block">Angioplasty & Bypass</Link></li>
+                      <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue block">Awake Brain Surgery</Link></li>
+                      <li><Link href="/book-appointment" className="hover:text-sarvodaya-blue block">High-Risk Pregnancy</Link></li>
+                    </ul>
+                  </div>
+                  <div className="bg-slate-50 p-4 rounded-xl border border-gray-100 flex flex-col justify-between">
+                    <div>
+                      <h4 className="text-[10px] font-black text-gray-800 uppercase tracking-wider mb-1">Diagnostics Desk</h4>
+                      <p className="text-[9px] text-gray-500 leading-relaxed">Fast path reports, advanced MRI and blood screening active 24/7.</p>
+                    </div>
+                    <Link href="/appointment-status" className="mt-3 w-full py-2 bg-sarvodaya-blue text-white text-[10px] font-bold text-center rounded-lg hover:bg-sarvodaya-dark shadow-sm transition-colors">
+                      Check Lab Reports
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* News & Media Dropdown */}
+              <div className="relative group py-4">
+                <button className="px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1">
+                  News & Media
+                  <svg className="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className="absolute top-[100%] left-0 w-[200px] bg-white border border-gray-150 rounded-xl shadow-2xl p-3 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
+                  <ul className="space-y-1 text-xs font-semibold text-gray-600">
+                    <li><Link href="/" className="hover:text-sarvodaya-blue block py-1 px-2 hover:bg-slate-50 rounded-md">Blogs</Link></li>
+                    <li><Link href="/" className="hover:text-sarvodaya-blue block py-1 px-2 hover:bg-slate-50 rounded-md">News</Link></li>
+                    <li><Link href="/" className="hover:text-sarvodaya-blue block py-1 px-2 hover:bg-slate-50 rounded-md">Events</Link></li>
+                    <li><Link href="/" className="hover:text-sarvodaya-blue block py-1 px-2 hover:bg-slate-50 rounded-md">Patient Testimonials</Link></li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Contact */}
+              <Link href="/contact" className={`px-2.5 py-2 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative ${pathname === '/contact' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+                Contact Us
+              </Link>
             </nav>
 
             {/* Right Actions */}
