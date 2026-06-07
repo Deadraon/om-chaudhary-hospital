@@ -96,7 +96,7 @@ export default function Header() {
     <>
       {/* ==================== DOUBLE HEADER: TOP SUB-HEADER BAR ==================== */}
       <div className="bg-sarvodaya-dark text-white py-2 px-4 z-50 relative border-b border-white/5 text-[11px] md:text-xs">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           {/* Left: Get Second Opinion Trigger */}
           <div className="flex items-center gap-4">
             <button
@@ -234,7 +234,7 @@ export default function Header() {
           ? 'bg-white/90 backdrop-blur-md border-b border-gray-150 shadow-md py-2' 
           : 'bg-white border-b border-gray-50 py-4.5'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             
             {/* Logo */}
@@ -254,21 +254,21 @@ export default function Header() {
               </div>
             </Link>
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2 flex-shrink-0">
+            <nav className="hidden lg:flex items-center gap-2 xl:gap-3.5 flex-shrink-0">
               {/* Home */}
-              <Link href="/" className={`px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 Home
               </Link>
               
               {/* About Us */}
-              <Link href="/about" className={`px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/about' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/about" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/about' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 About
               </Link>
 
               {/* Sarvodaya Group Dropdown */}
               <div className="relative group py-4">
-                <button className="px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
-                  Sarvodaya Group
+                <button className="px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
+                  Locations
                   <svg className="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
@@ -284,7 +284,7 @@ export default function Header() {
                   </div>
                   <div>
                     <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-1.5 border-b border-gray-100 mb-2">Clinics & Imaging</h4>
-                    <ul className="space-y-1.5 text-xs font-semibold text-gray-650">
+                    <ul className="space-y-1.5 text-xs font-semibold text-gray-655">
                       <li><Link href="/contact" className="hover:text-sarvodaya-blue block">Palwal Health Clinic</Link></li>
                       <li><Link href="/contact" className="hover:text-sarvodaya-blue block">GK New Delhi Medicentre</Link></li>
                       <li><Link href="/contact" className="hover:text-sarvodaya-blue block">NDMC Imaging, Moti Bagh</Link></li>
@@ -294,14 +294,14 @@ export default function Header() {
               </div>
 
               {/* Doctors */}
-              <Link href="/doctors" className={`px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/doctors' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/doctors" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/doctors' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 Doctors
               </Link>
 
               {/* Specialities Hover Mega Menu */}
               <div className="relative group py-4">
-                <button className="px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
-                  Specialities
+                <button className="px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
+                  Specialties
                   <svg className="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
@@ -340,8 +340,8 @@ export default function Header() {
 
               {/* News & Media Dropdown */}
               <div className="relative group py-4">
-                <button className="px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
-                  News & Media
+                <button className="px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
+                  Media
                   <svg className="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
@@ -357,17 +357,17 @@ export default function Header() {
               </div>
 
               {/* Contact */}
-              <Link href="/contact" className={`px-2 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/contact' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/contact" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/contact' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 Contact
               </Link>
             </nav>
 
             {/* Right Actions */}
-            <div className="flex items-center gap-1.5 xl:gap-2.5 flex-shrink-0">
+            <div className="flex items-center gap-2 xl:gap-3 flex-shrink-0">
               {/* Emergency Hotline (Desktop XL - Compact version to save width) */}
               <a
                 href={`tel:${EMERGENCY_NUMBER}`}
-                className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-650 rounded-xl text-[11px] font-black tracking-wide hover:bg-red-100 hover:scale-105 hover:shadow-sm transition-all whitespace-nowrap"
+                className="hidden 2xl:flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-650 rounded-xl text-[11px] font-black tracking-wide hover:bg-red-100 hover:scale-105 hover:shadow-sm transition-all whitespace-nowrap"
               >
                 <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse flex-shrink-0"></span>
                 Emergency Call: {EMERGENCY_NUMBER}
