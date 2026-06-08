@@ -297,29 +297,29 @@ export default function Header() {
       }`}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-                 {/* Logo */}
+            {/* Logo */}
             <HospitalLogo variant="light" size="md" />
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-2 xl:gap-3.5 flex-shrink-0">
               {/* Home */}
-              <Link href="/" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-650 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/" className={`inline-flex items-center min-h-0 min-w-0 px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 Home
               </Link>
               
               {/* About Us */}
-              <Link href="/about" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/about' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/about" className={`inline-flex items-center min-h-0 min-w-0 px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/about' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 About
               </Link>
 
               {/* Specialties Hover Mega Menu */}
-              <div className="relative group py-4">
-                <button className="px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
+              <div className="relative group flex items-center">
+                <button className="inline-flex items-center gap-1 min-h-0 min-w-0 px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue whitespace-nowrap">
                   Specialties
                   <svg className="w-3 h-3 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute top-[100%] left-1/2 -translate-x-1/2 w-[600px] bg-white border border-gray-150 rounded-2xl shadow-2xl p-5 grid grid-cols-3 gap-5 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50">
+                <div className="absolute top-[100%] left-1/2 -translate-x-1/2 w-[600px] bg-white border border-gray-150 rounded-2xl shadow-2xl p-5 grid grid-cols-3 gap-5 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50 before:content-[''] before:absolute before:block before:w-full before:h-4 before:-top-4 before:left-0">
                   <div>
                     <h4 className="text-xs font-black text-sarvodaya-dark uppercase tracking-wider pb-1.5 border-b border-gray-100 mb-2">Centres of Excellence</h4>
                     <ul className="space-y-1.5 text-xs font-semibold text-gray-600">
@@ -352,12 +352,12 @@ export default function Header() {
               </div>
 
               {/* Doctors */}
-              <Link href="/doctors" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/doctors' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/doctors" className={`inline-flex items-center min-h-0 min-w-0 px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/doctors' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 Doctors
               </Link>
 
               {/* Contact */}
-              <Link href="/contact" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/contact' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
+              <Link href="/contact" className={`inline-flex items-center min-h-0 min-w-0 px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/contact' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
                 Contact
               </Link>
             </nav>
