@@ -28,7 +28,13 @@ export default function HospitalLogo({ variant = 'light', size = 'md', href = '/
         className={`${s.icon} ${iconBg} flex items-center justify-center shadow-lg
           group-hover:scale-105 transition-transform duration-200 flex-shrink-0 backdrop-blur-sm`}
       >
-        🏥
+        <svg 
+          className="w-full h-full text-cyan-400 transition-colors group-hover:text-cyan-300" 
+          viewBox="0 0 24 24" 
+          fill="currentColor"
+        >
+          <path d="M19 6h-3V3c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v3H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-9-3h4v3h-4V3zm9 17H5V8h14v12zm-6-9h-2v2H9v2h2v2h2v-2h2v-2h-2v-2z" />
+        </svg>
       </div>
 
       {/* Text */}
