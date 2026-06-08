@@ -4,6 +4,8 @@ import { getCurrentUser } from '@/lib/auth';
 import { generateId, now } from '@/lib/utils';
 import { sendSMS } from '@/lib/sms';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request) {
   try {
     const currentUser = await getCurrentUser(request);
