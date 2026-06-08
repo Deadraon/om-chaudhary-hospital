@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DataTable from '@/components/DataTable';
 import Modal from '@/components/Modal';
 import Toast from '@/components/Toast';
@@ -15,6 +15,19 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
   const [selectedInvoice, setSelectedInvoice] = useState(null);
   const [newStatus, setNewStatus] = useState('pending');
   const [loading, setLoading] = useState(false);
+  const [loadingInvoices, setLoadingInvoices] = useState(true);
+
+  // Always fetch fresh invoices from API on mount
+  useEffect(() => {
+    setLoadingInvoices(true);
+    fetch('/api/admin/billing')
+      .then(r => r.json())
+      .then(data => {
+        if (Array.isArray(data)) setInvoices(data);
+      })
+      .catch(err => console.error('Failed to load invoices:', err))
+      .finally(() => setLoadingInvoices(false));
+  }, []);
 
   // Search/Filter for Patients inside Modal
   const [patientSearch, setPatientSearch] = useState('');
@@ -296,17 +309,20 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
       sortable: false,
       render: (val, row) => (
         <div className="flex gap-1.5 flex-wrap">
-          <button
-            onClick={() => { setPreviewInvoice(row); setIsPreviewOpen(true); }}
-            className="px-2.5 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 rounded-xl text-xs font-bold transition-all shadow-sm"
-          >
-            👁️ Preview
-          </button>
+          {/* Preview — opens the clean invoice page in new tab (same as print) */}
           <a
-            href={`/dashboard/admin/billing/print/${val}`}
+            href={`/invoice/${val}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-2.5 py-1.5 bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200 rounded-xl text-xs font-bold transition-all shadow-sm"
+            className="px-2.5 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 rounded-xl text-xs font-bold transition-all shadow-sm inline-flex items-center gap-1"
+          >
+            👁️ Preview
+          </a>
+          <a
+            href={`/invoice/${val}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1.5 bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200 rounded-xl text-xs font-bold transition-all shadow-sm inline-flex items-center gap-1"
           >
             🖨️ Print
           </a>
@@ -345,7 +361,17 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
 
       {/* DataTable listing */}
       <div className="bg-white border border-gray-100 rounded-3xl p-4 sm:p-6 shadow-sm overflow-x-auto">
-        <DataTable columns={columns} data={invoices} searchable={true} pageSize={10} />
+        {loadingInvoices ? (
+          <div className="flex flex-col items-center justify-center py-16 gap-4">
+            <svg className="animate-spin w-8 h-8 text-blue-500" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+            <p className="text-sm text-gray-400 font-medium">Loading invoices...</p>
+          </div>
+        ) : (
+          <DataTable columns={columns} data={invoices} searchable={true} pageSize={10} />
+        )}
       </div>
 
       {/* Invoice Preview Modal */}
