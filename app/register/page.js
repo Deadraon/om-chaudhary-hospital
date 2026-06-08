@@ -57,7 +57,7 @@ function RegisterForm() {
   return (
     <section className="min-h-screen flex flex-col lg:flex-row bg-slate-50/50 relative overflow-hidden">
       {/* Left side: Branding & Information Panel */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-cyan-900 via-primary-950 to-slate-950 text-white flex-col justify-between p-12 relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#0f465c] via-[#082a38] to-[#04161f] text-white flex-col justify-between p-12 relative overflow-hidden">
         {/* Glow overlays */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,180,216,0.15),transparent_40%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.15),transparent_40%)]" />
@@ -121,10 +121,7 @@ function RegisterForm() {
         <div className="max-w-md w-full relative z-10 space-y-8">
           {/* Mobile Back to Home Navigation */}
           <div className="lg:hidden flex justify-between items-center">
-            <Link href="/" className="flex items-center gap-2 group text-slate-900">
-              <span className="text-xl bg-primary-50 p-1.5 rounded-lg group-hover:scale-105 transition-transform duration-200">🏥</span>
-              <span className="font-extrabold text-xs uppercase tracking-wide">Om Chaudhary Hospital</span>
-            </Link>
+            <HospitalLogo variant="light" size="sm" href="/" />
             <Link href="/" className="text-xs text-slate-400 font-bold hover:text-slate-650 flex items-center gap-1">
               ← Home
             </Link>
@@ -133,9 +130,7 @@ function RegisterForm() {
           <div className="space-y-6">
             {/* Logo & title */}
             <div className="space-y-2.5">
-              <Link href="/" className="hidden lg:inline-flex items-center justify-center w-14 h-14 bg-primary-50 text-primary-600 rounded-2xl text-3xl mb-2 hover:scale-105 transition-transform shadow-sm">
-                🏥
-              </Link>
+              <HospitalLogo variant="light" size="lg" href="/" className="hidden lg:flex mb-4" />
               <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight leading-none">Create Patient Account</h2>
               <p className="text-slate-455 text-sm font-medium">
                 Register as a patient to book appointments and track your health records online.

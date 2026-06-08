@@ -17,7 +17,7 @@ export default function HospitalLogo({ variant = 'light', size = 'md', href = '/
 
   const s = sizeMap[size] || sizeMap.md;
 
-  const iconBg   = variant === 'dark' ? 'bg-white/10 border border-white/15' : 'bg-teal-900/90 border border-teal-700/40';
+  const iconBg   = 'bg-[#0f465c] border border-[#21738e]/40 shadow-inner';
   const titleCol = variant === 'dark' ? 'text-white'   : 'text-gray-900';
   const subCol   = variant === 'dark' ? 'text-cyan-300' : 'text-cyan-600';
 

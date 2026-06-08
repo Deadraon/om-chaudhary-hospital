@@ -30,7 +30,7 @@ module.exports = {
         },
         sarvodaya: {
           blue: '#0091c6',
-          dark: '#0f3b5f',
+          dark: '#0f465c',
           orange: '#F58220',
           'orange-hover': '#d66f19',
         },

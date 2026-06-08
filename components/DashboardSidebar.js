@@ -130,16 +130,16 @@ export default function DashboardSidebar({ user = { name: 'User', role: 'patient
   };
 
   return (
-    <aside className="w-full lg:w-64 bg-slate-900 text-slate-300 lg:min-h-screen flex flex-col justify-between border-r border-slate-800 flex-shrink-0">
+    <aside className="w-full lg:w-64 bg-[#0a303f] text-slate-300 lg:min-h-screen flex flex-col justify-between border-r border-[#154a5e] flex-shrink-0">
       {/* Upper part: brand & navigation */}
       <div>
         {/* Hospital Brand */}
-        <div className="p-5 border-b border-slate-800">
+        <div className="p-5 border-b border-[#154a5e]">
           <HospitalLogo variant="dark" size="sm" href="/" />        
         </div>
 
         {/* User Card & Attendance Widget */}
-        <div className="p-6 border-b border-slate-800 bg-slate-950/40 space-y-4">
+        <div className="p-6 border-b border-[#154a5e] bg-slate-950/20 space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-primary-600 text-white font-bold flex items-center justify-center text-sm shadow-md">
               {user.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'U'}
@@ -221,7 +221,7 @@ export default function DashboardSidebar({ user = { name: 'User', role: 'patient
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
                   isActive
                     ? 'bg-primary-600 text-white shadow-lg shadow-primary-900/30'
-                    : 'hover:bg-slate-800 hover:text-white'
+                    : 'hover:bg-[#154a5e]/50 hover:text-white'
                 }`}
               >
                 <span>{item.icon}</span>
@@ -233,11 +233,11 @@ export default function DashboardSidebar({ user = { name: 'User', role: 'patient
       </div>
 
       {/* Lower part: logout */}
-      <div className="p-4 border-t border-slate-800">
+      <div className="p-4 border-t border-[#154a5e]">
         <button
           onClick={handleLogout}
           disabled={loggingOut}
-          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-red-400 hover:bg-slate-800 hover:text-red-300 transition-colors"
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-red-400 hover:bg-white/5 hover:text-red-300 transition-colors"
         >
           <span>🚪</span>
           <span>{loggingOut ? 'Signing out...' : 'Sign Out'}</span>
