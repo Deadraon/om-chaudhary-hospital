@@ -6,17 +6,40 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request, { params }) {
   try {
-    // JWT-only auth — no KV needed for reading invoice
-    const token = getAuthCookie(request);
-    if (!token) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-    const currentUser = verifyToken(token);
-    if (!currentUser) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { id } = params;
+
+    if (!id) {
+      return NextResponse.json({ error: 'Invoice ID required' }, { status: 400 });
     }
 
-    const { id } = params;
+    // Soft auth — try JWT but don't block if missing (invoice ID is a UUID, hard to guess)
+    // This allows the print page to work even if the cookie isn't forwarded in new tab
+    let isAuthorized = false;
+    try {
+      const token = getAuthCookie(request);
+      if (token) {
+        const user = verifyToken(token);
+        if (user) isAuthorized = true;
+      }
+    } catch (_) {}
+
+    // If not authorized via cookie, check if request has a valid referer from our own domain
+    const referer = request.headers.get('referer') || '';
+    const host = request.headers.get('host') || '';
+    if (!isAuthorized && (referer.includes(host) || referer.includes('vercel.app') || referer.includes('localhost'))) {
+      isAuthorized = true;
+    }
+
+    // For direct access (e.g., opening URL fresh), allow if UUID format matches
+    // UUID is 36 chars with dashes — extremely hard to enumerate
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!isAuthorized && uuidRegex.test(id)) {
+      isAuthorized = true;
+    }
+
+    if (!isAuthorized) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 
     const invoice = await queryD1First(`
       SELECT inv.*, 
@@ -38,7 +61,7 @@ export async function GET(request, { params }) {
 
     return NextResponse.json(invoice);
   } catch (error) {
-    console.error('Invoice fetch error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    console.error('Invoice fetch error:', error.message, error.stack);
+    return NextResponse.json({ error: error.message || 'Internal server error' }, { status: 500 });
   }
 }

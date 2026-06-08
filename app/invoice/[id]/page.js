@@ -15,14 +15,18 @@ export default function InvoicePrintPage() {
     if (!id) return;
     fetch(`/api/invoice/${id}`, { credentials: 'include' })
       .then(async r => {
-        if (!r.ok) throw new Error((await r.json()).error || 'Not found');
-        return r.json();
+        const body = await r.json().catch(() => ({ error: `HTTP ${r.status}` }));
+        if (!r.ok) throw new Error(body.error || `HTTP ${r.status}`);
+        return body;
       })
       .then(data => {
         setInvoice(data);
         try { setItems(JSON.parse(data.items || '[]')); } catch {}
       })
-      .catch(err => setError(err.message))
+      .catch(err => {
+        console.error('Invoice load error:', err);
+        setError(err.message);
+      })
       .finally(() => setLoading(false));
   }, [id]);
 
