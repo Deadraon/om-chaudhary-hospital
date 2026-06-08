@@ -136,19 +136,43 @@ export default function ContactPage() {
               </div>
 
               {/* Map Card */}
-              <div className="bg-white border border-gray-150 rounded-3xl overflow-hidden shadow-sm h-[380px] relative">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.886981883713!2d77.5011683!3d28.4527267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cbe0a3b2b8e39%3A0x6b1070857a2e7c3e!2sGreater+Noida%2C+Uttar+Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={`${HOSPITAL_NAME} Location Map`}
-                  id="hospital-map"
-                ></iframe>
+              <div className="bg-white border border-gray-150 rounded-3xl overflow-hidden shadow-sm relative">
+                <div className="h-[340px]">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.886981883713!2d78.26047307549765!3d29.64432577357485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39095f0024ca40bb%3A0xa3ab7cc27ae93ef6!2sOm%20Chaudhary%20Hospital%20and%20trauma%20centre!5e0!3m2!1sen!2sin!4v1749382800000!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`${HOSPITAL_NAME} Location Map`}
+                    id="hospital-map"
+                  ></iframe>
+                </div>
+                {/* Open in Maps button */}
+                <div className="p-4 border-t border-gray-100 flex items-center justify-between bg-slate-50/50">
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <svg className="w-4 h-4 text-sarvodaya-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span className="text-xs font-semibold text-gray-700">Om Chaudhary Hospital &amp; Trauma Centre</span>
+                  </div>
+                  <a
+                    href="https://maps.app.goo.gl/KwSsx1e6XA5gDYY87"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-sarvodaya-blue text-white text-xs font-bold rounded-xl hover:bg-sarvodaya-dark transition-colors shadow-sm"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    Open in Maps
+                  </a>
+                </div>
               </div>
+
             </div>
 
           </div>
