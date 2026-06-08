@@ -43,18 +43,24 @@ export default function ContactPage() {
             {/* Left Column: Contact Cards (5 cols) */}
             <div className="lg:col-span-5 space-y-6">
               {/* Emergency Card */}
-              <div className="bg-red-50 border border-red-200/60 rounded-3xl p-6 shadow-sm relative overflow-hidden glow-red">
-                <div className="absolute -top-10 -right-10 w-24 h-24 bg-red-100 rounded-full blur-xl opacity-60"></div>
+              <div className="bg-red-50 border border-red-200/60 rounded-3xl p-6 shadow-md relative overflow-hidden glow-red group hover:scale-[1.01] transition-transform duration-300">
+                <div className="absolute -top-10 -right-10 w-28 h-28 bg-red-500/10 rounded-full blur-xl pointer-events-none"></div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center flex-shrink-0 shadow-md">
-                    <IconEmergency className="w-5 h-5" />
+                  <div className="w-12 h-12 rounded-2xl bg-red-600 text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-red-600/20">
+                    <IconEmergency className="w-6 h-6 animate-pulse" />
                   </div>
-                  <div>
-                    <h3 className="font-extrabold text-red-950 text-base mb-1">Emergency Hotline</h3>
-                    <p className="text-red-700 text-xs mb-3 font-medium">Available 24/7 for trauma and critical ambulance requests.</p>
-                    <a href={`tel:${process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108'}`} className="inline-flex items-center justify-center px-4.5 py-2.5 bg-red-600 text-white font-extrabold rounded-xl text-xs hover:bg-red-700 transition-colors shadow-sm tracking-wide">
-                      Call {process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108'}
-                    </a>
+                  <div className="flex-1 space-y-1">
+                    <h3 className="font-extrabold text-red-950 text-lg leading-tight">Emergency Hotline</h3>
+                    <p className="text-red-700 text-xs font-semibold leading-relaxed">Available 24/7 for trauma and critical ambulance requests.</p>
+                    <div className="pt-2">
+                      <a 
+                        href={`tel:${process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108'}`} 
+                        className="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white font-extrabold rounded-2xl text-xs hover:bg-red-700 transition-all duration-300 shadow-md shadow-red-600/20 hover:shadow-lg hover:shadow-red-600/30 hover:scale-[1.03] active:scale-[0.98] tracking-wider uppercase whitespace-nowrap"
+                      >
+                        <span className="w-2 h-2 bg-white rounded-full animate-ping mr-2 flex-shrink-0"></span>
+                        Call {process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108'}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
