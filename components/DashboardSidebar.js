@@ -15,7 +15,7 @@ export default function DashboardSidebar({ user = { name: 'User', role: 'patient
   const [fetchingStatus, setFetchingStatus] = useState(true);
 
   useEffect(() => {
-    if (user.role === 'patient') return;
+    if (user.role === 'patient' || user.role === 'super_admin') return;
 
     setFetchingStatus(true);
     fetch('/api/attendance?today=true')
@@ -151,7 +151,7 @@ export default function DashboardSidebar({ user = { name: 'User', role: 'patient
           </div>
 
           {/* Attendance Widget for staff members */}
-          {user.role !== 'patient' && (
+          {user.role !== 'patient' && user.role !== 'super_admin' && (
             <div className="bg-slate-900 border border-slate-850 rounded-2xl p-4 space-y-3 shadow-inner">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">⏱ Work Shift</span>
