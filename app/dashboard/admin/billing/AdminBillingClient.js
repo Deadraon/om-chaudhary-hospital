@@ -344,7 +344,7 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
       </div>
 
       {/* DataTable listing */}
-      <div className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm">
+      <div className="bg-white border border-gray-100 rounded-3xl p-4 sm:p-6 shadow-sm overflow-x-auto">
         <DataTable columns={columns} data={invoices} searchable={true} pageSize={10} />
       </div>
 

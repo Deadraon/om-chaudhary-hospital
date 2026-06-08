@@ -9,12 +9,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Prevent text inflation on mobile */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   html {
     scroll-behavior: smooth;
     scrollbar-color: #0091c6 #f0f9ff;
     scrollbar-width: thin;
+    /* Better mobile viewport */
+    -webkit-overflow-scrolling: touch;
   }
 
   body {
@@ -23,6 +28,40 @@
     -moz-osx-font-smoothing: grayscale;
     color: #0f172a;
     background-color: #ffffff;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+  }
+
+  /* iOS: prevent zoom on input focus by ensuring font-size >= 16px */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Minimum touch target size for accessibility */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better tap highlighting on mobile */
+  button, a {
+    -webkit-tap-highlight-color: rgba(0, 145, 198, 0.1);
+    touch-action: manipulation;
+  }
+
+  /* Remove double-tap zoom on buttons */
+  button {
+    touch-action: manipulation;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Tables shouldn't overflow on mobile */
+  table {
+    border-collapse: collapse;
   }
 
   ::selection {

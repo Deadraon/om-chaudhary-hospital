@@ -19,20 +19,37 @@ export async function POST(request) {
 
     if (!email || !password) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        { error: 'Phone number (or email) and password are required' },
         { status: 400 }
       );
     }
 
-    // Find user by email
-    const user = await queryD1First(
-      'SELECT id, name, email, password_hash, role FROM users WHERE email = ?',
-      [email.toLowerCase().trim()]
-    );
+    const identifier = email.trim();
+    const isPhone = /^\d{10}$/.test(identifier.replace(/\s/g, ''));
+
+    let user = null;
+
+    if (isPhone) {
+      // Login via phone number — look up through patients table
+      const patient = await queryD1First(
+        `SELECT u.id, u.name, u.email, u.password_hash, u.role
+         FROM users u
+         JOIN patients p ON p.user_id = u.id
+         WHERE p.phone = ?`,
+        [identifier]
+      );
+      user = patient;
+    } else {
+      // Login via email
+      user = await queryD1First(
+        'SELECT id, name, email, password_hash, role FROM users WHERE email = ?',
+        [identifier.toLowerCase()]
+      );
+    }
 
     if (!user) {
       return NextResponse.json(
-        { error: 'Invalid email or password' },
+        { error: isPhone ? 'No account found with this phone number' : 'Invalid email or password' },
         { status: 401 }
       );
     }
@@ -41,7 +58,7 @@ export async function POST(request) {
     const isValid = await comparePassword(password, user.password_hash);
     if (!isValid) {
       return NextResponse.json(
-        { error: 'Invalid email or password' },
+        { error: 'Incorrect password' },
         { status: 401 }
       );
     }
@@ -59,13 +76,17 @@ export async function POST(request) {
     // Get role-based redirect path
     const redirectPath = getDashboardPath(user.role);
 
-    // Set HTTP-only cookie and return
+    // Display email — hide auto-generated placeholder
+    const displayEmail = user.email && !user.email.includes('@omchaudharyhospital.local')
+      ? user.email
+      : null;
+
     const response = NextResponse.json({
       success: true,
       user: {
         id: user.id,
         name: user.name,
-        email: user.email,
+        email: displayEmail,
         role: user.role,
       },
       redirect: redirectPath,

@@ -29,6 +29,12 @@ function RegisterForm() {
       return;
     }
 
+    if (!phone || phone.length < 10) {
+      setError('Please enter a valid 10-digit mobile number.');
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await fetch('/api/auth/register', {
         method: 'POST',
@@ -169,7 +175,7 @@ function RegisterForm() {
 
               <div>
                 <label htmlFor="reg-email" className="block text-[10px] font-bold uppercase tracking-wider text-slate-450 mb-2">
-                  Email Address *
+                  Email Address <span className="text-slate-400 font-normal normal-case tracking-normal">(Optional)</span>
                 </label>
                 <div className="relative">
                   <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 pointer-events-none text-base">
@@ -181,11 +187,11 @@ function RegisterForm() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-11 pr-5 py-4 bg-slate-50 border border-slate-200 focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 rounded-2xl text-slate-800 text-sm font-semibold transition-all duration-200 outline-none shadow-sm"
-                    placeholder="you@example.com"
-                    required
+                    placeholder="you@example.com (leave blank if none)"
                     disabled={loading}
                   />
                 </div>
+                <p className="text-[10px] text-slate-400 mt-1 ml-1">Phone number is used as your primary login identifier</p>
               </div>
 
               <div>

@@ -161,23 +161,26 @@ function LoginForm() {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label htmlFor="login-email" className="block text-[10px] font-bold uppercase tracking-wider text-slate-450 mb-2">
-                  Email Address
+                  Phone Number or Email
                 </label>
                 <div className="relative">
                   <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 pointer-events-none text-base">
-                    ✉
+                    📞
                   </span>
                   <input
-                    type="email"
+                    type="text"
                     id="login-email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-11 pr-5 py-4 bg-slate-50 border border-slate-200 focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 rounded-2xl text-slate-800 text-sm font-semibold transition-all duration-200 outline-none shadow-sm"
-                    placeholder="you@example.com"
+                    placeholder="10-digit mobile or email address"
                     required
                     disabled={loading}
+                    inputMode="text"
+                    autoComplete="username"
                   />
                 </div>
+                <p className="text-[10px] text-slate-400 mt-1 ml-1">Enter your registered phone number or email to sign in</p>
               </div>
 
               <div>

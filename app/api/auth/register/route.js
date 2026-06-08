@@ -8,10 +8,17 @@ export async function POST(request) {
   try {
     const { name, email, password, phone } = await request.json();
 
-    // Validation
-    if (!name || !email || !password) {
+    // Validation — only name, phone and password required
+    if (!name || !phone || !password) {
       return NextResponse.json(
-        { error: 'Name, email, and password are required' },
+        { error: 'Name, phone number, and password are required' },
+        { status: 400 }
+      );
+    }
+
+    if (!/^\d{10}$/.test(phone.replace(/\s/g, ''))) {
+      return NextResponse.json(
+        { error: 'Please enter a valid 10-digit phone number' },
         { status: 400 }
       );
     }
@@ -23,36 +30,54 @@ export async function POST(request) {
       );
     }
 
-    // Check if email already exists
-    const existing = await queryD1First(
-      'SELECT id FROM users WHERE email = ?',
-      [email.toLowerCase().trim()]
-    );
+    // Normalize email — if provided check uniqueness, else auto-generate placeholder
+    const normalizedEmail = email && email.trim()
+      ? email.toLowerCase().trim()
+      : `patient.${phone}@omchaudharyhospital.local`;
 
-    if (existing) {
+    // Check if phone already registered
+    const existingPhone = await queryD1First(
+      'SELECT id FROM patients WHERE phone = ?',
+      [phone.trim()]
+    );
+    if (existingPhone) {
       return NextResponse.json(
-        { error: 'An account with this email already exists' },
+        { error: 'An account with this phone number already exists. Please login.' },
         { status: 409 }
       );
+    }
+
+    // Check if real email already exists (skip for auto-generated ones)
+    if (email && email.trim()) {
+      const existing = await queryD1First(
+        'SELECT id FROM users WHERE email = ? AND email NOT LIKE \'%@omchaudharyhospital.local\'',
+        [normalizedEmail]
+      );
+      if (existing) {
+        return NextResponse.json(
+          { error: 'An account with this email already exists' },
+          { status: 409 }
+        );
+      }
     }
 
     // Hash password
     const passwordHash = await hashPassword(password);
 
-    // Create user (patients only via self-registration)
+    // Create user
     const userId = generateId();
     const patientId = generateId();
     const timestamp = now();
 
     await queryD1(
       'INSERT INTO users (id, name, email, password_hash, role, created_at) VALUES (?, ?, ?, ?, ?, ?)',
-      [userId, name.trim(), email.toLowerCase().trim(), passwordHash, 'patient', timestamp]
+      [userId, name.trim(), normalizedEmail, passwordHash, 'patient', timestamp]
     );
 
-    // Also create a patient record
+    // Create patient record with phone
     await queryD1(
       'INSERT INTO patients (id, user_id, name, phone) VALUES (?, ?, ?, ?)',
-      [patientId, userId, name.trim(), phone || '']
+      [patientId, userId, name.trim(), phone.trim()]
     );
 
     // Generate JWT and set cookie
@@ -69,7 +94,7 @@ export async function POST(request) {
       user: {
         id: userId,
         name: name.trim(),
-        email: email.toLowerCase().trim(),
+        email: email && email.trim() ? normalizedEmail : null,
         role: 'patient',
       },
       redirect: '/dashboard/patient',
