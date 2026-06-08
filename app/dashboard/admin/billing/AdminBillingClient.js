@@ -16,6 +16,12 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
 
   // Search/Filter for Patients inside Modal
   const [patientSearch, setPatientSearch] = useState('');
+  const [patientList, setPatientList] = useState(patients);
+
+  // Quick-add patient state
+  const [showAddPatient, setShowAddPatient] = useState(false);
+  const [addPatientLoading, setAddPatientLoading] = useState(false);
+  const [newPatient, setNewPatient] = useState({ name: '', phone: '', address: '', age: '', gender: 'Male' });
 
   // Invoice form state
   const [invoiceForm, setInvoiceForm] = useState({
@@ -184,11 +190,43 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
     }
   };
 
-  const filteredPatients = patients.filter(
+  const filteredPatients = patientList.filter(
     (p) =>
       p.name.toLowerCase().includes(patientSearch.toLowerCase()) ||
       (p.phone && p.phone.includes(patientSearch))
   );
+
+  const handleAddNewPatient = async (e) => {
+    e.preventDefault();
+    if (!newPatient.name || !newPatient.phone) {
+      setToast({ message: 'Name and phone are required.', type: 'error' });
+      return;
+    }
+    setAddPatientLoading(true);
+    try {
+      const res = await fetch('/api/patients', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newPatient),
+      });
+      const data = await res.json();
+      if (res.ok && data.id) {
+        const created = { id: data.id, name: newPatient.name, phone: newPatient.phone, address: newPatient.address };
+        setPatientList((prev) => [...prev, created]);
+        setInvoiceForm((prev) => ({ ...prev, patientId: data.id }));
+        setPatientSearch(newPatient.name);
+        setNewPatient({ name: '', phone: '', address: '', age: '', gender: 'Male' });
+        setShowAddPatient(false);
+        setToast({ message: `Patient "${created.name}" added and selected!`, type: 'success' });
+      } else {
+        setToast({ message: data.error || 'Failed to add patient.', type: 'error' });
+      }
+    } catch {
+      setToast({ message: 'Network error adding patient.', type: 'error' });
+    } finally {
+      setAddPatientLoading(false);
+    }
+  };
 
   const statusPills = {
     paid: 'bg-emerald-50 text-emerald-700 border-emerald-150',
@@ -369,6 +407,79 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
                   </option>
                 ))}
               </select>
+
+              {/* No results hint + Quick Add */}
+              {patientSearch && filteredPatients.length === 0 && !showAddPatient && (
+                <div className="mt-2 flex items-center gap-2 p-2.5 bg-amber-50 border border-amber-200 rounded-xl">
+                  <span className="text-xs text-amber-700 font-semibold flex-1">No patient found for &quot;{patientSearch}&quot;</span>
+                  <button
+                    type="button"
+                    onClick={() => { setShowAddPatient(true); setNewPatient((p) => ({ ...p, name: patientSearch })); }}
+                    className="px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700 transition-all whitespace-nowrap"
+                  >
+                    ➕ Add Patient
+                  </button>
+                </div>
+              )}
+
+              {/* Inline quick-add form */}
+              {showAddPatient && (
+                <div className="mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-2xl space-y-2">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs font-bold text-emerald-800">➕ Quick Add New Patient</span>
+                    <button type="button" onClick={() => setShowAddPatient(false)} className="text-gray-400 hover:text-gray-600 text-sm font-bold">✕</button>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <input
+                      type="text"
+                      placeholder="Full Name *"
+                      value={newPatient.name}
+                      onChange={(e) => setNewPatient({ ...newPatient, name: e.target.value })}
+                      className="input-field text-xs py-1.5 col-span-2"
+                    />
+                    <input
+                      type="tel"
+                      placeholder="Phone *"
+                      value={newPatient.phone}
+                      onChange={(e) => setNewPatient({ ...newPatient, phone: e.target.value })}
+                      className="input-field text-xs py-1.5"
+                      maxLength={10}
+                    />
+                    <input
+                      type="number"
+                      placeholder="Age"
+                      value={newPatient.age}
+                      onChange={(e) => setNewPatient({ ...newPatient, age: e.target.value })}
+                      className="input-field text-xs py-1.5"
+                      min="0"
+                    />
+                    <select
+                      value={newPatient.gender}
+                      onChange={(e) => setNewPatient({ ...newPatient, gender: e.target.value })}
+                      className="input-field text-xs py-1.5"
+                    >
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Other</option>
+                    </select>
+                    <input
+                      type="text"
+                      placeholder="Address (optional)"
+                      value={newPatient.address}
+                      onChange={(e) => setNewPatient({ ...newPatient, address: e.target.value })}
+                      className="input-field text-xs py-1.5"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleAddNewPatient}
+                    disabled={addPatientLoading}
+                    className="w-full py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-xl hover:bg-emerald-700 transition-all mt-1 disabled:opacity-60"
+                  >
+                    {addPatientLoading ? 'Saving...' : '✅ Save & Select Patient'}
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Visit type and due date */}
