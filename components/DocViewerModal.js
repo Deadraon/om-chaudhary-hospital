@@ -8,37 +8,23 @@ export default function DocViewerModal({ isOpen, onClose, fileUrl, title }) {
   const isPDF = fileUrl.toLowerCase().endsWith('.pdf') || fileUrl.includes('/lab-reports/') && !fileUrl.toLowerCase().match(/\.(png|jpg|jpeg|gif|webp)$/);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={title || 'Document Viewer'} size="2xl">
-      <div className="flex flex-col space-y-4">
-        <div className="flex justify-end gap-2">
-          <a
-            href={fileUrl}
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-xl text-xs font-bold transition-colors shadow-sm"
-          >
-            📥 Download / Print Original
-          </a>
-        </div>
-        
-        <div className="bg-slate-50 border border-gray-150 rounded-2xl overflow-hidden flex items-center justify-center p-2 min-h-[50vh]">
-          {isPDF ? (
-            <iframe
-              src={`${fileUrl}#toolbar=1`}
-              className="w-full h-[75vh] rounded-xl"
-              title="PDF Document Viewer"
-            ></iframe>
-          ) : (
-            <div className="overflow-auto max-h-[75vh] flex items-center justify-center">
-              <img
-                src={fileUrl}
-                alt={title || 'Document Attachment'}
-                className="max-w-full h-auto object-contain rounded-xl shadow-md"
-              />
-            </div>
-          )}
-        </div>
+    <Modal isOpen={isOpen} onClose={onClose} title={title || 'Document Viewer'} size="full">
+      <div className="w-full h-full">
+        {isPDF ? (
+          <iframe
+            src={`${fileUrl}#toolbar=1`}
+            className="w-full h-[calc(100vh-50px)] border-0"
+            title="PDF Document Viewer"
+          ></iframe>
+        ) : (
+          <div className="w-full h-[calc(100vh-50px)] flex items-center justify-center bg-slate-50 overflow-auto">
+            <img
+              src={fileUrl}
+              alt={title || 'Document Attachment'}
+              className="max-w-full max-h-full object-contain shadow-md"
+            />
+          </div>
+        )}
       </div>
     </Modal>
   );
