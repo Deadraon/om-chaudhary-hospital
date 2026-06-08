@@ -129,10 +129,20 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Right: 24/7 Status Badge */}
-          <div className="flex items-center gap-2 text-white/80 font-bold uppercase tracking-wider text-[10px] bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            24/7 Trauma & Emergency Active
+          {/* Right: Location & Emergency Info */}
+          <div className="flex items-center gap-4 text-white/90 font-bold uppercase tracking-wider text-[9px] md:text-[10px]">
+            <span className="hidden xl:inline-flex items-center gap-1.5">
+              <span>📍</span> Najibabad - Haridwar Road, Mandawali, Bijnor
+            </span>
+            <span className="hidden xl:inline text-white/20">|</span>
+            <span className="hidden sm:inline-flex items-center gap-1.5">
+              <span>📞</span> +91-9876543210
+            </span>
+            <span className="hidden sm:inline text-white/20">|</span>
+            <div className="flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              24/7 Emergency Active
+            </div>
           </div>
         </div>
       </div>
@@ -295,6 +305,50 @@ export default function Header() {
                 </div>
               </div>
 
+
+              {/* Location Hover Menu */}
+              <div className="relative group py-4">
+                <button className="px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative text-gray-655 hover:text-sarvodaya-blue flex items-center gap-1 whitespace-nowrap">
+                  Location
+                  <svg className="w-3 h-3 text-gray-400 transition-transform duration-300 group-hover:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className="absolute top-[100%] right-0 w-[350px] bg-white border border-gray-150 rounded-2xl shadow-2xl p-4.5 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-50 space-y-3">
+                  <div className="rounded-xl overflow-hidden border border-gray-150 h-[170px] shadow-inner relative">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.886981883713!2d78.26047307549765!3d29.64432577357485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39095f0024ca40bb%3A0xa3ab7cc27ae93ef6%212sOm%20Chaudhary%20Hospital%20and%20trauma%20centre!5e0!3m2!1sen!2sin!4v1749382800000!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Hospital Map Menu"
+                    ></iframe>
+                  </div>
+                  <div className="space-y-1 text-xs text-gray-650 font-medium">
+                    <p className="font-extrabold text-gray-900">Om Chaudhary Hospital &amp; Trauma Centre</p>
+                    <p className="text-[10px] leading-relaxed text-gray-500">Najibabad - Haridwar Road, Mandawali, Bijnor, Uttar Pradesh - 246749</p>
+                  </div>
+                  <div className="flex gap-2 pt-1">
+                    <a
+                      href="https://maps.app.goo.gl/KwSsx1e6XA5gDYY87"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-2 bg-sarvodaya-blue text-white text-[10px] font-black text-center rounded-xl hover:bg-sarvodaya-dark shadow-sm transition-colors"
+                    >
+                      Open in Maps
+                    </a>
+                    <Link
+                      href="/contact"
+                      className="flex-1 py-2 border border-gray-200 text-gray-700 text-[10px] font-black text-center rounded-xl hover:bg-gray-50 transition-colors"
+                    >
+                      Contact Info
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
               {/* Contact */}
               <Link href="/contact" className={`px-2.5 py-1.5 rounded-xl text-[13px] font-bold tracking-wide transition-all duration-300 relative whitespace-nowrap ${pathname === '/contact' ? 'text-sarvodaya-blue bg-primary-50/50' : 'text-gray-655 hover:text-sarvodaya-blue hover:bg-gray-50/50'}`}>
