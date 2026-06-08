@@ -132,8 +132,9 @@ export default function Header() {
   return (
     <>
       {isDashboardOrAuth ? null : (
-      {/* ==================== DOUBLE HEADER: TOP SUB-HEADER BAR ==================== */}
-      <div className="bg-sarvodaya-dark text-white py-2 px-4 z-50 relative border-b border-white/5 text-[11px] md:text-xs">
+        <>
+        {/* ==================== DOUBLE HEADER: TOP SUB-HEADER BAR ==================== */}
+        <div className="bg-sarvodaya-dark text-white py-2 px-4 z-50 relative border-b border-white/5 text-[11px] md:text-xs">
         <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           {/* Left: Get Second Opinion Trigger */}
           <div className="flex items-center gap-4">
@@ -552,6 +553,7 @@ export default function Header() {
           </form>
         )}
       </Modal>
+        </>
       )}
     </>
   );
