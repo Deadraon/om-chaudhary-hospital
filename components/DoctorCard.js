@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import Modal from '@/components/Modal';
 
 export default function DoctorCard({ doctor }) {
