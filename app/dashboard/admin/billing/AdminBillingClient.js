@@ -20,10 +20,18 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
   // Always fetch fresh invoices from API on mount
   useEffect(() => {
     setLoadingInvoices(true);
-    fetch('/api/admin/billing')
-      .then(r => r.json())
+    fetch('/api/admin/billing', { credentials: 'include' })
+      .then(async r => {
+        if (!r.ok) {
+          const err = await r.json().catch(() => ({}));
+          console.error('Billing API error:', r.status, err);
+          return [];
+        }
+        return r.json();
+      })
       .then(data => {
         if (Array.isArray(data)) setInvoices(data);
+        else console.error('Billing API returned non-array:', data);
       })
       .catch(err => console.error('Failed to load invoices:', err))
       .finally(() => setLoadingInvoices(false));

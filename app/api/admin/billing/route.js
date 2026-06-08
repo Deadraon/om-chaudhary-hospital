@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { queryD1, queryD1First } from '@/lib/d1';
-import { getCurrentUser } from '@/lib/auth';
+import { getAuthCookie, verifyToken, getCurrentUser } from '@/lib/auth';
 import { generateId, now } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
@@ -10,7 +10,12 @@ export const dynamic = 'force-dynamic';
  */
 export async function GET(request) {
   try {
-    const currentUser = await getCurrentUser(request);
+    // Use JWT-only auth for reads — bypasses KV session check which can fail silently
+    const token = getAuthCookie(request);
+    if (!token) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    const currentUser = verifyToken(token);
     if (!currentUser) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
