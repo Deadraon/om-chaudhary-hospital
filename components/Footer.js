@@ -74,16 +74,24 @@ export default function Footer() {
             {/* Social Links - read from env or default to # */}
             <div className="flex gap-3">
               <a href={SOCIAL_FACEBOOK} target={SOCIAL_FACEBOOK === '#' ? undefined : '_blank'} rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#1877F2] hover:text-white transition-all duration-300" title="Facebook">
-                <span className="text-xs font-bold">f</span>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z" />
+                </svg>
               </a>
               <a href={SOCIAL_INSTAGRAM} target={SOCIAL_INSTAGRAM === '#' ? undefined : '_blank'} rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#E1306C] hover:text-white transition-all duration-300" title="Instagram">
-                <span className="text-xs font-bold">in</span>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                </svg>
               </a>
               <a href={SOCIAL_YOUTUBE} target={SOCIAL_YOUTUBE === '#' ? undefined : '_blank'} rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#FF0000] hover:text-white transition-all duration-300" title="YouTube">
-                <span className="text-xs font-bold">yt</span>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.53 3.545 12 3.545 12 3.545s-7.53 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.017 0 12 0 12s0 3.983.502 5.837a3.003 3.003 0 002.11 2.11c1.858.507 9.388.507 9.388.507s7.53 0 9.388-.507a3.003 3.003 0 002.11-2.11C24 15.983 24 12 24 12s0-3.983-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
               </a>
               <a href={`https://wa.me/${HOSPITAL_PHONE.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#25D366] hover:text-white transition-all duration-300" title="WhatsApp">
-                <span className="text-xs font-bold">wa</span>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.488 1.459 5.421 1.46h.01c5.566 0 10.093-4.52 10.097-10.081.002-2.694-1.043-5.227-2.946-7.132C17.327 1.496 14.8 1.45 12.011 1.45c-5.57 0-10.1 4.523-10.104 10.085-.001 1.943.508 3.84 1.472 5.448l-.966 3.529 3.634-.954zm12.39-7.53c-.322-.16-1.9-.937-2.193-1.044-.293-.108-.507-.16-.72.16-.214.32-.828 1.043-1.014 1.258-.187.214-.373.24-.694.08-1.517-.762-2.661-1.285-3.714-2.133-.8-.68-1.488-1.562-1.74-2.033-.254-.471-.027-.726.133-.886.143-.143.32-.375.48-.562.16-.188.214-.32.32-.536.107-.214.053-.4-.027-.562-.08-.16-.72-1.734-.987-2.378-.26-.625-.526-.54-.72-.55-.187-.008-.4-.01-.613-.01-.214 0-.56.08-.853.4-.294.32-1.12 1.1-1.12 2.678 0 1.578 1.147 3.1 1.307 3.32.16.22 2.244 3.424 5.437 4.8.759.328 1.353.524 1.815.67.763.243 1.458.209 2.007.127.613-.092 1.9-.777 2.167-1.49.266-.715.266-1.33.187-1.49-.08-.16-.293-.267-.613-.427z" />
+                </svg>
               </a>
             </div>
           </div>
