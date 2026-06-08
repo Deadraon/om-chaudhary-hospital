@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import HospitalLogo from '@/components/HospitalLogo';
 
 export default function DashboardSidebar({ user = { name: 'User', role: 'patient' } }) {
   const pathname = usePathname();
@@ -133,12 +134,8 @@ export default function DashboardSidebar({ user = { name: 'User', role: 'patient
       {/* Upper part: brand & navigation */}
       <div>
         {/* Hospital Brand */}
-        <div className="p-6 border-b border-slate-800 flex items-center gap-3">
-          <span className="text-2xl">🏥</span>
-          <div>
-            <h1 className="text-white font-bold text-sm tracking-wide leading-tight">Om Chaudhary</h1>
-            <p className="text-[10px] text-primary-400 font-semibold uppercase tracking-wider">Hospital Portal</p>
-          </div>
+        <div className="p-5 border-b border-slate-800">
+          <HospitalLogo variant="dark" size="sm" href="/" />        
         </div>
 
         {/* User Card & Attendance Widget */}

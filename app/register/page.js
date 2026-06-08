@@ -4,6 +4,7 @@ import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import HospitalLogo from '@/components/HospitalLogo';
 
 function RegisterForm() {
   const [name, setName] = useState('');
@@ -64,13 +65,7 @@ function RegisterForm() {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
 
         {/* Top: Brand info */}
-        <Link href="/" className="flex items-center gap-3 group text-white z-10 self-start">
-          <span className="text-3xl bg-white/10 backdrop-blur-md p-2.5 rounded-2xl group-hover:scale-105 transition-transform duration-200 shadow-lg border border-white/10">🏥</span>
-          <div>
-            <h1 className="font-extrabold text-lg tracking-wider leading-none">OM CHAUDHARY</h1>
-            <p className="text-[10px] text-cyan-300 font-bold uppercase tracking-widest mt-1">Hospital & Trauma Centre</p>
-          </div>
-        </Link>
+        <HospitalLogo variant="dark" size="lg" href="/" className="z-10 self-start" />
 
         {/* Middle: Info Content */}
         <div className="z-10 max-w-md space-y-8 my-auto">

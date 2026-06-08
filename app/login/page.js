@@ -4,6 +4,7 @@ import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import HospitalLogo from '@/components/HospitalLogo';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -58,13 +59,7 @@ function LoginForm() {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
 
         {/* Top: Brand info */}
-        <Link href="/" className="flex items-center gap-3 group text-white z-10 self-start">
-          <span className="text-3xl bg-white/10 backdrop-blur-md p-2.5 rounded-2xl group-hover:scale-105 transition-transform duration-200 shadow-lg border border-white/10">🏥</span>
-          <div>
-            <h1 className="font-extrabold text-lg tracking-wider leading-none">OM CHAUDHARY</h1>
-            <p className="text-[10px] text-cyan-300 font-bold uppercase tracking-widest mt-1">Hospital & Trauma Centre</p>
-          </div>
-        </Link>
+        <HospitalLogo variant="dark" size="lg" href="/" className="z-10 self-start" />
 
         {/* Middle: Feature Highlights */}
         <div className="z-10 max-w-md space-y-8 my-auto">
@@ -132,10 +127,7 @@ function LoginForm() {
         <div className="max-w-md w-full relative z-10 space-y-8">
           {/* Mobile Back to Home Navigation */}
           <div className="lg:hidden flex justify-between items-center">
-            <Link href="/" className="flex items-center gap-2 group text-slate-900">
-              <span className="text-xl bg-primary-50 p-1.5 rounded-lg group-hover:scale-105 transition-transform duration-200">🏥</span>
-              <span className="font-extrabold text-xs uppercase tracking-wide">Om Chaudhary Hospital</span>
-            </Link>
+            <HospitalLogo variant="light" size="sm" href="/" />
             <Link href="/" className="text-xs text-slate-400 font-bold hover:text-slate-650 flex items-center gap-1">
               ← Home
             </Link>
@@ -144,8 +136,10 @@ function LoginForm() {
           <div className="space-y-6">
             {/* Logo & title */}
             <div className="space-y-2.5">
-              <Link href="/" className="hidden lg:inline-flex items-center justify-center w-14 h-14 bg-primary-50 text-primary-600 rounded-2xl text-3xl mb-2 hover:scale-105 transition-transform shadow-sm">
-                🏥
+              <Link href="/" className="hidden lg:inline-flex">
+                <div className="w-14 h-14 bg-teal-900/80 border border-teal-700/40 flex items-center justify-center rounded-2xl text-3xl mb-2 hover:scale-105 transition-transform shadow-sm">
+                  🏥
+                </div>
               </Link>
               <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight leading-none">Welcome Back</h2>
               <p className="text-slate-450 text-sm font-medium">

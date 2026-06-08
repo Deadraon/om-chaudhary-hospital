@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Modal from '@/components/Modal';
+import HospitalLogo from '@/components/HospitalLogo';
 
 const EMERGENCY_NUMBER = process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108';
 
@@ -236,21 +237,7 @@ export default function Header() {
           <div className="flex items-center justify-between h-16">
             
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-sarvodaya-blue to-cyan-500 flex items-center justify-center shadow-lg group-hover:scale-105 transition-all duration-300 border border-white/10 glow-primary-soft">
-                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                </svg>
-              </div>
-              <div className="hidden sm:block">
-                <h1 className="text-sm md:text-base font-extrabold text-gray-900 leading-tight group-hover:text-sarvodaya-blue transition-colors">
-                  Om Chaudhary Hospital
-                </h1>
-                <p className="text-[9px] md:text-[10px] text-cyan-600 font-bold uppercase tracking-widest">
-                  & Trauma Centre
-                </p>
-              </div>
-            </Link>
+            <HospitalLogo variant="light" size="md" />
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-2 xl:gap-3.5 flex-shrink-0">
               {/* Home */}

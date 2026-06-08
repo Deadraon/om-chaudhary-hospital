@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { IconEmergency } from '@/components/MedicalIcons';
+import HospitalLogo from '@/components/HospitalLogo';
 
 const HOSPITAL_NAME = process.env.NEXT_PUBLIC_HOSPITAL_NAME || 'Om Chaudhary Hospital & Trauma Centre';
 const EMERGENCY_NUMBER = process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108';
@@ -54,17 +55,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Hospital Info */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-white font-bold text-lg leading-tight">Om Chaudhary Hospital</h3>
-                <p className="text-sarvodaya-blue text-xs font-medium">& Trauma Centre</p>
-              </div>
-            </div>
+            <HospitalLogo variant="dark" size="md" className="mb-6" />
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Providing compassionate, world-class healthcare services with state-of-the-art technology and a team of dedicated medical professionals.
             </p>
