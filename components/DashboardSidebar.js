@@ -97,17 +97,20 @@ export default function DashboardSidebar({ user = { name: 'User', role: 'patient
       { name: 'Doctors', href: '/dashboard/admin/doctors', icon: '👨‍⚕️' },
       { name: 'Staff Management', href: '/dashboard/admin/staff', icon: '👥' },
       { name: 'Patients', href: '/dashboard/admin/patients', icon: '🩹' },
+      { name: 'Lab Reports', href: '/dashboard/admin/reports', icon: '🔬' },
       { name: 'Attendance Roster', href: '/dashboard/admin/attendance', icon: '📝' },
     ],
     doctor: [
       { name: 'My Schedule', href: '/dashboard/doctor', icon: '📅' },
       { name: 'Appointments', href: '/dashboard/doctor/appointments', icon: '🗒️' },
+      { name: 'Lab Reports', href: '/dashboard/doctor/reports', icon: '🔬' },
       { name: 'My Attendance', href: '/dashboard/doctor/attendance', icon: '📝' },
     ],
     receptionist: [
       { name: 'Overview', href: '/dashboard/receptionist', icon: '📋' },
       { name: 'Appointments', href: '/dashboard/receptionist/appointments', icon: '🗓️' },
       { name: 'Book Appointment', href: '/dashboard/receptionist/book', icon: '➕' },
+      { name: 'Lab Reports', href: '/dashboard/receptionist/reports', icon: '🔬' },
       { name: 'My Attendance', href: '/dashboard/receptionist/attendance', icon: '📝' },
     ],
     patient: [
