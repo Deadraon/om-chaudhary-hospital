@@ -116,6 +116,7 @@ function RegisterForm() {
         <div className="z-10 text-[11px] text-slate-450 font-medium">
           © {new Date().getFullYear()} Om Chaudhary Hospital. All Rights Reserved. Trusted healthcare services.
         </div>
+      </div>
        {/* Right side: Form Panel */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-16 lg:p-24 relative overflow-y-auto bg-white min-h-screen">
         {/* Glow blobs on mobile background */}
@@ -271,8 +272,7 @@ function RegisterForm() {
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
 }
 
