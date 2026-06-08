@@ -8,7 +8,7 @@ export default function DocViewerModal({ isOpen, onClose, fileUrl, title }) {
   const isPDF = fileUrl.toLowerCase().endsWith('.pdf') || fileUrl.includes('/lab-reports/') && !fileUrl.toLowerCase().match(/\.(png|jpg|jpeg|gif|webp)$/);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={title || 'Document Viewer'} size="lg">
+    <Modal isOpen={isOpen} onClose={onClose} title={title || 'Document Viewer'} size="2xl">
       <div className="flex flex-col space-y-4">
         <div className="flex justify-end gap-2">
           <a
@@ -26,11 +26,11 @@ export default function DocViewerModal({ isOpen, onClose, fileUrl, title }) {
           {isPDF ? (
             <iframe
               src={`${fileUrl}#toolbar=1`}
-              className="w-full h-[65vh] rounded-xl"
+              className="w-full h-[75vh] rounded-xl"
               title="PDF Document Viewer"
             ></iframe>
           ) : (
-            <div className="overflow-auto max-h-[65vh] flex items-center justify-center">
+            <div className="overflow-auto max-h-[75vh] flex items-center justify-center">
               <img
                 src={fileUrl}
                 alt={title || 'Document Attachment'}
