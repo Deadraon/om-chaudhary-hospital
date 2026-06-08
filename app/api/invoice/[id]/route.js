@@ -45,9 +45,8 @@ export async function GET(request, { params }) {
       SELECT inv.*, 
         COALESCE(p.name, 'Unknown Patient') AS patient_name, 
         p.phone AS patient_phone, 
-        p.address AS patient_address, 
-        p.age AS patient_age,
-        p.gender AS patient_gender,
+        p.address AS patient_address,
+        p.blood_group AS patient_blood_group,
         u.email AS patient_email
       FROM invoices inv
       LEFT JOIN patients p ON inv.patient_id = p.id

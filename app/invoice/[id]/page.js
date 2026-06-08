@@ -137,7 +137,7 @@ export default function InvoicePrintPage() {
             <div style={{ background: '#f8fafc', padding: '22px 32px' }}>
               <div style={{ fontSize: '9px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '10px' }}>Billed To</div>
               <div style={{ fontSize: '16px', fontWeight: 800, color: '#0f172a' }}>{invoice.patient_name}</div>
-              {invoice.patient_age && <div style={{ fontSize: '12px', color: '#475569', marginTop: '4px' }}>Age: {invoice.patient_age} yrs &nbsp;|&nbsp; {invoice.patient_gender || '—'}</div>}
+              {invoice.patient_blood_group && <div style={{ fontSize: '12px', color: '#475569', marginTop: '4px' }}>Blood Group: {invoice.patient_blood_group}</div>}
               <div style={{ fontSize: '12px', color: '#475569', marginTop: '4px' }}>📞 {invoice.patient_phone || 'N/A'}</div>
               {showEmail && <div style={{ fontSize: '12px', color: '#475569', marginTop: '2px' }}>✉️ {invoice.patient_email}</div>}
               {invoice.patient_address && <div style={{ fontSize: '11px', color: '#64748b', marginTop: '6px', lineHeight: 1.6 }}>{invoice.patient_address}</div>}
