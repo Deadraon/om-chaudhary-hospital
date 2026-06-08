@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 
-const WHATSAPP_NUMBER = '919876543210'; // +91-9876543210 without symbols
+const HOSPITAL_PHONE = process.env.NEXT_PUBLIC_HOSPITAL_PHONE || '+91-6396098340';
+const WHATSAPP_NUMBER = HOSPITAL_PHONE.replace(/\D/g, ''); // strip symbols
 const WHATSAPP_MESSAGE = 'Hello! I would like to book an appointment at Om Chaudhary Hospital.';
 
 export default function WhatsAppButton() {

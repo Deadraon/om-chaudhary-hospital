@@ -8,7 +8,7 @@ import {
 } from '@/components/MedicalIcons';
 
 const HOSPITAL_NAME = process.env.NEXT_PUBLIC_HOSPITAL_NAME || 'Om Chaudhary Hospital & Trauma Centre';
-const HOSPITAL_PHONE = process.env.NEXT_PUBLIC_HOSPITAL_PHONE || '+91-9876543210';
+const HOSPITAL_PHONE = process.env.NEXT_PUBLIC_HOSPITAL_PHONE || '+91-6396098340';
 
 export const metadata = {
   title: `Contact Us | ${HOSPITAL_NAME}`,
