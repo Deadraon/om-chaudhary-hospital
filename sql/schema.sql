@@ -117,4 +117,4 @@ INSERT OR IGNORE INTO departments (id, name, description) VALUES
 -- Default super admin (password: Admin@123)
 -- bcrypt hash for "Admin@123" with 12 rounds
 INSERT OR IGNORE INTO users (id, name, email, password_hash, role, created_at) VALUES
-  ('admin-001', 'Super Admin', 'admin@omchaudharyhospital.com', '$2a$12$LJ3m4ys3GZHkswMZPCHmqOKDRR8OlEi6Mce0cR2LvCAXyuVphkWW', 'super_admin', datetime('now'));
+  ('admin-001', 'Super Admin', 'admin@omchaudharyhospital.com', '$2a$12$QfzD2T3gtWSd694mx12SY.xSigL/yohC0ZauGeCeBVheoCWGMCwrK', 'super_admin', datetime('now'));
