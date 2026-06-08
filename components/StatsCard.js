@@ -22,11 +22,20 @@ export default function StatsCard({ icon, value, label, suffix = '' }) {
           observer.disconnect();
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0.01 } // Lower threshold so it triggers as soon as 1% enters view
     );
 
     if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+
+    // Fallback: force visibility after 2 seconds in case scroll listener or layout hides it
+    const fallbackTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 2000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   useEffect(() => {

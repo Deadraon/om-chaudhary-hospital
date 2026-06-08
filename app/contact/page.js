@@ -72,7 +72,7 @@ export default function ContactPage() {
                     <IconPhone className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-extrabold text-gray-900 text-base mb-1.5">Phone Numbers</h3>
+                    <h3 className="font-extrabold text-gray-900 text-base mb-1.5">Phone Number</h3>
                     <p className="text-gray-500 text-xs mb-2 font-semibold uppercase tracking-wider">OPD & Reception Desk:</p>
                     <p className="text-gray-900 font-extrabold text-sm hover:text-sarvodaya-blue transition-colors">
                       <a href={`tel:${HOSPITAL_PHONE}`}>{HOSPITAL_PHONE}</a>

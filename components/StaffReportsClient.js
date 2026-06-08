@@ -4,10 +4,13 @@ import { useState, useEffect } from 'react';
 import DataTable from '@/components/DataTable';
 import Modal from '@/components/Modal';
 import Toast from '@/components/Toast';
+import DocViewerModal from '@/components/DocViewerModal';
+import { getR2Url } from '@/lib/r2';
 
 export default function StaffReportsClient({ initialReports = [] }) {
   const [reports, setReports] = useState(initialReports);
   const [patients, setPatients] = useState([]);
+  const [doctors, setDoctors] = useState([]);
   const [toast, setToast] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -18,20 +21,34 @@ export default function StaffReportsClient({ initialReports = [] }) {
   const [formData, setFormData] = useState({
     patientId: '',
     title: '',
+    doctorId: '',
+    testType: '',
   });
 
-  // Fetch patient list for report assignment
+  // Viewer state
+  const [viewerOpen, setViewerOpen] = useState(false);
+  const [viewerUrl, setViewerUrl] = useState('');
+  const [viewerTitle, setViewerTitle] = useState('');
+
+  // Fetch patient and doctor lists
   useEffect(() => {
     fetch('/api/patients')
       .then((res) => (res.ok ? res.json() : []))
       .then((data) => setPatients(data))
       .catch((err) => console.error('Error fetching patients:', err));
+
+    fetch('/api/doctors')
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setDoctors(data))
+      .catch((err) => console.error('Error fetching doctors:', err));
   }, []);
 
   const handleOpenAdd = () => {
     setFormData({
       patientId: '',
       title: '',
+      doctorId: '',
+      testType: '',
     });
     setFileToUpload(null);
     setPatientSearch('');
@@ -43,7 +60,6 @@ export default function StaffReportsClient({ initialReports = [] }) {
       const file = e.target.files[0];
       setFileToUpload(file);
       
-      // Auto-populate report title from filename if title is blank
       if (!formData.title) {
         const cleanName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
         setFormData(prev => ({ ...prev, title: cleanName.replace(/[-_]/g, ' ') }));
@@ -85,6 +101,8 @@ export default function StaffReportsClient({ initialReports = [] }) {
         patient_id: formData.patientId,
         title: formData.title.trim(),
         r2_file_key: uploadResult.key,
+        doctor_id: formData.doctorId || null,
+        test_type: formData.testType.trim() || null,
       };
 
       const res = await fetch('/api/lab-reports', {
@@ -143,6 +161,13 @@ export default function StaffReportsClient({ initialReports = [] }) {
     }
   };
 
+  const openDocument = (r2Key, title) => {
+    const fileUrl = getR2Url(r2Key);
+    setViewerUrl(fileUrl);
+    setViewerTitle(title);
+    setViewerOpen(true);
+  };
+
   const filteredPatients = patients.filter(
     (p) =>
       p.name.toLowerCase().includes(patientSearch.toLowerCase()) ||
@@ -166,7 +191,22 @@ export default function StaffReportsClient({ initialReports = [] }) {
       key: 'title',
       label: 'Report Title',
       sortable: true,
-      render: (val) => <span className="font-bold text-gray-700 text-sm">{val}</span>,
+      render: (val, row) => (
+        <div>
+          <span className="font-bold text-gray-750 text-sm">{val}</span>
+          {row.test_type && (
+            <span className="ml-2 px-2 py-0.5 rounded bg-gray-150 text-[10px] text-gray-650 font-bold uppercase tracking-wider">
+              {row.test_type}
+            </span>
+          )}
+        </div>
+      ),
+    },
+    {
+      key: 'doctor_name',
+      label: 'Prescribed By',
+      sortable: true,
+      render: (val) => <span className="text-xs text-gray-600 font-semibold">{val || 'N/A'}</span>,
     },
     {
       key: 'uploaded_at',
@@ -182,25 +222,18 @@ export default function StaffReportsClient({ initialReports = [] }) {
       key: 'r2_file_key',
       label: 'File Access',
       sortable: false,
-      render: (val) => {
-        const fileUrl = val
-          ? `${process.env.NEXT_PUBLIC_R2_PUBLIC_URL || ''}/${val}`
-          : '#';
-
-        return (
-          <a
-            href={fileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-50 hover:bg-primary-100 text-primary-750 hover:text-primary-800 rounded-xl text-xs font-bold transition-colors shadow-sm"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            Open Report (PDF)
-          </a>
-        );
-      },
+      render: (val, row) => (
+        <button
+          onClick={() => openDocument(val, row.title)}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-50 hover:bg-primary-100 text-primary-750 hover:text-primary-800 rounded-xl text-xs font-bold transition-colors shadow-sm"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+          View Report
+        </button>
+      ),
     },
     {
       key: 'id',
@@ -292,6 +325,35 @@ export default function StaffReportsClient({ initialReports = [] }) {
             />
           </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="input-label">Attending Doctor (Optional)</label>
+              <select
+                value={formData.doctorId}
+                onChange={(e) => setFormData({ ...formData, doctorId: e.target.value })}
+                className="input-field text-xs py-2 font-semibold"
+              >
+                <option value="">-- Choose Doctor --</option>
+                {doctors.map((d) => (
+                  <option key={d.id} value={d.id}>
+                    {d.name} ({d.speciality || 'Specialist'})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="input-label">Test Type / Tag (Optional)</label>
+              <input
+                type="text"
+                placeholder="e.g. Pathology, Hematology, Radiology"
+                value={formData.testType}
+                onChange={(e) => setFormData({ ...formData, testType: e.target.value })}
+                className="input-field text-xs py-2 font-semibold"
+              />
+            </div>
+          </div>
+
           <div>
             <label className="input-label">Document Attachment (PDF or Image) *</label>
             <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-2xl hover:border-primary-500 transition-colors bg-slate-50/50">
@@ -310,10 +372,10 @@ export default function StaffReportsClient({ initialReports = [] }) {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <div className="flex text-sm text-gray-600 justify-center">
+                <div className="flex text-sm text-gray-650 justify-center">
                   <label
                     htmlFor="file-upload"
-                    className="relative cursor-pointer bg-white rounded-md font-bold text-primary-600 hover:text-primary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500"
+                    className="relative cursor-pointer bg-white rounded-md font-bold text-primary-600 hover:text-primary-550 focus-within:outline-none"
                   >
                     <span>Upload a file</span>
                     <input
@@ -357,6 +419,14 @@ export default function StaffReportsClient({ initialReports = [] }) {
           </div>
         </form>
       </Modal>
+
+      {/* Document Viewer Modal */}
+      <DocViewerModal
+        isOpen={viewerOpen}
+        onClose={() => setViewerOpen(false)}
+        fileUrl={viewerUrl}
+        title={viewerTitle}
+      />
     </div>
   );
 }

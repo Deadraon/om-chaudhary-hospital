@@ -22,12 +22,16 @@ export default async function AdminDashboardPage() {
     const doctorsRes = await queryD1First('SELECT COUNT(*) AS count FROM doctors');
     const appointmentsRes = await queryD1First('SELECT COUNT(*) AS count FROM appointments');
     const pendingRes = await queryD1First("SELECT COUNT(*) AS count FROM appointments WHERE status = 'pending'");
+    const revenueRes = await queryD1First("SELECT SUM(total_amount) AS total FROM invoices WHERE payment_status = 'paid'");
+    const pendingInvoicesRes = await queryD1First("SELECT COUNT(*) AS count FROM invoices WHERE payment_status = 'pending'");
 
     stats = {
       totalPatients: patientsRes?.count || 0,
       totalDoctors: doctorsRes?.count || 0,
       totalAppointments: appointmentsRes?.count || 0,
       pendingAppointments: pendingRes?.count || 0,
+      totalRevenue: revenueRes?.total || 0,
+      pendingInvoices: pendingInvoicesRes?.count || 0,
     };
 
     // Fetch up to 5 recent pending appointments

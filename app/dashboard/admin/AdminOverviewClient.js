@@ -47,54 +47,76 @@ export default function AdminOverviewClient({ stats = {}, initialAppointments = 
       )}
 
       {/* Overview Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
         {/* Total Patients */}
-        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex items-center gap-4">
-          <div className="w-12 h-12 bg-primary-50 rounded-2xl flex items-center justify-center text-2xl text-primary-600">
+        <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex items-center gap-3">
+          <div className="w-10 h-10 bg-primary-50 rounded-2xl flex items-center justify-center text-xl text-primary-600 flex-shrink-0">
             🩹
           </div>
           <div>
-            <p className="text-gray-400 text-xs font-semibold">Total Patients</p>
-            <h3 className="text-2xl font-bold text-gray-900 mt-1">{stats.totalPatients || 0}</h3>
+            <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Total Patients</p>
+            <h3 className="text-xl font-bold text-gray-900 mt-0.5">{stats.totalPatients || 0}</h3>
           </div>
         </div>
 
         {/* Total Doctors */}
-        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex items-center gap-4">
-          <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-2xl text-emerald-600">
+        <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex items-center gap-3">
+          <div className="w-10 h-10 bg-emerald-50 rounded-2xl flex items-center justify-center text-xl text-emerald-600 flex-shrink-0">
             👨‍⚕️
           </div>
           <div>
-            <p className="text-gray-400 text-xs font-semibold">Total Doctors</p>
-            <h3 className="text-2xl font-bold text-gray-900 mt-1">{stats.totalDoctors || 0}</h3>
+            <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Total Doctors</p>
+            <h3 className="text-xl font-bold text-gray-900 mt-0.5">{stats.totalDoctors || 0}</h3>
           </div>
         </div>
 
         {/* Total Appointments */}
-        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex items-center gap-4">
-          <div className="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center text-2xl text-cyan-600">
+        <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex items-center gap-3">
+          <div className="w-10 h-10 bg-cyan-50 rounded-2xl flex items-center justify-center text-xl text-cyan-600 flex-shrink-0">
             🗓️
           </div>
           <div>
-            <p className="text-gray-400 text-xs font-semibold">Appointments</p>
-            <h3 className="text-2xl font-bold text-gray-900 mt-1">{stats.totalAppointments || 0}</h3>
+            <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Appointments</p>
+            <h3 className="text-xl font-bold text-gray-900 mt-0.5">{stats.totalAppointments || 0}</h3>
           </div>
         </div>
 
         {/* Pending Requests */}
-        <div className="bg-white p-6 rounded-3xl border border-gray-150 shadow-sm flex items-center gap-4 ring-2 ring-amber-500/10 bg-amber-50/5">
-          <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-2xl text-amber-600 animate-pulse">
+        <div className="bg-white p-5 rounded-3xl border border-gray-150 shadow-sm flex items-center gap-3 ring-2 ring-amber-500/10 bg-amber-50/5">
+          <div className="w-10 h-10 bg-amber-50 rounded-2xl flex items-center justify-center text-xl text-amber-600 animate-pulse flex-shrink-0">
             ⏳
           </div>
           <div>
-            <p className="text-gray-400 text-xs font-semibold">Pending Requests</p>
-            <h3 className="text-2xl font-bold text-amber-600 mt-1">{stats.pendingAppointments || 0}</h3>
+            <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Pending Appts</p>
+            <h3 className="text-xl font-bold text-amber-600 mt-0.5">{stats.pendingAppointments || 0}</h3>
+          </div>
+        </div>
+
+        {/* Invoice Revenue */}
+        <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex items-center gap-3">
+          <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl flex-shrink-0">
+            🪙
+          </div>
+          <div>
+            <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Revenue Paid</p>
+            <h3 className="text-xl font-bold text-emerald-600 mt-0.5">₹{(stats.totalRevenue || 0).toLocaleString()}</h3>
+          </div>
+        </div>
+
+        {/* Unpaid Invoices */}
+        <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex items-center gap-3">
+          <div className="w-10 h-10 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl flex-shrink-0">
+            🧾
+          </div>
+          <div>
+            <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Unpaid Bills</p>
+            <h3 className="text-xl font-bold text-rose-600 mt-0.5">{stats.pendingInvoices || 0}</h3>
           </div>
         </div>
       </div>
 
       {/* Quick Navigation Panels */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <Link href="/dashboard/admin/appointments" className="bg-white hover:bg-slate-50 border border-gray-100 p-6 rounded-3xl shadow-sm block transition-all duration-200">
           <span className="text-3xl">🗓️</span>
           <h3 className="text-base font-bold text-gray-900 mt-3">Manage Appointments</h3>
@@ -104,6 +126,11 @@ export default function AdminOverviewClient({ stats = {}, initialAppointments = 
           <span className="text-3xl">👨‍⚕️</span>
           <h3 className="text-base font-bold text-gray-900 mt-3">Doctors Roster</h3>
           <p className="text-gray-500 text-xs mt-1">Add new doctors, allocate departments, upload photos, and edit profiles.</p>
+        </Link>
+        <Link href="/dashboard/admin/billing" className="bg-white hover:bg-slate-50 border border-gray-100 p-6 rounded-3xl shadow-sm block transition-all duration-200">
+          <span className="text-3xl">🧾</span>
+          <h3 className="text-base font-bold text-gray-900 mt-3">Billing & Invoices</h3>
+          <p className="text-gray-500 text-xs mt-1">Generate receipts, record consultation & lab fees, track transaction statuses.</p>
         </Link>
         <Link href="/dashboard/admin/staff" className="bg-white hover:bg-slate-50 border border-gray-100 p-6 rounded-3xl shadow-sm block transition-all duration-200">
           <span className="text-3xl">👥</span>

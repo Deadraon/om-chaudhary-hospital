@@ -99,6 +99,7 @@ export default function DashboardSidebar({ user = { name: 'User', role: 'patient
       { name: 'Staff Management', href: '/dashboard/admin/staff', icon: '👥' },
       { name: 'Patients', href: '/dashboard/admin/patients', icon: '🩹' },
       { name: 'Lab Reports', href: '/dashboard/admin/reports', icon: '🔬' },
+      { name: 'Billing & Invoices', href: '/dashboard/admin/billing', icon: '🧾' },
       { name: 'Attendance Roster', href: '/dashboard/admin/attendance', icon: '📝' },
       { name: 'Second Opinions', href: '/dashboard/admin/second-opinions', icon: '📥' },
       { name: 'Analytics', href: '/dashboard/admin/analytics', icon: '📈' },
@@ -119,6 +120,7 @@ export default function DashboardSidebar({ user = { name: 'User', role: 'patient
       { name: 'My Profile', href: '/dashboard/patient', icon: '👤' },
       { name: 'Appointments', href: '/dashboard/patient/appointments', icon: '🗓️' },
       { name: 'Lab Reports', href: '/dashboard/patient/reports', icon: '🔬' },
+      { name: 'Billing & Invoices', href: '/dashboard/patient/billing', icon: '🧾' },
     ],
   };
 

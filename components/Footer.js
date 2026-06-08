@@ -8,6 +8,10 @@ const HOSPITAL_PHONE = process.env.NEXT_PUBLIC_HOSPITAL_PHONE || '+91-6396098340
 const HOSPITAL_EMAIL = process.env.NEXT_PUBLIC_HOSPITAL_EMAIL || 'info@omchaudharyhospital.com';
 const HOSPITAL_ADDRESS = process.env.NEXT_PUBLIC_HOSPITAL_ADDRESS || 'Najibabad - Haridwar Road, Mandawali, Bijnor, Uttar Pradesh - 246749';
 
+const SOCIAL_FACEBOOK = process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK || '#';
+const SOCIAL_INSTAGRAM = process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM || '#';
+const SOCIAL_YOUTUBE = process.env.NEXT_PUBLIC_SOCIAL_YOUTUBE || '#';
+
 const quickLinks = [
   { href: '/about', label: 'About Us' },
   { href: '/departments', label: 'Departments' },
@@ -59,15 +63,15 @@ export default function Footer() {
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Providing compassionate, world-class healthcare services with state-of-the-art technology and a team of dedicated medical professionals.
             </p>
-            {/* Social Links - placeholder until real handles are set */}
+            {/* Social Links - read from env or default to # */}
             <div className="flex gap-3">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#1877F2] hover:text-white transition-all duration-300" title="Facebook">
+              <a href={SOCIAL_FACEBOOK} target={SOCIAL_FACEBOOK === '#' ? undefined : '_blank'} rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#1877F2] hover:text-white transition-all duration-300" title="Facebook">
                 <span className="text-xs font-bold">f</span>
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#E1306C] hover:text-white transition-all duration-300" title="Instagram">
+              <a href={SOCIAL_INSTAGRAM} target={SOCIAL_INSTAGRAM === '#' ? undefined : '_blank'} rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#E1306C] hover:text-white transition-all duration-300" title="Instagram">
                 <span className="text-xs font-bold">in</span>
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#FF0000] hover:text-white transition-all duration-300" title="YouTube">
+              <a href={SOCIAL_YOUTUBE} target={SOCIAL_YOUTUBE === '#' ? undefined : '_blank'} rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#FF0000] hover:text-white transition-all duration-300" title="YouTube">
                 <span className="text-xs font-bold">yt</span>
               </a>
               <a href={`https://wa.me/${HOSPITAL_PHONE.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-[#25D366] hover:text-white transition-all duration-300" title="WhatsApp">

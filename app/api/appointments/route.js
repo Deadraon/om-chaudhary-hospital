@@ -89,11 +89,22 @@ export async function GET(request) {
   }
 }
 
+import { rateLimit } from '@/lib/rate-limiter';
+
 /**
  * POST: Create an appointment (Public booking or Receptionist booking)
  */
 export async function POST(request) {
   try {
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+    const limitCheck = await rateLimit(`appointment:${ip}`, 10, 60); // Max 10 bookings/min
+    if (!limitCheck.allowed) {
+      return NextResponse.json(
+        { error: 'Too many booking attempts. Please try again after a minute.' },
+        { status: 429 }
+      );
+    }
+
     const { patient_name, phone, department_id, doctor_id, preferred_date, message } = await request.json();
 
     if (!patient_name || !phone || !department_id || !preferred_date) {
@@ -109,6 +120,52 @@ export async function POST(request) {
         { error: 'Phone number must be exactly 10 digits' },
         { status: 400 }
       );
+    }
+
+    // Double-booking & schedule checks if a doctor is selected
+    if (doctor_id) {
+      // 1. Verify doctor schedule availability on the weekday of the selected date
+      const dateObj = new Date(preferred_date);
+      if (isNaN(dateObj.getTime())) {
+        return NextResponse.json({ error: 'Invalid preferred date format' }, { status: 400 });
+      }
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const dayName = days[dateObj.getDay()];
+
+      const schedule = await queryD1First(
+        'SELECT id FROM doctor_schedules WHERE doctor_id = ? AND day_of_week = ?',
+        [doctor_id, dayName]
+      );
+      if (!schedule) {
+        return NextResponse.json(
+          { error: `The selected doctor does not have scheduled OPD hours on ${dayName}. Please choose another day.` },
+          { status: 400 }
+        );
+      }
+
+      // 2. Prevent over-booking the doctor (max 15 active appointments per day)
+      const countRes = await queryD1First(
+        "SELECT COUNT(*) AS count FROM appointments WHERE doctor_id = ? AND preferred_date = ? AND status != 'cancelled'",
+        [doctor_id, preferred_date]
+      );
+      if (countRes && countRes.count >= 15) {
+        return NextResponse.json(
+          { error: 'This doctor is fully booked on the selected date (Limit: 15 per day). Please choose another date or practitioner.' },
+          { status: 400 }
+        );
+      }
+
+      // 3. Prevent duplicate active booking by the same patient for the same doctor on the same day
+      const duplicate = await queryD1First(
+        "SELECT id FROM appointments WHERE phone = ? AND doctor_id = ? AND preferred_date = ? AND status != 'cancelled'",
+        [cleanPhone, doctor_id, preferred_date]
+      );
+      if (duplicate) {
+        return NextResponse.json(
+          { error: 'You already have an active appointment scheduled with this doctor on the selected date.' },
+          { status: 400 }
+        );
+      }
     }
 
     const id = generateId();

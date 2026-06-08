@@ -2,9 +2,19 @@ import { NextResponse } from 'next/server';
 import { queryD1First } from '@/lib/d1';
 import { comparePassword, signToken, createAuthCookieHeader, getDashboardPath } from '@/lib/auth';
 import { kvSet } from '@/lib/kv';
+import { rateLimit } from '@/lib/rate-limiter';
 
 export async function POST(request) {
   try {
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+    const limitCheck = await rateLimit(`login:${ip}`, 5, 60); // Max 5 logins/min
+    if (!limitCheck.allowed) {
+      return NextResponse.json(
+        { error: 'Too many login attempts. Please try again after a minute.' },
+        { status: 429 }
+      );
+    }
+
     const { email, password } = await request.json();
 
     if (!email || !password) {
