@@ -18,6 +18,8 @@ export default function RootLayout({ children }) {
   const headerList = headers();
   const pathname = headerList.get('x-pathname') || '';
   const isDashboard = pathname.startsWith('/dashboard');
+  const isAuth = pathname === '/login' || pathname === '/register';
+  const hideHeaderFooter = isDashboard || isAuth;
 
   return (
     <html lang="en">
@@ -27,9 +29,9 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </head>
       <body className="min-h-screen flex flex-col">
-        {!isDashboard && <Header />}
+        {!hideHeaderFooter && <Header />}
         <main className="flex-1">{children}</main>
-        {!isDashboard && <Footer />}
+        {!hideHeaderFooter && <Footer />}
       </body>
     </html>
   );
