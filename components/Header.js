@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import Modal from '@/components/Modal';
 
 const EMERGENCY_NUMBER = process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108';
-const HELPLINE_NUMBER = '9654511414';
+
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -128,12 +128,10 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Right: Helpline Number Display */}
-          <div className="flex items-center gap-2">
-            <span className="text-white/60 font-medium">24*7 Helpline:</span>
-            <a href={`tel:${HELPLINE_NUMBER}`} className="font-extrabold text-sarvodaya-orange hover:text-white transition-colors">
-              +91-{HELPLINE_NUMBER}
-            </a>
+          {/* Right: 24/7 Status Badge */}
+          <div className="flex items-center gap-2 text-white/80 font-bold uppercase tracking-wider text-[10px] bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            24/7 Trauma & Emergency Active
           </div>
         </div>
       </div>
