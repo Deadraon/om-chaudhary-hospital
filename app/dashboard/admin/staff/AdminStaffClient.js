@@ -18,7 +18,11 @@ export default function AdminStaffClient({ initialStaff = [], currentUserId }) {
     password: '',
     role: 'receptionist',
     phone: '',
+    customRole: '',
   });
+
+  // The actual role sent to API: if role === 'custom', use customRole text
+  const effectiveRole = formData.role === 'custom' ? formData.customRole.trim() : formData.role;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +37,7 @@ export default function AdminStaffClient({ initialStaff = [], currentUserId }) {
       const res = await fetch('/api/staff', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, role: effectiveRole }),
       });
 
       const data = await res.json();
@@ -56,6 +60,7 @@ export default function AdminStaffClient({ initialStaff = [], currentUserId }) {
           password: '',
           role: 'receptionist',
           phone: '',
+          customRole: '',
         });
         setIsModalOpen(false);
       } else {
@@ -93,16 +98,33 @@ export default function AdminStaffClient({ initialStaff = [], currentUserId }) {
     }
   };
 
-  const roleColors = {
-    super_admin: 'bg-indigo-50 text-indigo-750 border-indigo-200',
-    receptionist: 'bg-teal-50 text-teal-750 border-teal-200',
-    doctor: 'bg-primary-50 text-primary-750 border-primary-200',
+  const ROLE_LABELS = {
+    super_admin:    'Administrator',
+    receptionist:   'Receptionist',
+    doctor:         'Doctor',
+    nurse:          'Nurse',
+    lab_technician: 'Lab Technician',
+    pharmacist:     'Pharmacist',
+    ward_boy:       'Ward Boy',
+    accountant:     'Accountant',
+    other:          'Other Staff',
   };
 
-  const roleDisplayNames = {
-    super_admin: 'Administrator',
-    receptionist: 'Receptionist',
+  const getRoleLabel = (role) => ROLE_LABELS[role] || role || '—';
+
+  const roleColors = {
+    super_admin:    'bg-indigo-50 text-indigo-750 border-indigo-200',
+    receptionist:   'bg-teal-50 text-teal-750 border-teal-200',
+    doctor:         'bg-primary-50 text-primary-750 border-primary-200',
+    nurse:          'bg-pink-50 text-pink-700 border-pink-200',
+    lab_technician: 'bg-amber-50 text-amber-700 border-amber-200',
+    pharmacist:     'bg-emerald-50 text-emerald-700 border-emerald-200',
+    ward_boy:       'bg-orange-50 text-orange-700 border-orange-200',
+    accountant:     'bg-purple-50 text-purple-700 border-purple-200',
+    other:          'bg-gray-50 text-gray-700 border-gray-200',
   };
+
+  const getRoleColor = (role) => roleColors[role] || 'bg-sky-50 text-sky-700 border-sky-200';
 
   const columns = [
     {
@@ -134,8 +156,8 @@ export default function AdminStaffClient({ initialStaff = [], currentUserId }) {
       label: 'Access Role',
       sortable: true,
       render: (val) => (
-        <span className={`inline-flex px-2.5 py-1 text-xs font-semibold rounded-full border ${roleColors[val] || 'bg-gray-50 text-gray-750 border-gray-200'}`}>
-          {roleDisplayNames[val] || val}
+        <span className={`inline-flex px-2.5 py-1 text-xs font-semibold rounded-full border ${getRoleColor(val)}`}>
+          {getRoleLabel(val)}
         </span>
       ),
     },
@@ -263,9 +285,40 @@ export default function AdminStaffClient({ initialStaff = [], currentUserId }) {
                 className="input-field text-xs py-2"
                 required
               >
-                <option value="receptionist">Receptionist</option>
-                <option value="super_admin">Administrator</option>
+                <optgroup label="Clinical">
+                  <option value="doctor">Doctor</option>
+                  <option value="nurse">Nurse</option>
+                  <option value="lab_technician">Lab Technician</option>
+                  <option value="pharmacist">Pharmacist</option>
+                </optgroup>
+                <optgroup label="Administrative">
+                  <option value="receptionist">Receptionist</option>
+                  <option value="accountant">Accountant</option>
+                  <option value="super_admin">Administrator (Full Access)</option>
+                </optgroup>
+                <optgroup label="Support">
+                  <option value="ward_boy">Ward Boy / Attendant</option>
+                  <option value="other">Other Staff</option>
+                  <option value="custom">✏️ Custom Role (Type Below)</option>
+                </optgroup>
               </select>
+
+              {/* Custom role text input — shows only when 'custom' is selected */}
+              {formData.role === 'custom' && (
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="customRole"
+                    value={formData.customRole}
+                    onChange={handleChange}
+                    className="input-field text-xs py-2"
+                    placeholder="Enter custom role name (e.g. Physiotherapist)"
+                    required
+                    autoFocus
+                  />
+                  <p className="text-[10px] text-gray-400 mt-1">This will be saved exactly as typed</p>
+                </div>
+              )}
             </div>
           </div>
 

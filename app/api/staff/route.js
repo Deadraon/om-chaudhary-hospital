@@ -46,10 +46,17 @@ export async function POST(request) {
       );
     }
 
-    const allowedRoles = ['receptionist', 'super_admin'];
-    if (!allowedRoles.includes(role)) {
+    const allowedRoles = [
+      'receptionist', 'super_admin', 'doctor',
+      'nurse', 'lab_technician', 'pharmacist',
+      'ward_boy', 'accountant', 'other',
+    ];
+
+    // Allow custom role names (prefixed with 'custom:') or any non-empty string
+    const isValidRole = allowedRoles.includes(role) || (typeof role === 'string' && role.trim().length > 0);
+    if (!isValidRole) {
       return NextResponse.json(
-        { error: 'Invalid role. Only super_admin and receptionist are managed here.' },
+        { error: 'Invalid role specified.' },
         { status: 400 }
       );
     }
