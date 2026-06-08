@@ -1,5 +1,5 @@
 import { queryD1First } from '@/lib/d1';
-import Link from 'next/link';
+import PrintControls from '../PrintControls';
 
 export const dynamic = 'force-dynamic';
 
@@ -52,20 +52,7 @@ export default async function PrintInvoicePage({ params }) {
   return (
     <div className="min-h-screen bg-slate-100/40 py-10 px-4 sm:px-6 lg:px-8 print:bg-white print:py-0 print:px-0">
       {/* Print Trigger & Back Control Bar (Hidden during print) */}
-      <div className="max-w-4xl mx-auto mb-6 bg-white border border-gray-150 p-4 rounded-2xl shadow-sm flex justify-between items-center print:hidden">
-        <Link
-          href="/dashboard/admin/billing"
-          className="text-xs text-gray-650 hover:text-gray-900 font-bold flex items-center gap-1"
-        >
-          ← Back to Registry
-        </Link>
-        <button
-          onClick={() => window.print()}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-xl text-xs font-bold transition-all shadow-md active:scale-98"
-        >
-          🖨️ Print / Save as PDF
-        </button>
-      </div>
+      <PrintControls backHref="/dashboard/admin/billing" />
 
       {/* Invoice Canvas */}
       <div className="max-w-4xl mx-auto bg-white border border-gray-200/80 rounded-3xl p-8 sm:p-12 shadow-md print:shadow-none print:border-none print:p-0">

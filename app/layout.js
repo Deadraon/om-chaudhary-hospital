@@ -2,7 +2,6 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { headers } from 'next/headers';
 
 export const metadata = {
   title: 'Om Chaudhary Hospital & Trauma Centre | Best Hospital Mandawali Bijnor',
@@ -28,15 +27,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const headerList = headers();
-  // x-pathname is set by middleware for ALL routes
-  const pathname = headerList.get('x-pathname') || '';
-  // x-user-role is only set by middleware for authenticated /dashboard/* routes
-  const userRole = headerList.get('x-user-role') || '';
-  const isDashboard = pathname.startsWith('/dashboard') || !!userRole;
-  const isAuth = pathname === '/login' || pathname === '/register';
-  const hideHeaderFooter = isDashboard || isAuth;
-
   return (
     <html lang="en">
       <head>
@@ -45,10 +35,11 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </head>
       <body className="min-h-screen flex flex-col">
-        {!hideHeaderFooter && <Header />}
+        {/* Header/Footer/WhatsApp are client components — they hide themselves via usePathname() */}
+        <Header />
         <main className="flex-1">{children}</main>
-        {!hideHeaderFooter && <Footer />}
-        {!hideHeaderFooter && <WhatsAppButton />}
+        <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

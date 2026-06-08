@@ -1,3 +1,6 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { IconEmergency } from '@/components/MedicalIcons';
 import HospitalLogo from '@/components/HospitalLogo';
@@ -31,6 +34,11 @@ const departments = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname.startsWith('/dashboard') || pathname === '/login' || pathname === '/register') {
+    return null;
+  }
+
   return (
     <footer className="bg-gradient-to-b from-[#0f465c] to-[#082a38] text-slate-200">
       {/* CTA Section */}

@@ -10,6 +10,8 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
   const [toast, setToast] = useState(null);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isStatusOpen, setIsStatusOpen] = useState(false);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [previewInvoice, setPreviewInvoice] = useState(null);
   const [selectedInvoice, setSelectedInvoice] = useState(null);
   const [newStatus, setNewStatus] = useState('pending');
   const [loading, setLoading] = useState(false);
@@ -293,7 +295,13 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
       label: 'Actions',
       sortable: false,
       render: (val, row) => (
-        <div className="flex gap-2">
+        <div className="flex gap-1.5 flex-wrap">
+          <button
+            onClick={() => { setPreviewInvoice(row); setIsPreviewOpen(true); }}
+            className="px-2.5 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 rounded-xl text-xs font-bold transition-all shadow-sm"
+          >
+            👁️ Preview
+          </button>
           <a
             href={`/dashboard/admin/billing/print/${val}`}
             target="_blank"
@@ -339,6 +347,118 @@ export default function AdminBillingClient({ initialInvoices = [], patients = []
       <div className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm">
         <DataTable columns={columns} data={invoices} searchable={true} pageSize={10} />
       </div>
+
+      {/* Invoice Preview Modal */}
+      <Modal isOpen={isPreviewOpen} onClose={() => setIsPreviewOpen(false)} title="Invoice Preview" size="lg">
+        {previewInvoice && (() => {
+          let items = [];
+          try { items = JSON.parse(previewInvoice.items || '[]'); } catch {}
+          const statusColors = {
+            paid: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+            pending: 'bg-amber-50 text-amber-700 border-amber-200',
+            partial: 'bg-sky-50 text-sky-700 border-sky-200',
+          };
+          return (
+            <div className="space-y-5">
+              {/* Invoice Header */}
+              <div className="flex justify-between items-start border-b border-gray-100 pb-4">
+                <div>
+                  <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">Om Chaudhary Hospital & Trauma Centre</p>
+                  <p className="font-mono font-black text-gray-900 text-lg mt-1">{previewInvoice.invoice_number}</p>
+                  <p className="text-xs text-gray-500 mt-1">{new Date(previewInvoice.created_at).toLocaleDateString('en-IN', { dateStyle: 'long' })}</p>
+                </div>
+                <span className={`inline-flex px-3 py-1 rounded-full text-xs font-bold uppercase border ${statusColors[previewInvoice.payment_status] || 'bg-gray-100 text-gray-600 border-gray-200'}`}>
+                  {previewInvoice.payment_status}
+                </span>
+              </div>
+
+              {/* Patient + Visit Info */}
+              <div className="grid grid-cols-2 gap-4 text-xs">
+                <div className="bg-gray-50 rounded-2xl p-3">
+                  <p className="text-gray-400 font-bold uppercase tracking-wider text-[10px] mb-1">Billed To</p>
+                  <p className="font-bold text-gray-900">{previewInvoice.patient_name}</p>
+                  <p className="text-gray-500 mt-0.5">📞 {previewInvoice.patient_phone || 'N/A'}</p>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-3">
+                  <p className="text-gray-400 font-bold uppercase tracking-wider text-[10px] mb-1">Visit Details</p>
+                  <p className="font-bold text-gray-900">{previewInvoice.type} Visit</p>
+                  {previewInvoice.due_date && <p className="text-gray-500 mt-0.5">Due: {new Date(previewInvoice.due_date).toLocaleDateString('en-IN')}</p>}
+                </div>
+              </div>
+
+              {/* Items Table */}
+              <div className="border border-gray-100 rounded-2xl overflow-hidden">
+                <table className="w-full text-xs">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="text-left px-4 py-2.5 text-gray-400 font-bold uppercase text-[10px]">#</th>
+                      <th className="text-left px-4 py-2.5 text-gray-400 font-bold uppercase text-[10px]">Description</th>
+                      <th className="text-right px-4 py-2.5 text-gray-400 font-bold uppercase text-[10px]">Price</th>
+                      <th className="text-right px-4 py-2.5 text-gray-400 font-bold uppercase text-[10px]">Qty</th>
+                      <th className="text-right px-4 py-2.5 text-gray-400 font-bold uppercase text-[10px]">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {items.map((item, i) => (
+                      <tr key={i} className="border-t border-gray-100">
+                        <td className="px-4 py-2.5 text-gray-400">{i + 1}</td>
+                        <td className="px-4 py-2.5 font-semibold text-gray-800">{item.name}</td>
+                        <td className="px-4 py-2.5 text-right text-gray-600">₹{(item.price || 0).toLocaleString()}</td>
+                        <td className="px-4 py-2.5 text-right text-gray-600">{item.qty || 1}</td>
+                        <td className="px-4 py-2.5 text-right font-bold text-gray-900">₹{((item.price || 0) * (item.qty || 1)).toLocaleString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Totals */}
+              <div className="flex justify-end">
+                <div className="w-56 text-xs space-y-1.5">
+                  <div className="flex justify-between">
+                    <span className="text-gray-400 font-semibold">Subtotal:</span>
+                    <span className="font-bold text-gray-800">₹{(previewInvoice.subtotal || previewInvoice.total_amount || 0).toLocaleString()}</span>
+                  </div>
+                  {previewInvoice.tax > 0 && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-400 font-semibold">Tax ({previewInvoice.tax}%):</span>
+                      <span className="font-bold text-gray-800">₹{(((previewInvoice.subtotal || 0) * previewInvoice.tax) / 100).toLocaleString()}</span>
+                    </div>
+                  )}
+                  {previewInvoice.discount > 0 && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-400 font-semibold">Discount:</span>
+                      <span className="font-bold text-red-600">- ₹{previewInvoice.discount.toLocaleString()}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between border-t border-gray-200 pt-2 mt-1">
+                    <span className="font-black text-gray-900 text-sm">Grand Total:</span>
+                    <span className="font-black text-primary-750 text-sm">₹{(previewInvoice.total_amount || 0).toLocaleString()}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action buttons */}
+              <div className="flex gap-3 justify-end pt-3 border-t border-gray-100">
+                <button
+                  onClick={() => setIsPreviewOpen(false)}
+                  className="px-4 py-2 border border-gray-200 text-gray-600 text-xs font-semibold rounded-xl hover:bg-gray-50"
+                >
+                  Close
+                </button>
+                <a
+                  href={`/dashboard/admin/billing/print/${previewInvoice.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2 bg-primary-600 hover:bg-primary-700 text-white text-xs font-bold rounded-xl transition-all shadow-sm"
+                >
+                  🖨️ Open Print Page
+                </a>
+              </div>
+            </div>
+          );
+        })()}
+      </Modal>
 
       {/* Status override Modal */}
       <Modal isOpen={isStatusOpen} onClose={() => setIsStatusOpen(false)} title="Update Payment Status" size="sm">

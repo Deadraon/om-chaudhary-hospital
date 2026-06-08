@@ -1,13 +1,19 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const HOSPITAL_PHONE = process.env.NEXT_PUBLIC_HOSPITAL_PHONE || '+91-6396098340';
 const WHATSAPP_NUMBER = HOSPITAL_PHONE.replace(/\D/g, ''); // strip symbols
 const WHATSAPP_MESSAGE = 'Hello! I would like to book an appointment at Om Chaudhary Hospital.';
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
   const [showTooltip, setShowTooltip] = useState(false);
+
+  if (pathname.startsWith('/dashboard') || pathname === '/login' || pathname === '/register') {
+    return null;
+  }
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
