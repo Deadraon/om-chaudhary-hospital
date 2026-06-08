@@ -72,11 +72,11 @@ export async function middleware(request) {
 
   // Only protect /dashboard/* routes
   if (!pathname.startsWith('/dashboard')) {
-    return NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      }
+    const res = NextResponse.next({
+      request: { headers: requestHeaders },
     });
+    res.headers.set('x-pathname', pathname);
+    return res;
   }
 
   // Get token from cookie

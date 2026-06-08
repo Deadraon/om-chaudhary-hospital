@@ -29,8 +29,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const headerList = headers();
+  // x-pathname is set by middleware for ALL routes
   const pathname = headerList.get('x-pathname') || '';
-  const isDashboard = pathname.startsWith('/dashboard');
+  // x-user-role is only set by middleware for authenticated /dashboard/* routes
+  const userRole = headerList.get('x-user-role') || '';
+  const isDashboard = pathname.startsWith('/dashboard') || !!userRole;
   const isAuth = pathname === '/login' || pathname === '/register';
   const hideHeaderFooter = isDashboard || isAuth;
 
