@@ -118,6 +118,8 @@ function LoginForm() {
         </div>
 
         {/* Bottom: footer tag */}
+        <div className="z-10 text-[11px] text-slate-450 font-medium">
+          © {new Date().getFullYear()} Om Chaudhary Hospital. All Rights Reserved. Trusted healthcare services.
         </div>
       </div>
 
