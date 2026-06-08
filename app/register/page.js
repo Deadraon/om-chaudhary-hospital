@@ -116,41 +116,39 @@ function RegisterForm() {
         <div className="z-10 text-[11px] text-slate-450 font-medium">
           © {new Date().getFullYear()} Om Chaudhary Hospital. All Rights Reserved. Trusted healthcare services.
         </div>
-      </div>
-
-      {/* Right side: Form Panel */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 lg:p-16 relative overflow-y-auto bg-slate-50/20 min-h-screen">
+       {/* Right side: Form Panel */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-16 lg:p-24 relative overflow-y-auto bg-white min-h-screen">
         {/* Glow blobs on mobile background */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary-100/30 rounded-full blur-3xl lg:hidden"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-100/30 rounded-full blur-3xl lg:hidden"></div>
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary-100/20 rounded-full blur-3xl lg:hidden"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-100/20 rounded-full blur-3xl lg:hidden"></div>
 
-        <div className="max-w-md w-full relative z-10 space-y-6">
+        <div className="max-w-md w-full relative z-10 space-y-8">
           {/* Mobile Back to Home Navigation */}
-          <div className="lg:hidden flex justify-between items-center mb-6">
+          <div className="lg:hidden flex justify-between items-center">
             <Link href="/" className="flex items-center gap-2 group text-slate-900">
               <span className="text-xl bg-primary-50 p-1.5 rounded-lg group-hover:scale-105 transition-transform duration-200">🏥</span>
-              <span className="font-bold text-xs uppercase tracking-wide">Om Chaudhary Hospital</span>
+              <span className="font-extrabold text-xs uppercase tracking-wide">Om Chaudhary Hospital</span>
             </Link>
-            <Link href="/" className="text-xs text-gray-400 font-bold hover:text-gray-650 flex items-center gap-1">
+            <Link href="/" className="text-xs text-slate-400 font-bold hover:text-slate-650 flex items-center gap-1">
               ← Home
             </Link>
           </div>
 
-          <div className="bg-white border border-gray-150/80 rounded-3xl p-8 lg:p-10 shadow-xl shadow-slate-100">
-            {/* Brand Logo & Name */}
-            <div className="text-center mb-6">
-              <Link href="/" className="hidden lg:inline-flex items-center justify-center w-12 h-12 bg-primary-50 text-primary-600 rounded-2xl text-2xl mb-4 hover:scale-105 transition-transform shadow-sm">
+          <div className="space-y-6">
+            {/* Logo & title */}
+            <div className="space-y-2.5">
+              <Link href="/" className="hidden lg:inline-flex items-center justify-center w-14 h-14 bg-primary-50 text-primary-600 rounded-2xl text-3xl mb-2 hover:scale-105 transition-transform shadow-sm">
                 🏥
               </Link>
-              <h2 className="text-2xl font-extrabold text-gray-900">Create Patient Account</h2>
-              <p className="text-gray-500 text-xs mt-1.5 font-medium">
+              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight leading-none">Create Patient Account</h2>
+              <p className="text-slate-455 text-sm font-medium">
                 Register as a patient to book appointments and track your health records online.
               </p>
             </div>
 
             {/* Error Alert */}
             {error && (
-              <div className="p-4 mb-5 rounded-xl bg-red-50 text-red-700 border border-red-200 text-xs font-semibold text-center">
+              <div className="p-4 rounded-2xl bg-red-50 text-red-750 border border-red-200 text-xs font-semibold text-center">
                 {error}
               </div>
             )}
@@ -158,9 +156,11 @@ function RegisterForm() {
             {/* Registration Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="reg-name" className="input-label">Full Name *</label>
+                <label htmlFor="reg-name" className="block text-[10px] font-bold uppercase tracking-wider text-slate-450 mb-2">
+                  Full Name *
+                </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-450 pointer-events-none text-sm">
+                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 pointer-events-none text-base">
                     👤
                   </span>
                   <input
@@ -168,7 +168,7 @@ function RegisterForm() {
                     id="reg-name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="input-field pl-9 text-xs"
+                    className="w-full pl-11 pr-5 py-4 bg-slate-50 border border-slate-200 focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 rounded-2xl text-slate-800 text-sm font-semibold transition-all duration-200 outline-none shadow-sm"
                     placeholder="Enter your full name"
                     required
                     disabled={loading}
@@ -177,9 +177,11 @@ function RegisterForm() {
               </div>
 
               <div>
-                <label htmlFor="reg-email" className="input-label">Email Address *</label>
+                <label htmlFor="reg-email" className="block text-[10px] font-bold uppercase tracking-wider text-slate-450 mb-2">
+                  Email Address *
+                </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-450 pointer-events-none text-sm">
+                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 pointer-events-none text-base">
                     ✉
                   </span>
                   <input
@@ -187,7 +189,7 @@ function RegisterForm() {
                     id="reg-email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="input-field pl-9 text-xs"
+                    className="w-full pl-11 pr-5 py-4 bg-slate-50 border border-slate-200 focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 rounded-2xl text-slate-800 text-sm font-semibold transition-all duration-200 outline-none shadow-sm"
                     placeholder="you@example.com"
                     required
                     disabled={loading}
@@ -196,9 +198,11 @@ function RegisterForm() {
               </div>
 
               <div>
-                <label htmlFor="reg-phone" className="input-label">Phone Number *</label>
+                <label htmlFor="reg-phone" className="block text-[10px] font-bold uppercase tracking-wider text-slate-450 mb-2">
+                  Phone Number *
+                </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-450 pointer-events-none text-sm">
+                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-450 pointer-events-none text-base">
                     📞
                   </span>
                   <input
@@ -206,7 +210,7 @@ function RegisterForm() {
                     id="reg-phone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                    className="input-field pl-9 text-xs"
+                    className="w-full pl-11 pr-5 py-4 bg-slate-50 border border-slate-200 focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 rounded-2xl text-slate-800 text-sm font-semibold transition-all duration-200 outline-none shadow-sm"
                     placeholder="10-digit mobile number"
                     pattern="[0-9]{10}"
                     required
@@ -216,9 +220,11 @@ function RegisterForm() {
               </div>
 
               <div>
-                <label htmlFor="reg-password" className="input-label">Password *</label>
+                <label htmlFor="reg-password" className="block text-[10px] font-bold uppercase tracking-wider text-slate-455 mb-2">
+                  Password *
+                </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-455 pointer-events-none text-sm">
+                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-455 pointer-events-none text-base">
                     🔒
                   </span>
                   <input
@@ -226,7 +232,7 @@ function RegisterForm() {
                     id="reg-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="input-field pl-9 text-xs"
+                    className="w-full pl-11 pr-5 py-4 bg-slate-50 border border-slate-200 focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 rounded-2xl text-slate-800 text-sm font-semibold transition-all duration-200 outline-none shadow-sm"
                     placeholder="Minimum 6 characters"
                     required
                     disabled={loading}
@@ -237,11 +243,11 @@ function RegisterForm() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 px-4 bg-gradient-to-r from-primary-600 to-cyan-600 hover:from-primary-700 hover:to-cyan-700 active:scale-[0.99] transition-all text-white font-bold rounded-xl text-xs shadow-md shadow-primary-950/10 disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+                className="w-full py-4 px-5 bg-gradient-to-r from-primary-600 to-cyan-600 hover:from-primary-700 hover:to-cyan-700 active:scale-[0.98] transition-all text-white font-extrabold rounded-2xl text-sm shadow-lg shadow-primary-950/10 disabled:opacity-50 disabled:cursor-not-allowed mt-4 cursor-pointer"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin w-4 h-4 text-white" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin w-5 h-5 text-white" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
@@ -254,8 +260,8 @@ function RegisterForm() {
             </form>
 
             {/* Alternate Link */}
-            <div className="text-center mt-6 pt-6 border-t border-gray-100">
-              <p className="text-gray-500 text-xs">
+            <div className="text-center pt-4">
+              <p className="text-slate-400 text-xs font-semibold">
                 Already have an account?{' '}
                 <Link href={`/login${redirect ? `?redirect=${redirect}` : ''}`} className="text-primary-600 font-extrabold hover:underline">
                   Sign In
@@ -265,7 +271,8 @@ function RegisterForm() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 }
 
