@@ -72,6 +72,19 @@ CREATE TABLE IF NOT EXISTS staff (
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+-- Attendance
+CREATE TABLE IF NOT EXISTS attendance (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL,
+  date TEXT NOT NULL,
+  check_in TEXT,
+  check_out TEXT,
+  status TEXT NOT NULL CHECK(status IN ('present', 'absent', 'half_day', 'on_leave')),
+  notes TEXT,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  UNIQUE(user_id, date)
+);
+
 -- Lab Reports
 CREATE TABLE IF NOT EXISTS lab_reports (
   id TEXT PRIMARY KEY,
