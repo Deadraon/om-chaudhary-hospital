@@ -15,9 +15,11 @@ export default async function AdminBillingPage() {
   try {
     // Fetch all invoices
     invoices = await queryD1(`
-      SELECT inv.*, p.name AS patient_name, p.phone AS patient_phone
+      SELECT inv.*, 
+        COALESCE(p.name, 'Unknown Patient') AS patient_name, 
+        p.phone AS patient_phone
       FROM invoices inv
-      JOIN patients p ON inv.patient_id = p.id
+      LEFT JOIN patients p ON inv.patient_id = p.id
       ORDER BY inv.created_at DESC
     `);
 
