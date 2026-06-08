@@ -38,25 +38,25 @@ const hospitalFeatures = [
     icon: IconEmergency,
     title: '24/7 Emergency Care',
     description: 'Immediate trauma response, critical care transport, and emergency surgical teams available around the clock.',
-    style: 'border-red-100 bg-red-50/30 text-red-700'
+    style: 'border-red-100 bg-red-50 text-red-650 shadow-sm shadow-red-100/50'
   },
   {
     icon: IconGeneralMedicine,
     title: 'Specialized Consultants',
     description: 'Direct consultations with award-winning experts in Cardiology, Orthopedics, and Neurology.',
-    style: 'border-blue-100 bg-blue-50/30 text-primary-700'
+    style: 'border-sky-100 bg-sky-50 text-sarvodaya-blue shadow-sm shadow-sky-100/50'
   },
   {
     icon: IconShield,
     title: 'Certified Safety Standards',
     description: 'Rigorous sanitation, digital healthcare tracking, and international patient safety protocols.',
-    style: 'border-emerald-100 bg-emerald-50/30 text-emerald-700'
+    style: 'border-emerald-100 bg-emerald-50 text-emerald-600 shadow-sm shadow-emerald-100/50'
   },
   {
     icon: IconPathology,
     title: 'Advanced Diagnostics',
     description: 'Fully automated lab services, CT Scan, High-Res Ultrasound, and radiology reporting.',
-    style: 'border-purple-100 bg-purple-50/30 text-purple-700'
+    style: 'border-purple-100 bg-purple-50 text-purple-600 shadow-sm shadow-purple-100/50'
   },
 ];
 
@@ -325,17 +325,17 @@ export default function HomePage() {
       </section>
 
       {/* ==================== CORE CLINICAL CAPABILITIES ==================== */}
-      <section className="section bg-white pt-24 pb-20">
+      <section className="section bg-slate-50/45 pt-24 pb-20 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-sky-50 text-sarvodaya-blue rounded-full text-xs font-bold tracking-wider mb-4 border border-sky-100/30">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-sky-50/60 text-sarvodaya-blue rounded-full text-xs font-bold tracking-wider mb-4 border border-sky-100/50">
               <IconSparkles className="w-3.5 h-3.5" />
               Clinical Quality
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
               Hospital Facilities & Services
             </h2>
-            <p className="text-gray-500 text-sm mt-3 leading-relaxed">
+            <p className="text-slate-500 text-sm mt-3 leading-relaxed">
               We offer advanced medical standards across diagnostics, emergency care, and specialist consultations.
             </p>
           </div>
@@ -344,12 +344,12 @@ export default function HomePage() {
             {hospitalFeatures.map((feat) => {
               const IconComp = feat.icon;
               return (
-                <div key={feat.title} className="rounded-3xl border border-gray-100 bg-white p-6 hover:shadow-lg transition-all duration-300 hover-lift">
+                <div key={feat.title} className="rounded-3xl border border-slate-200/60 bg-white p-7 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(15,70,92,0.06)] hover:-translate-y-1.5 transition-all duration-300">
                   <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 border ${feat.style}`}>
                     <IconComp className="w-6 h-6" />
                   </div>
-                  <h3 className="font-extrabold text-gray-900 text-base mb-2">{feat.title}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed">{feat.description}</p>
+                  <h3 className="font-extrabold text-slate-900 text-base mb-2">{feat.title}</h3>
+                  <p className="text-slate-600 text-xs leading-relaxed font-medium">{feat.description}</p>
                 </div>
               );
             })}
