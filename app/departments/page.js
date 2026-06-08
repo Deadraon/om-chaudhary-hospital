@@ -81,7 +81,7 @@ export default async function DepartmentsPage() {
             </div>
             <div>
               <h2 className="text-2xl font-bold">Need Immediate Emergency or Trauma Care?</h2>
-              <p className="text-white/80 mt-1">Our emergency department is open 24 hours a day, 30 days a month.</p>
+              <p className="text-white/80 mt-1">Our emergency department is open 24 hours a day, 365 days a year.</p>
             </div>
           </div>
           <div className="flex gap-4">

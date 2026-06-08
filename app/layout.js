@@ -1,16 +1,29 @@
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import { headers } from 'next/headers';
 
 export const metadata = {
-  title: 'Om Chaudhary Hospital & Trauma Centre | Best Hospital',
-  description: 'Om Chaudhary Hospital & Trauma Centre provides world-class healthcare services with expert doctors, modern technology, and compassionate care. Emergency services available 24/7.',
-  keywords: 'hospital, trauma centre, healthcare, emergency, doctors, Om Chaudhary Hospital',
+  title: 'Om Chaudhary Hospital & Trauma Centre | Best Hospital Greater Noida',
+  description: 'Om Chaudhary Hospital & Trauma Centre provides world-class healthcare services with expert doctors, modern technology, and compassionate care. Emergency services available 24/7 in Greater Noida, UP.',
+  keywords: 'hospital, trauma centre, healthcare, emergency, doctors, Om Chaudhary Hospital, Greater Noida, UP',
   openGraph: {
     title: 'Om Chaudhary Hospital & Trauma Centre',
-    description: 'World-class healthcare services with expert doctors and 24/7 emergency care.',
+    description: 'World-class healthcare services with expert doctors and 24/7 emergency care in Greater Noida.',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Om Chaudhary Hospital & Trauma Centre',
+      },
+    ],
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
 };
 
@@ -32,6 +45,7 @@ export default function RootLayout({ children }) {
         {!hideHeaderFooter && <Header />}
         <main className="flex-1">{children}</main>
         {!hideHeaderFooter && <Footer />}
+        {!hideHeaderFooter && <WhatsAppButton />}
       </body>
     </html>
   );

@@ -25,7 +25,8 @@ const medicalDirectors = [
     speciality: 'Senior Trauma & Orthopedic Specialist',
     experience: '20+ Years Experience',
     bio: 'Dedicated to providing high-quality trauma and orthopedic care. Established this center to bring world-class healthcare to the region, ensuring every patient receives state-of-the-art diagnostics and compassionate rehabilitation.',
-    photo: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&h=400&q=80'
+    initials: 'OC',
+    color: 'from-blue-600 to-cyan-500'
   },
   {
     name: 'Dr. Archana Chaudhary',
@@ -33,7 +34,8 @@ const medicalDirectors = [
     speciality: 'Senior Gynecologist & Obstetrics Specialist',
     experience: '18+ Years Experience',
     bio: 'Expert in high-risk pregnancy management and advanced gynecological treatments, with a passion for women\'s health and wellness. Focused on setting top-tier safety standards for clinical nursing and maternity wards.',
-    photo: 'https://images.unsplash.com/photo-1594824813573-246434e33963?auto=format&fit=crop&w=400&h=400&q=80'
+    initials: 'AC',
+    color: 'from-pink-500 to-rose-400'
   },
 ];
 
@@ -78,7 +80,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4.5 text-gray-600 text-sm leading-relaxed font-medium font-medium">
                 <p>
-                  Established with a vision to provide state-of-the-art medical care, <strong>{HOSPITAL_NAME}</strong> has grown to become a premier healthcare destination in the region. We offer a comprehensive range of clinical services, specializing in emergency, trauma, orthopedics, cardiology, and general medicine.
+                  Established in <strong>2009</strong> with a vision to provide state-of-the-art medical care, <strong>{HOSPITAL_NAME}</strong> has grown to become a premier healthcare destination in the region. We offer a comprehensive range of clinical services, specializing in emergency, trauma, orthopedics, cardiology, and general medicine.
                 </p>
                 <p>
                   Our hospital features advanced diagnostic services, modern modular operation theaters, an ultra-modern multi-bed ICU, and 24/7 trauma response units. We believe in the combination of cutting-edge technology and a gentle human touch, ensuring every patient receives custom, personalized care.
@@ -163,8 +165,8 @@ export default function AboutPage() {
             {medicalDirectors.map((director) => (
               <div key={director.name} className="bg-white rounded-3xl border border-gray-150 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
                 <div className="bg-gradient-to-r from-slate-50 to-blue-50/20 p-6 border-b border-gray-100 flex flex-col items-center sm:items-start sm:flex-row gap-5">
-                  <div className="w-20 h-20 rounded-2xl overflow-hidden bg-white border border-gray-200 flex-shrink-0">
-                    <img src={director.photo} alt={director.name} className="w-full h-full object-cover" />
+                  <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${director.color} flex items-center justify-center flex-shrink-0 shadow-lg`}>
+                    <span className="text-2xl font-black text-white">{director.initials}</span>
                   </div>
                   <div className="text-center sm:text-left space-y-1">
                     <h3 className="text-xl font-extrabold text-gray-900">{director.name}</h3>

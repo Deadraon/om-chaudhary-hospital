@@ -68,13 +68,20 @@ export default function Footer() {
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Providing compassionate, world-class healthcare services with state-of-the-art technology and a team of dedicated medical professionals.
             </p>
-            {/* Social Links */}
+            {/* Social Links - placeholder until real handles are set */}
             <div className="flex gap-3">
-              {['facebook', 'twitter', 'instagram', 'youtube'].map(social => (
-                <a key={social} href="#" className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-sarvodaya-blue hover:text-white transition-all duration-300">
-                  <span className="text-xs font-bold uppercase">{social[0]}</span>
-                </a>
-              ))}
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#1877F2] hover:text-white transition-all duration-300" title="Facebook">
+                <span className="text-xs font-bold">f</span>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#E1306C] hover:text-white transition-all duration-300" title="Instagram">
+                <span className="text-xs font-bold">in</span>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#FF0000] hover:text-white transition-all duration-300" title="YouTube">
+                <span className="text-xs font-bold">yt</span>
+              </a>
+              <a href={`https://wa.me/919876543210`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#25D366] hover:text-white transition-all duration-300" title="WhatsApp">
+                <span className="text-xs font-bold">wa</span>
+              </a>
             </div>
           </div>
 
@@ -169,8 +176,8 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
             <p>&copy; {new Date().getFullYear()} {HOSPITAL_NAME}. All rights reserved.</p>
             <div className="flex gap-6">
-              <Link href="/about" className="hover:text-sarvodaya-blue transition-colors">Privacy Policy</Link>
-              <Link href="/about" className="hover:text-sarvodaya-blue transition-colors">Terms of Service</Link>
+              <Link href="/privacy" className="hover:text-sarvodaya-blue transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-sarvodaya-blue transition-colors">Terms of Service</Link>
             </div>
           </div>
         </div>
