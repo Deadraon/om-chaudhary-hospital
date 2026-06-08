@@ -7,6 +7,8 @@ import Modal from '@/components/Modal';
 import HospitalLogo from '@/components/HospitalLogo';
 
 const EMERGENCY_NUMBER = process.env.NEXT_PUBLIC_EMERGENCY_NUMBER || '108';
+const HOSPITAL_PHONE = process.env.NEXT_PUBLIC_HOSPITAL_PHONE || '+91-9876543210';
+const HOSPITAL_ADDRESS = process.env.NEXT_PUBLIC_HOSPITAL_ADDRESS || 'Najibabad - Haridwar Road, Mandawali, Bijnor, Uttar Pradesh - 246749';
 
 
 const navLinks = [
@@ -132,11 +134,11 @@ export default function Header() {
           {/* Right: Location & Emergency Info */}
           <div className="flex items-center gap-4 text-white/90 font-bold uppercase tracking-wider text-[9px] md:text-[10px]">
             <span className="hidden xl:inline-flex items-center gap-1.5">
-              <span>📍</span> Najibabad - Haridwar Road, Mandawali, Bijnor
+              <span>📍</span> {HOSPITAL_ADDRESS.split(',').slice(0, 3).join(',')}
             </span>
             <span className="hidden xl:inline text-white/20">|</span>
             <span className="hidden sm:inline-flex items-center gap-1.5">
-              <span>📞</span> +91-9876543210
+              <span>📞</span> <a href={`tel:${HOSPITAL_PHONE}`} className="hover:text-cyan-300 transition-colors">{HOSPITAL_PHONE}</a>
             </span>
             <span className="hidden sm:inline text-white/20">|</span>
             <div className="flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
@@ -327,9 +329,9 @@ export default function Header() {
                       title="Hospital Map Menu"
                     ></iframe>
                   </div>
-                  <div className="space-y-1 text-xs text-gray-650 font-medium">
+                  <div className="space-y-1 text-xs text-gray-655 font-medium">
                     <p className="font-extrabold text-gray-900">Om Chaudhary Hospital &amp; Trauma Centre</p>
-                    <p className="text-[10px] leading-relaxed text-gray-500">Najibabad - Haridwar Road, Mandawali, Bijnor, Uttar Pradesh - 246749</p>
+                    <p className="text-[10px] leading-relaxed text-gray-500">{HOSPITAL_ADDRESS}</p>
                   </div>
                   <div className="flex gap-2 pt-1">
                     <a

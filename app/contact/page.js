@@ -8,6 +8,7 @@ import {
 } from '@/components/MedicalIcons';
 
 const HOSPITAL_NAME = process.env.NEXT_PUBLIC_HOSPITAL_NAME || 'Om Chaudhary Hospital & Trauma Centre';
+const HOSPITAL_PHONE = process.env.NEXT_PUBLIC_HOSPITAL_PHONE || '+91-9876543210';
 
 export const metadata = {
   title: `Contact Us | ${HOSPITAL_NAME}`,
@@ -68,7 +69,7 @@ export default function ContactPage() {
                     <h3 className="font-extrabold text-gray-900 text-base mb-1.5">Phone Numbers</h3>
                     <p className="text-gray-500 text-xs mb-2 font-semibold uppercase tracking-wider">OPD & Reception Desk:</p>
                     <p className="text-gray-900 font-extrabold text-sm hover:text-sarvodaya-blue transition-colors">
-                      <a href="tel:+919876543210">+91-9876543210</a>
+                      <a href={`tel:${HOSPITAL_PHONE}`}>{HOSPITAL_PHONE}</a>
                     </p>
                     <p className="text-gray-900 font-extrabold text-sm hover:text-sarvodaya-blue transition-colors">
                       <a href="tel:+91120123456">+91-120-123456</a>
