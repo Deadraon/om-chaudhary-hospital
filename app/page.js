@@ -505,7 +505,7 @@ export default function HomePage() {
                       className={`flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer shadow-sm ${styles.bg} ${styles.border}`}
                     >
                       <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300 shadow-sm ${styles.iconBg}`}>
-                        <IconComp className="w-5.5 h-5.5 transition-transform group-hover:scale-110 duration-300" />
+                        <IconComp className="w-5 h-5 transition-transform group-hover:scale-110 duration-300" />
                       </div>
                       <span className="text-[13px] font-extrabold text-slate-800 transition-colors leading-tight group-hover:text-slate-900">
                         {dept.name}
@@ -596,7 +596,7 @@ export default function HomePage() {
                             className={`flex items-center gap-4 p-4 bg-white border border-gray-150 rounded-2xl hover:shadow-lg hover:-translate-y-0.5 transition-all group cursor-pointer shadow-sm ${matchedStyles.bg} ${matchedStyles.border}`}
                           >
                             <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300 shadow-sm ${matchedStyles.iconBg}`}>
-                              <RecommendedIconComp className="w-5.5 h-5.5 transition-transform group-hover:scale-110 duration-300" />
+                              <RecommendedIconComp className="w-5 h-5 transition-transform group-hover:scale-110 duration-300" />
                             </div>
                             <div className="flex-1 flex justify-between items-center">
                               <div>
@@ -684,8 +684,8 @@ export default function HomePage() {
                     "Serum Creatinine (Kidney)",
                     "General Physician Consultation"
                   ].map((test, index) => (
-                    <li key={index} className="flex items-center gap-3 text-xs text-slate-600 font-medium">
-                      <svg className="w-4.5 h-4.5 text-emerald-500 bg-emerald-50 p-0.5 rounded-full flex-shrink-0 shadow-inner" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <li key={index} className="flex items-center gap-3 text-xs text-slate-655 font-medium">
+                      <svg className="w-5 h-5 text-emerald-500 bg-emerald-50 p-0.5 rounded-full flex-shrink-0 shadow-inner" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                       {test}
@@ -701,27 +701,27 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Package 2 (Best Seller - Premium Dark Gold Mode) */}
-            <div className="bg-slate-900 border border-slate-800 text-slate-100 p-7 rounded-3xl shadow-xl hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] hover:shadow-rose-500/5 hover:-translate-y-1.5 transition-all duration-300 relative flex flex-col justify-between group overflow-hidden">
-              <span className="absolute -top-3.5 left-6 bg-gradient-to-r from-sarvodaya-orange to-amber-500 text-white text-[9.5px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg border border-white/10">
+            {/* Package 2 (Best Seller - Premium White Mode) */}
+            <div className="bg-white rounded-3xl border-2 border-sarvodaya-blue p-7 shadow-md hover:shadow-[0_20px_40px_rgba(15,70,92,0.08)] hover:-translate-y-1.5 transition-all duration-300 relative flex flex-col justify-between group">
+              <span className="absolute -top-3.5 left-6 bg-gradient-to-r from-sarvodaya-orange to-amber-500 text-white text-[9.5px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md">
                 ★ Best Selling
               </span>
               <div>
                 <div className="flex justify-between items-start mb-6 mt-2">
                   <div>
-                    <span className="text-[10px] bg-rose-500/10 text-rose-350 border border-rose-500/20 px-2.5 py-1 rounded-lg font-extrabold uppercase tracking-wider">Cardiac Care</span>
-                    <h3 className="text-lg font-black text-white mt-2.5">Executive Cardiac Check</h3>
+                    <span className="text-[10px] bg-rose-50 text-rose-600 border border-rose-100/50 px-2.5 py-1 rounded-lg font-extrabold uppercase tracking-wider">Cardiac Care</span>
+                    <h3 className="text-lg font-black text-slate-900 mt-2.5">Executive Cardiac Check</h3>
                   </div>
                   <div className="text-right">
-                    <p className="text-[10px] text-slate-500 line-through font-bold leading-none">₹4,999</p>
-                    <p className="text-xl font-black text-rose-400 mt-1">₹2,499</p>
+                    <p className="text-[10px] text-gray-400 line-through font-bold leading-none">₹4,999</p>
+                    <p className="text-xl font-black text-rose-600 mt-1">₹2,499</p>
                   </div>
                 </div>
-                <p className="text-slate-400 text-xs mb-6 font-medium leading-relaxed">Designed to evaluate your cardiac function and lipid profile metrics.</p>
+                <p className="text-gray-500 text-xs mb-6 font-medium leading-relaxed">Designed to evaluate your cardiac function and lipid profile metrics.</p>
                 
-                <hr className="border-slate-800 my-4" />
+                <hr className="border-gray-100 my-4" />
                 
-                <h4 className="text-xs font-extrabold text-slate-200 uppercase tracking-wider mb-4.5">Includes Cardiac Suite:</h4>
+                <h4 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-4.5">Includes Cardiac Suite:</h4>
                 <ul className="space-y-3 mb-8">
                   {[
                     "Electrocardiogram (ECG)",
@@ -730,8 +730,8 @@ export default function HomePage() {
                     "HbA1c & Blood Sugar Levels",
                     "Senior Cardiologist Consultation"
                   ].map((test, index) => (
-                    <li key={index} className="flex items-center gap-3 text-xs text-slate-350 font-medium">
-                      <svg className="w-4.5 h-4.5 text-rose-400 bg-rose-500/15 p-0.5 rounded-full flex-shrink-0 shadow-inner" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <li key={index} className="flex items-center gap-3 text-xs text-slate-655 font-medium">
+                      <svg className="w-5 h-5 text-rose-500 bg-rose-50 p-0.5 rounded-full flex-shrink-0 shadow-inner" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                       {test}
@@ -739,7 +739,7 @@ export default function HomePage() {
                   ))}
                 </ul>
               </div>
-              <Link href="/book-appointment?package=cardiac-care" className="w-full py-3.5 bg-gradient-to-r from-sarvodaya-orange to-amber-500 hover:from-sarvodaya-orange-hover hover:to-amber-600 text-white text-xs font-black rounded-2xl text-center shadow-lg transition-all duration-300 flex items-center justify-center gap-1.5 border border-transparent hover:-translate-y-0.5">
+              <Link href="/book-appointment?package=cardiac-care" className="w-full py-3.5 bg-sarvodaya-blue hover:bg-sarvodaya-dark text-white text-xs font-black rounded-2xl text-center shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-1.5 border border-transparent hover:-translate-y-0.5">
                 Book Package Now
                 <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -760,7 +760,7 @@ export default function HomePage() {
                     <p className="text-xl font-black text-amber-600 mt-1">₹1,999</p>
                   </div>
                 </div>
-                <p className="text-gray-500 text-xs mb-6 font-medium leading-relaxed">Comprehensive diagnostic panel focused on bones, liver, and kidneys.</p>
+                <p className="text-gray-505 text-xs mb-6 font-medium leading-relaxed">Comprehensive diagnostic panel focused on bones, liver, and kidneys.</p>
                 
                 <hr className="border-gray-100 my-4" />
                 
@@ -773,8 +773,8 @@ export default function HomePage() {
                     "Complete Blood Profile (CBC)",
                     "Senior Consultant Physician Review"
                   ].map((test, index) => (
-                    <li key={index} className="flex items-center gap-3 text-xs text-slate-600 font-medium">
-                      <svg className="w-4.5 h-4.5 text-amber-500 bg-amber-50 p-0.5 rounded-full flex-shrink-0 shadow-inner" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <li key={index} className="flex items-center gap-3 text-xs text-slate-655 font-medium">
+                      <svg className="w-5 h-5 text-amber-500 bg-amber-50 p-0.5 rounded-full flex-shrink-0 shadow-inner" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                       {test}
