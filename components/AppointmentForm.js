@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 export default function AppointmentForm({ departments = [], doctors = [] }) {
   const [formData, setFormData] = useState({
@@ -13,10 +13,31 @@ export default function AppointmentForm({ departments = [], doctors = [] }) {
   });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [docSchedules, setDocSchedules] = useState([]);
+  const [fetchingSchedules, setFetchingSchedules] = useState(false);
 
   const filteredDoctors = formData.department_id
     ? doctors.filter(d => d.department_id === formData.department_id)
     : doctors;
+
+  const handleDoctorChange = async (docId) => {
+    if (!docId) {
+      setDocSchedules([]);
+      return;
+    }
+    setFetchingSchedules(true);
+    try {
+      const res = await fetch(`/api/doctors/schedule?doctor_id=${docId}`);
+      if (res.ok) {
+        const data = await res.json();
+        setDocSchedules(data);
+      }
+    } catch (err) {
+      console.error('Failed to load doctor schedule:', err);
+    } finally {
+      setFetchingSchedules(false);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +47,12 @@ export default function AppointmentForm({ departments = [], doctors = [] }) {
       // Reset doctor when department changes
       ...(name === 'department_id' ? { doctor_id: '' } : {}),
     }));
+    if (name === 'doctor_id') {
+      handleDoctorChange(value);
+    }
+    if (name === 'department_id') {
+      setDocSchedules([]);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -64,6 +91,29 @@ export default function AppointmentForm({ departments = [], doctors = [] }) {
 
   // Get today's date for min date
   const today = new Date().toISOString().split('T')[0];
+
+  const selectedDayName = useMemo(() => {
+    if (!formData.preferred_date) return '';
+    const date = new Date(formData.preferred_date);
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[date.getDay()];
+  }, [formData.preferred_date]);
+
+  const selectedDocName = useMemo(() => {
+    if (!formData.doctor_id) return '';
+    const doc = doctors.find(d => d.id === formData.doctor_id);
+    return doc ? doc.name : '';
+  }, [formData.doctor_id, doctors]);
+
+  const isDayAvailable = useMemo(() => {
+    if (!formData.doctor_id || docSchedules.length === 0 || !selectedDayName) return true;
+    return docSchedules.some(s => s.day_of_week.toLowerCase() === selectedDayName.toLowerCase());
+  }, [formData.doctor_id, docSchedules, selectedDayName]);
+
+  const scheduleString = useMemo(() => {
+    if (docSchedules.length === 0) return '';
+    return docSchedules.map(s => `${s.day_of_week} (${s.session} ${s.start_time}-${s.end_time})`).join(', ');
+  }, [docSchedules]);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -165,10 +215,22 @@ export default function AppointmentForm({ departments = [], doctors = [] }) {
             name="preferred_date"
             value={formData.preferred_date}
             onChange={handleChange}
-            className="input-field"
+            className={`input-field ${formData.preferred_date && !isDayAvailable ? 'border-amber-400 focus:ring-amber-400 focus:border-amber-400' : ''}`}
             min={today}
             required
           />
+          {formData.doctor_id && docSchedules.length > 0 && (
+            <div className="mt-1.5 space-y-1">
+              <p className="text-gray-500 text-[11px] font-medium">
+                📅 Dr. {selectedDocName} OPD Schedule: <span className="text-slate-800 font-semibold">{scheduleString}</span>
+              </p>
+              {formData.preferred_date && !isDayAvailable && (
+                <p className="text-amber-600 text-[11px] font-bold flex items-center gap-0.5 animate-pulse">
+                  ⚠️ Dr. {selectedDocName} is not scheduled on {selectedDayName}.
+                </p>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Message */}

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import DataTable from '@/components/DataTable';
 import Modal from '@/components/Modal';
 import Toast from '@/components/Toast';
+import ScheduleManagerModal from '@/components/ScheduleManagerModal';
 
 export default function AdminDoctorsClient({ initialDoctors = [], departments = [] }) {
   const [doctors, setDoctors] = useState(initialDoctors);
@@ -11,6 +12,7 @@ export default function AdminDoctorsClient({ initialDoctors = [], departments = 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
+  const [scheduleDoctor, setScheduleDoctor] = useState(null);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -189,13 +191,21 @@ export default function AdminDoctorsClient({ initialDoctors = [], departments = 
       label: 'Actions',
       sortable: false,
       render: (val, row) => (
-        <button
-          onClick={() => handleDelete(val, row.name)}
-          disabled={deletingId !== null}
-          className="px-3 py-1.5 bg-red-50 text-red-650 border border-red-200 hover:bg-red-100 rounded-lg text-xs font-bold transition-colors disabled:opacity-50"
-        >
-          {deletingId === val ? 'Deleting...' : 'Delete'}
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setScheduleDoctor(row)}
+            className="px-3 py-1.5 bg-indigo-50 text-indigo-650 border border-indigo-200 hover:bg-indigo-100 rounded-lg text-xs font-bold transition-colors"
+          >
+            OPD Schedule
+          </button>
+          <button
+            onClick={() => handleDelete(val, row.name)}
+            disabled={deletingId !== null}
+            className="px-3 py-1.5 bg-red-50 text-red-650 border border-red-200 hover:bg-red-100 rounded-lg text-xs font-bold transition-colors disabled:opacity-50"
+          >
+            {deletingId === val ? 'Deleting...' : 'Delete'}
+          </button>
+        </div>
       ),
     },
   ];
@@ -374,6 +384,12 @@ export default function AdminDoctorsClient({ initialDoctors = [], departments = 
           </div>
         </form>
       </Modal>
+
+      <ScheduleManagerModal
+        isOpen={scheduleDoctor !== null}
+        onClose={() => setScheduleDoctor(null)}
+        doctor={scheduleDoctor}
+      />
     </div>
   );
 }

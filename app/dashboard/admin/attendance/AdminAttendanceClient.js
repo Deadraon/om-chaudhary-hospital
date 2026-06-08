@@ -24,14 +24,28 @@ export default function AdminAttendanceClient({ initialLogs = [], staffList = []
 
   const [isEditMode, setIsEditMode] = useState(false);
 
+  const parseTimeToSeconds = (timeStr) => {
+    if (!timeStr) return 0;
+    timeStr = timeStr.trim();
+    const isPM = /pm/i.test(timeStr);
+    const isAM = /am/i.test(timeStr);
+    let cleanTime = timeStr.replace(/am|pm/gi, '').trim();
+    const parts = cleanTime.split(':').map(Number);
+    if (parts.some(isNaN)) return 0;
+    let [h, m, s = 0] = parts;
+    if (isPM && h < 12) h += 12;
+    if (isAM && h === 12) h = 0;
+    return h * 3600 + m * 60 + s;
+  };
+
   const calculateHours = (checkIn, checkOut) => {
     if (!checkIn || !checkOut) return '-';
     try {
-      const [h1, m1, s1 = 0] = checkIn.split(':').map(Number);
-      const [h2, m2, s2 = 0] = checkOut.split(':').map(Number);
-      const diffMs = (h2 * 3600 + m2 * 60 + s2) - (h1 * 3600 + m1 * 60 + s1);
-      if (diffMs <= 0) return '0.0 hr';
-      const hours = diffMs / 3600;
+      const sec1 = parseTimeToSeconds(checkIn);
+      const sec2 = parseTimeToSeconds(checkOut);
+      const diffSec = sec2 - sec1;
+      if (diffSec <= 0) return '0.0 hrs';
+      const hours = diffSec / 3600;
       return `${hours.toFixed(1)} hrs`;
     } catch (e) {
       return '-';

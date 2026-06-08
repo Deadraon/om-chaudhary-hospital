@@ -1,5 +1,6 @@
 import { headers } from 'next/headers';
 import DashboardSidebar from '@/components/DashboardSidebar';
+import DashboardNotifications from '@/components/DashboardNotifications';
 
 export const metadata = {
   title: 'Dashboard | Hospital Portal',
@@ -32,9 +33,12 @@ export default function DashboardLayout({ children }) {
             <h1 className="text-2xl font-bold text-gray-900">Hospital Portal</h1>
             <p className="text-gray-500 text-xs">Om Chaudhary Hospital & Trauma Centre Portal</p>
           </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-150 rounded-2xl text-xs font-semibold text-gray-750 shadow-inner">
-            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></span>
-            Session Active
+          <div className="flex items-center gap-3">
+            <DashboardNotifications role={userRole} />
+            <div className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-150 rounded-2xl text-xs font-semibold text-gray-750 shadow-inner">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></span>
+              Session Active
+            </div>
           </div>
         </div>
 

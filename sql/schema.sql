@@ -95,6 +95,38 @@ CREATE TABLE IF NOT EXISTS lab_reports (
   FOREIGN KEY (patient_id) REFERENCES patients(id)
 );
 
+-- Second opinions submissions
+CREATE TABLE IF NOT EXISTS second_opinions (
+  id TEXT PRIMARY KEY,
+  patient_name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  specialty TEXT NOT NULL,
+  file_name TEXT,
+  status TEXT DEFAULT 'pending' CHECK(status IN ('pending', 'reviewed', 'replied')),
+  created_at TEXT DEFAULT (datetime('now'))
+);
+
+-- Doctor OPD schedule manager
+CREATE TABLE IF NOT EXISTS doctor_schedules (
+  id TEXT PRIMARY KEY,
+  doctor_id TEXT NOT NULL,
+  day_of_week TEXT NOT NULL,
+  start_time TEXT NOT NULL,
+  end_time TEXT NOT NULL,
+  session TEXT NOT NULL CHECK(session IN ('Morning', 'Evening')),
+  FOREIGN KEY (doctor_id) REFERENCES doctors(id) ON DELETE CASCADE
+);
+
+-- Discharge summaries
+CREATE TABLE IF NOT EXISTS discharge_summaries (
+  id TEXT PRIMARY KEY,
+  patient_id TEXT NOT NULL,
+  r2_file_key TEXT,
+  notes TEXT,
+  uploaded_at TEXT DEFAULT (datetime('now')),
+  FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE
+);
+
 -- ============================================
 -- Seed Data
 -- ============================================

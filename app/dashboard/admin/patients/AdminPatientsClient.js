@@ -1,6 +1,7 @@
 'use client';
 
 import DataTable from '@/components/DataTable';
+import Link from 'next/link';
 
 export default function AdminPatientsClient({ patients = [] }) {
   const columns = [
@@ -10,8 +11,10 @@ export default function AdminPatientsClient({ patients = [] }) {
       sortable: true,
       render: (val, row) => (
         <div>
-          <p className="font-semibold text-gray-900">{val}</p>
-          <p className="text-gray-400 text-xs mt-0.5">UID: {row.id.slice(0, 8).toUpperCase()}</p>
+          <Link href={`/dashboard/admin/patients/${row.id}`} className="font-semibold text-primary-600 hover:text-primary-700 hover:underline">
+            {val}
+          </Link>
+          <p className="text-gray-455 text-xs mt-0.5">UID: {row.id.slice(0, 8).toUpperCase()}</p>
         </div>
       ),
     },

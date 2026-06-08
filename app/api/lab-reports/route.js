@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { queryD1, queryD1First } from '@/lib/d1';
 import { getCurrentUser } from '@/lib/auth';
 import { generateId, now } from '@/lib/utils';
+import { sendSMS } from '@/lib/sms';
 
 /**
  * GET: Retrieve lab reports
@@ -67,8 +68,8 @@ export async function POST(request) {
       );
     }
 
-    // Verify patient profile exists
-    const patient = await queryD1First('SELECT id FROM patients WHERE id = ?', [patient_id]);
+    // Verify patient profile exists and load their details
+    const patient = await queryD1First('SELECT id, name, phone FROM patients WHERE id = ?', [patient_id]);
     if (!patient) {
       return NextResponse.json({ error: 'Patient profile not found' }, { status: 404 });
     }
@@ -80,6 +81,18 @@ export async function POST(request) {
       INSERT INTO lab_reports (id, patient_id, title, r2_file_key, uploaded_at)
       VALUES (?, ?, ?, ?, ?)
     `, [id, patient_id, title.trim(), r2_file_key, timestamp]);
+
+    // Send SMS alert to patient
+    if (patient.phone) {
+      try {
+        await sendSMS(
+          patient.phone,
+          `Dear ${patient.name}, your lab report "${title.trim()}" has been uploaded successfully. You can view it in your patient portal at Om Chaudhary Hospital.`
+        );
+      } catch (smsErr) {
+        console.error('Failed to send lab report upload SMS:', smsErr.message);
+      }
+    }
 
     return NextResponse.json({ success: true, reportId: id });
   } catch (error) {

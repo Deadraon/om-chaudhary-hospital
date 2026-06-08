@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Toast from '@/components/Toast';
+import { getR2Url } from '@/lib/r2';
 
-export default function PatientProfileClient({ initialPatient = {} }) {
+export default function PatientProfileClient({ initialPatient = {}, initialDischargeSummaries = [] }) {
   const [patient, setPatient] = useState(initialPatient);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -231,6 +232,49 @@ export default function PatientProfileClient({ initialPatient = {} }) {
               <p className="text-gray-400 text-xs font-medium uppercase tracking-wide">Residential Address</p>
               <p className="text-gray-900 font-semibold mt-1 leading-relaxed">{patient.address || '-'}</p>
             </div>
+          </div>
+        )}
+      </div>
+
+      {/* Discharge Summaries Section */}
+      <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
+        <div className="pb-4 border-b border-gray-150 mb-4">
+          <h3 className="font-bold text-gray-900 text-base">Discharge Summaries</h3>
+          <p className="text-gray-500 text-xs font-semibold mt-0.5">Download discharge reports and instruction notes compiled by your attending doctor.</p>
+        </div>
+
+        {initialDischargeSummaries.length === 0 ? (
+          <p className="text-gray-400 text-xs italic py-2">No discharge summary records available on your profile.</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {initialDischargeSummaries.map((summary) => {
+              const downloadUrl = getR2Url(summary.r2_file_key);
+              return (
+                <div key={summary.id} className="p-4 rounded-2xl border border-gray-100 bg-gray-50/50 flex flex-col justify-between space-y-3">
+                  <div>
+                    <div className="flex justify-between items-start">
+                      <p className="font-bold text-xs text-gray-900">Discharge Report</p>
+                      <span className="text-[10px] text-gray-400 font-semibold">
+                        {new Date(summary.uploaded_at).toLocaleDateString(undefined, { dateStyle: 'medium' })}
+                      </span>
+                    </div>
+                    {summary.notes && (
+                      <p className="text-gray-500 text-[11px] italic mt-2 border-t border-gray-100/50 pt-2 line-clamp-3">
+                        "{summary.notes}"
+                      </p>
+                    )}
+                  </div>
+                  <a
+                    href={downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-colors shadow-sm self-start"
+                  >
+                    📥 Download Document
+                  </a>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

@@ -6,7 +6,7 @@ import { sendStatusUpdateSMS } from '@/lib/sms';
 export async function PATCH(request, { params }) {
   try {
     const { id } = params;
-    const { status, doctor_id } = await request.json();
+    const { status, doctor_id, preferred_date } = await request.json();
 
     // Authenticate
     const currentUser = await getCurrentUser(request);
@@ -53,6 +53,11 @@ export async function PATCH(request, { params }) {
       paramsList.push(doctor_id || null);
     }
 
+    if (preferred_date !== undefined) {
+      updates.push('preferred_date = ?');
+      paramsList.push(preferred_date);
+    }
+
     if (updates.length === 0) {
       return NextResponse.json({ error: 'No fields to update' }, { status: 400 });
     }
@@ -64,17 +69,27 @@ export async function PATCH(request, { params }) {
     if (status && status !== appointment.status) {
       try {
         let statusText = status;
-        if (status === 'confirmed') statusText = 'Confirmed';
-        if (status === 'cancelled') statusText = 'Cancelled';
-        if (status === 'completed') statusText = 'Marked as Completed';
+        if (status === 'confirmed') statusText = 'confirmed';
+        if (status === 'cancelled') statusText = 'cancelled';
+        if (status === 'completed') statusText = 'completed';
 
         await sendStatusUpdateSMS(appointment.phone, appointment.patient_name, statusText);
       } catch (smsErr) {
         console.error('Failed to send status update SMS:', smsErr.message);
       }
+    } else if (preferred_date && preferred_date !== appointment.preferred_date) {
+      try {
+        const formattedDate = new Date(preferred_date).toLocaleDateString('en-US', { dateStyle: 'medium' });
+        await sendSMS(
+          appointment.phone,
+          `Dear ${appointment.patient_name}, your appointment at Om Chaudhary Hospital has been rescheduled to ${formattedDate}.`
+        );
+      } catch (smsErr) {
+        console.error('Failed to send reschedule SMS:', smsErr.message);
+      }
     }
 
-    return NextResponse.json({ success: true, status });
+    return NextResponse.json({ success: true, status, preferred_date });
   } catch (error) {
     console.error('Update appointment status error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

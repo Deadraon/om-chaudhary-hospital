@@ -103,10 +103,10 @@ export default async function DoctorsPage() {
   }
 
   // Fallback to static data if database returned empty results
-  if (!doctors || doctors.length === 0) {
+  if (!doctors || !Array.isArray(doctors) || doctors.length === 0) {
     doctors = STATIC_DOCTORS;
   }
-  if (!departments || departments.length === 0) {
+  if (!departments || !Array.isArray(departments) || departments.length === 0) {
     departments = STATIC_DEPARTMENTS;
   }
 

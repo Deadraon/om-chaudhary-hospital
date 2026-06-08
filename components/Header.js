@@ -32,6 +32,8 @@ export default function Header() {
   // Form submission states
   const [secondOpinionData, setSecondOpinionData] = useState({ name: '', phone: '', specialty: '', fileName: '' });
   const [secondOpinionSuccess, setSecondOpinionSuccess] = useState(false);
+  const [secondOpinionFile, setSecondOpinionFile] = useState(null);
+  const [submittingSecondOpinion, setSubmittingSecondOpinion] = useState(false);
   const [chairmanData, setChairmanData] = useState({ name: '', email: '', message: '' });
   const [chairmanSuccess, setChairmanSuccess] = useState(false);
 
@@ -75,14 +77,40 @@ export default function Header() {
   };
 
   // Submit handlers
-  const handleSecondOpinionSubmit = (e) => {
+  const handleSecondOpinionSubmit = async (e) => {
     e.preventDefault();
-    setSecondOpinionSuccess(true);
-    setTimeout(() => {
-      setSecondOpinionSuccess(false);
-      setSecondOpinionData({ name: '', phone: '', specialty: '', fileName: '' });
-      setIsDrawerOpen(false);
-    }, 4000);
+    setSubmittingSecondOpinion(true);
+    try {
+      const formData = new FormData();
+      formData.append('name', secondOpinionData.name);
+      formData.append('phone', secondOpinionData.phone);
+      formData.append('specialty', secondOpinionData.specialty);
+      if (secondOpinionFile) {
+        formData.append('file', secondOpinionFile);
+      }
+
+      const res = await fetch('/api/second-opinions', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setSecondOpinionSuccess(true);
+        setSecondOpinionFile(null);
+        setTimeout(() => {
+          setSecondOpinionSuccess(false);
+          setSecondOpinionData({ name: '', phone: '', specialty: '', fileName: '' });
+          setIsDrawerOpen(false);
+        }, 3000);
+      } else {
+        alert(data.error || 'Failed to submit report.');
+      }
+    } catch (err) {
+      alert('Network error. Please try again.');
+    } finally {
+      setSubmittingSecondOpinion(false);
+    }
   };
 
   const handleChairmanSubmit = (e) => {
@@ -219,7 +247,10 @@ export default function Header() {
                   <input
                     type="file"
                     required
-                    onChange={e => setSecondOpinionData({ ...secondOpinionData, fileName: e.target.files[0]?.name || '' })}
+                    onChange={e => {
+                      setSecondOpinionFile(e.target.files[0]);
+                      setSecondOpinionData({ ...secondOpinionData, fileName: e.target.files[0]?.name || '' });
+                    }}
                     className="w-full text-xs text-gray-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-[10px] file:font-bold file:bg-white/10 file:text-white hover:file:bg-white/20 file:cursor-pointer"
                   />
                 </div>
@@ -228,14 +259,16 @@ export default function Header() {
                     type="button"
                     onClick={() => setIsDrawerOpen(false)}
                     className="py-2 px-4 rounded-xl text-xs text-gray-400 hover:text-white"
+                    disabled={submittingSecondOpinion}
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="py-2 px-6 bg-sarvodaya-blue hover:bg-sarvodaya-dark text-white text-xs font-bold rounded-xl shadow-md transition-colors"
+                    disabled={submittingSecondOpinion}
+                    className="py-2 px-6 bg-sarvodaya-blue hover:bg-sarvodaya-dark text-white text-xs font-bold rounded-xl shadow-md transition-colors disabled:opacity-50"
                   >
-                    Submit Request
+                    {submittingSecondOpinion ? 'Submitting...' : 'Submit Request'}
                   </button>
                 </div>
               </form>

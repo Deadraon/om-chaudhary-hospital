@@ -1,5 +1,5 @@
 import PatientProfileClient from './PatientProfileClient';
-import { queryD1First } from '@/lib/d1';
+import { queryD1First, queryD1 } from '@/lib/d1';
 import { headers } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
@@ -10,6 +10,7 @@ export const metadata = {
 
 export default async function PatientDashboardPage() {
   let patient = null;
+  let dischargeSummaries = [];
 
   try {
     const headerList = headers();
@@ -22,6 +23,15 @@ export default async function PatientDashboardPage() {
       LEFT JOIN users u ON p.user_id = u.id
       WHERE p.user_id = ?
     `, [userId]);
+
+    if (patient) {
+      // Fetch summaries
+      dischargeSummaries = await queryD1(`
+        SELECT * FROM discharge_summaries
+        WHERE patient_id = ?
+        ORDER BY uploaded_at DESC
+      `, [patient.id]);
+    }
   } catch (error) {
     console.error('Failed to load patient dashboard profile data:', error.message);
   }
@@ -41,7 +51,7 @@ export default async function PatientDashboardPage() {
         <p className="text-gray-500 text-xs mt-0.5">Manage and review your patient registry records, contact details, and vital info.</p>
       </div>
 
-      <PatientProfileClient initialPatient={patient} />
+      <PatientProfileClient initialPatient={patient} initialDischargeSummaries={dischargeSummaries} />
     </div>
   );
 }
