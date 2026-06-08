@@ -25,9 +25,10 @@ export default function Header() {
   const [user, setUser] = useState(null);
   const pathname = usePathname();
 
-  // Hide entire header on dashboard and auth pages
+  // Hide entire header on dashboard, auth and invoice pages
   const isDashboardOrAuth =
     pathname.startsWith('/dashboard') ||
+    pathname.startsWith('/invoice') ||
     pathname === '/login' ||
     pathname === '/register';
 

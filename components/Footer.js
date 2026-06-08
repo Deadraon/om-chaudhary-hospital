@@ -35,7 +35,7 @@ const departments = [
 
 export default function Footer() {
   const pathname = usePathname();
-  if (pathname.startsWith('/dashboard') || pathname === '/login' || pathname === '/register') {
+  if (pathname.startsWith('/dashboard') || pathname.startsWith('/invoice') || pathname === '/login' || pathname === '/register') {
     return null;
   }
 

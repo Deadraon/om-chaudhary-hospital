@@ -11,7 +11,7 @@ export default function WhatsAppButton() {
   const pathname = usePathname();
   const [showTooltip, setShowTooltip] = useState(false);
 
-  if (pathname.startsWith('/dashboard') || pathname === '/login' || pathname === '/register') {
+  if (pathname.startsWith('/dashboard') || pathname.startsWith('/invoice') || pathname === '/login' || pathname === '/register') {
     return null;
   }
 
