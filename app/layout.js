@@ -5,12 +5,12 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import { headers } from 'next/headers';
 
 export const metadata = {
-  title: 'Om Chaudhary Hospital & Trauma Centre | Best Hospital Greater Noida',
-  description: 'Om Chaudhary Hospital & Trauma Centre provides world-class healthcare services with expert doctors, modern technology, and compassionate care. Emergency services available 24/7 in Greater Noida, UP.',
-  keywords: 'hospital, trauma centre, healthcare, emergency, doctors, Om Chaudhary Hospital, Greater Noida, UP',
+  title: 'Om Chaudhary Hospital & Trauma Centre | Best Hospital Mandawali Bijnor',
+  description: 'Om Chaudhary Hospital & Trauma Centre provides world-class healthcare services with expert doctors, modern technology, and compassionate care. Emergency services available 24/7 in Mandawali, Bijnor, UP.',
+  keywords: 'hospital, trauma centre, healthcare, emergency, doctors, Om Chaudhary Hospital, Mandawali, Bijnor, UP',
   openGraph: {
     title: 'Om Chaudhary Hospital & Trauma Centre',
-    description: 'World-class healthcare services with expert doctors and 24/7 emergency care in Greater Noida.',
+    description: 'World-class healthcare services with expert doctors and 24/7 emergency care in Mandawali, Bijnor.',
     type: 'website',
     images: [
       {

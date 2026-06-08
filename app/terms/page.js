@@ -63,7 +63,7 @@ export default function TermsPage() {
               },
               {
                 title: '8. Governing Law',
-                content: `These Terms are governed by the laws of India. Any disputes arising from these Terms or use of our services shall be subject to the exclusive jurisdiction of the courts of Greater Noida, Uttar Pradesh, India.`
+                content: `These Terms are governed by the laws of India. Any disputes arising from these Terms or use of our services shall be subject to the exclusive jurisdiction of the courts of Bijnor, Uttar Pradesh, India.`
               },
               {
                 title: '9. Changes to Terms',
@@ -71,7 +71,7 @@ export default function TermsPage() {
               },
               {
                 title: '10. Contact',
-                content: `For any questions about these Terms, please contact us at info@omchaudharyhospital.com or visit us at Main Bypass Road, Sector-12, Greater Noida, UP - 201308.`
+                content: `For any questions about these Terms, please contact us at info@omchaudharyhospital.com or visit us at Najibabad - Haridwar Road, Mandawali, Bijnor, UP - 246749.`
               }
             ].map((section) => (
               <div key={section.title} className="border-b border-gray-100 pb-8">

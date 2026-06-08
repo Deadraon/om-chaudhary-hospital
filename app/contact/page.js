@@ -107,8 +107,8 @@ export default function ContactPage() {
                     <h3 className="font-extrabold text-gray-900 text-base mb-1.5">Hospital Location</h3>
                     <p className="text-gray-600 text-xs leading-relaxed mb-4 font-medium">
                       Om Chaudhary Hospital & Trauma Centre<br />
-                      Main Bypass Road, Sector-12,<br />
-                      Greater Noida, Uttar Pradesh, India - 201308
+                      Najibabad - Haridwar Road, Mandawali,<br />
+                      Bijnor, Uttar Pradesh, India - 246749
                     </p>
                     
                     <div className="flex items-center gap-2 border-t border-gray-100 pt-3 mt-1 text-gray-500">

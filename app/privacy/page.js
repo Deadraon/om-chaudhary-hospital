@@ -63,7 +63,7 @@ export default function PrivacyPage() {
               },
               {
                 title: '8. Contact Us',
-                content: `For any privacy-related concerns, questions, or requests, please contact us at: info@omchaudharyhospital.com or visit our hospital at Main Bypass Road, Sector-12, Greater Noida, UP - 201308. We will respond to all privacy requests within 30 working days.`
+                content: `For any privacy-related concerns, questions, or requests, please contact us at: info@omchaudharyhospital.com or visit our hospital at Najibabad - Haridwar Road, Mandawali, Bijnor, UP - 246749. We will respond to all privacy requests within 30 working days.`
               }
             ].map((section) => (
               <div key={section.title} className="border-b border-gray-100 pb-8">
