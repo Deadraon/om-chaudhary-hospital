@@ -264,7 +264,6 @@ function LoginForm() {
       </div>
     </section>
   );
-  );
 }
 
 export default function LoginPage() {
