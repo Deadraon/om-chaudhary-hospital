@@ -77,9 +77,6 @@ export default function ContactPage() {
                     <p className="text-gray-900 font-extrabold text-sm hover:text-sarvodaya-blue transition-colors">
                       <a href={`tel:${HOSPITAL_PHONE}`}>{HOSPITAL_PHONE}</a>
                     </p>
-                    <p className="text-gray-900 font-extrabold text-sm hover:text-sarvodaya-blue transition-colors">
-                      <a href="tel:+91120123456">+91-120-123456</a>
-                    </p>
                   </div>
                 </div>
               </div>

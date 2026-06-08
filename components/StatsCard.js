@@ -8,6 +8,13 @@ export default function StatsCard({ icon, value, label, suffix = '' }) {
   const ref = useRef(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if (!window.IntersectionObserver) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -15,7 +22,7 @@ export default function StatsCard({ icon, value, label, suffix = '' }) {
           observer.disconnect();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.05 }
     );
 
     if (ref.current) observer.observe(ref.current);

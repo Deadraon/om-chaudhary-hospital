@@ -233,29 +233,6 @@ function LoginForm() {
             </div>
           </div>
 
-          {/* Demo Credentials Hint */}
-          <div className="p-6 bg-slate-900 border border-slate-800 text-white rounded-3xl text-xs space-y-3 shadow-xl">
-            <p className="font-extrabold text-center border-b border-white/10 pb-2 text-cyan-400 uppercase tracking-widest text-[9px]">
-              System Demo Credentials
-            </p>
-            <div className="space-y-2 text-white/80">
-              <div className="flex justify-between items-center text-[11px]">
-                <span className="text-cyan-300 font-bold">Role:</span>
-                <span className="font-black bg-white/10 px-1.5 py-0.5 rounded uppercase tracking-wider text-[8px]">Super Admin</span>
-              </div>
-              <div className="flex justify-between items-center text-[11px]">
-                <span className="text-cyan-300 font-bold">Email:</span>
-                <span className="font-mono text-white/95">admin@omchaudharyhospital.com</span>
-              </div>
-              <div className="flex justify-between items-center text-[11px]">
-                <span className="text-cyan-300 font-bold">Password:</span>
-                <span className="font-mono text-white/95">Admin@123</span>
-              </div>
-            </div>
-            <p className="text-[9px] text-white/40 text-center mt-1 italic pt-1 border-t border-white/5">
-              * Patients can self-register using the link above.
-            </p>
-          </div>
         </div>
       </div>
     </section>
