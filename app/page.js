@@ -12,6 +12,9 @@ import {
   IconOrthopedics, 
   IconNeurology, 
   IconPediatrics,
+  IconGynecology,
+  IconOncology,
+  IconUrology,
   IconAward,
   IconUserGroup,
   IconShield,
@@ -22,41 +25,153 @@ import {
 const HOSPITAL_NAME = process.env.NEXT_PUBLIC_HOSPITAL_NAME || 'Om Chaudhary Hospital & Trauma Centre';
 
 const departments = [
-  { id: 'dept-emergency', name: 'Emergency & Trauma', description: 'Round-the-clock emergency and trauma care with state-of-the-art equipment.' },
-  { id: 'dept-cardiology', name: 'Cardiology', description: 'Comprehensive heart care including diagnostics and interventional procedures.' },
-  { id: 'dept-orthopedics', name: 'Orthopedics', description: 'Expert bone, joint, and spine care with advanced treatment options.' },
-  { id: 'dept-neurology', name: 'Neurology', description: 'Specialized care for brain, spinal cord, and nervous system disorders.' },
-  { id: 'dept-pediatrics', name: 'Pediatrics', description: 'Compassionate healthcare for infants, children, and adolescents.' },
-  { id: 'dept-general', name: 'General Medicine', description: 'Primary healthcare and internal medicine for all age groups.' },
-  { id: 'dept-gynecology', name: 'Gynecology & Obstetrics', description: 'Compassionate and expert health services for women from adolescence through motherhood.' },
-  { id: 'dept-oncology', name: 'Oncology / Cancer Care', description: 'Advanced oncology services with compassionate chemotherapy and surgical care.' },
-  { id: 'dept-urology', name: 'Urology / Kidney Care', description: 'Advanced urological diagnosis, dialysis support, and key urology surgeries.' },
+  { 
+    id: 'dept-emergency', 
+    name: 'Emergency & Trauma', 
+    description: 'Round-the-clock emergency and trauma care with state-of-the-art equipment.', 
+    icon: IconEmergency,
+    styles: {
+      bg: 'hover:bg-red-50/25',
+      border: 'hover:border-red-300 hover:shadow-[0_12px_24px_rgba(239,68,68,0.08)]',
+      iconBg: 'bg-red-50 text-red-600 group-hover:bg-red-500 group-hover:text-white'
+    }
+  },
+  { 
+    id: 'dept-cardiology', 
+    name: 'Cardiology', 
+    description: 'Comprehensive heart care including diagnostics and interventional procedures.', 
+    icon: IconCardiology,
+    styles: {
+      bg: 'hover:bg-rose-50/25',
+      border: 'hover:border-rose-300 hover:shadow-[0_12px_24px_rgba(244,63,94,0.08)]',
+      iconBg: 'bg-rose-50 text-rose-650 group-hover:bg-rose-500 group-hover:text-white'
+    }
+  },
+  { 
+    id: 'dept-orthopedics', 
+    name: 'Orthopedics', 
+    description: 'Expert bone, joint, and spine care with advanced treatment options.', 
+    icon: IconOrthopedics,
+    styles: {
+      bg: 'hover:bg-amber-50/25',
+      border: 'hover:border-amber-300 hover:shadow-[0_12px_24px_rgba(245,158,11,0.08)]',
+      iconBg: 'bg-amber-50 text-amber-700 group-hover:bg-amber-600 group-hover:text-white'
+    }
+  },
+  { 
+    id: 'dept-neurology', 
+    name: 'Neurology', 
+    description: 'Specialized care for brain, spinal cord, and nervous system disorders.', 
+    icon: IconNeurology,
+    styles: {
+      bg: 'hover:bg-purple-50/25',
+      border: 'hover:border-purple-300 hover:shadow-[0_12px_24px_rgba(168,85,247,0.08)]',
+      iconBg: 'bg-purple-50 text-purple-600 group-hover:bg-purple-500 group-hover:text-white'
+    }
+  },
+  { 
+    id: 'dept-pediatrics', 
+    name: 'Pediatrics', 
+    description: 'Compassionate healthcare for infants, children, and adolescents.', 
+    icon: IconPediatrics,
+    styles: {
+      bg: 'hover:bg-sky-50/25',
+      border: 'hover:border-sky-300 hover:shadow-[0_12px_24px_rgba(14,165,233,0.08)]',
+      iconBg: 'bg-sky-50 text-sky-650 group-hover:bg-sky-500 group-hover:text-white'
+    }
+  },
+  { 
+    id: 'dept-general', 
+    name: 'General Medicine', 
+    description: 'Primary healthcare and internal medicine for all age groups.', 
+    icon: IconGeneralMedicine,
+    styles: {
+      bg: 'hover:bg-blue-50/25',
+      border: 'hover:border-blue-300 hover:shadow-[0_12px_24px_rgba(59,130,246,0.08)]',
+      iconBg: 'bg-blue-50 text-blue-600 group-hover:bg-blue-500 group-hover:text-white'
+    }
+  },
+  { 
+    id: 'dept-gynecology', 
+    name: 'Gynecology & Obstetrics', 
+    description: 'Compassionate and expert health services for women from adolescence through motherhood.', 
+    icon: IconGynecology,
+    styles: {
+      bg: 'hover:bg-pink-50/25',
+      border: 'hover:border-pink-300 hover:shadow-[0_12px_24px_rgba(236,72,153,0.08)]',
+      iconBg: 'bg-pink-50 text-pink-650 group-hover:bg-pink-500 group-hover:text-white'
+    }
+  },
+  { 
+    id: 'dept-oncology', 
+    name: 'Oncology / Cancer Care', 
+    description: 'Advanced oncology services with compassionate chemotherapy and surgical care.', 
+    icon: IconOncology,
+    styles: {
+      bg: 'hover:bg-rose-50/25',
+      border: 'hover:border-rose-300 hover:shadow-[0_12px_24px_rgba(244,63,94,0.08)]',
+      iconBg: 'bg-rose-50 text-rose-600 group-hover:bg-rose-500 group-hover:text-white'
+    }
+  },
+  { 
+    id: 'dept-urology', 
+    name: 'Urology / Kidney Care', 
+    description: 'Advanced urological diagnosis, dialysis support, and key urology surgeries.', 
+    icon: IconUrology,
+    styles: {
+      bg: 'hover:bg-cyan-50/25',
+      border: 'hover:border-cyan-300 hover:shadow-[0_12px_24px_rgba(6,182,212,0.08)]',
+      iconBg: 'bg-cyan-50 text-cyan-600 group-hover:bg-cyan-500 group-hover:text-white'
+    }
+  },
 ];
+
+function getDeptData(deptName) {
+  const normalized = deptName.toLowerCase();
+  if (normalized.includes('emergency')) return departments[0];
+  if (normalized.includes('cardiology')) return departments[1];
+  if (normalized.includes('orthopedic')) return departments[2];
+  if (normalized.includes('neurology')) return departments[3];
+  if (normalized.includes('pediatric')) return departments[4];
+  if (normalized.includes('general')) return departments[5];
+  if (normalized.includes('gynecology')) return departments[6];
+  if (normalized.includes('oncology')) return departments[7];
+  if (normalized.includes('urology') || normalized.includes('kidney')) return departments[8];
+  return departments[5]; // Default fallback to General Medicine
+}
 
 const hospitalFeatures = [
   {
     icon: IconEmergency,
     title: '24/7 Emergency Care',
     description: 'Immediate trauma response, critical care transport, and emergency surgical teams available around the clock.',
-    style: 'border-red-100 bg-red-50 text-red-650 shadow-sm shadow-red-100/50'
+    style: 'border-red-100 bg-red-50 text-red-650 shadow-sm shadow-red-100/50',
+    hoverClass: 'hover:border-red-300 hover:shadow-[0_20px_40px_rgba(239,68,68,0.08)]',
+    iconHover: 'group-hover:scale-110 group-hover:rotate-3 duration-300'
   },
   {
     icon: IconGeneralMedicine,
     title: 'Specialized Consultants',
     description: 'Direct consultations with award-winning experts in Cardiology, Orthopedics, and Neurology.',
-    style: 'border-sky-100 bg-sky-50 text-sarvodaya-blue shadow-sm shadow-sky-100/50'
+    style: 'border-sky-100 bg-sky-50 text-sarvodaya-blue shadow-sm shadow-sky-100/50',
+    hoverClass: 'hover:border-sky-300 hover:shadow-[0_20px_40px_rgba(14,165,233,0.08)]',
+    iconHover: 'group-hover:scale-110 group-hover:rotate-3 duration-300'
   },
   {
     icon: IconShield,
     title: 'Certified Safety Standards',
     description: 'Rigorous sanitation, digital healthcare tracking, and international patient safety protocols.',
-    style: 'border-emerald-100 bg-emerald-50 text-emerald-600 shadow-sm shadow-emerald-100/50'
+    style: 'border-emerald-100 bg-emerald-50 text-emerald-600 shadow-sm shadow-emerald-100/50',
+    hoverClass: 'hover:border-emerald-300 hover:shadow-[0_20px_40px_rgba(16,185,129,0.08)]',
+    iconHover: 'group-hover:scale-110 group-hover:rotate-3 duration-300'
   },
   {
     icon: IconPathology,
     title: 'Advanced Diagnostics',
     description: 'Fully automated lab services, CT Scan, High-Res Ultrasound, and radiology reporting.',
-    style: 'border-purple-100 bg-purple-50 text-purple-600 shadow-sm shadow-purple-100/50'
+    style: 'border-purple-100 bg-purple-50 text-purple-600 shadow-sm shadow-purple-100/50',
+    hoverClass: 'hover:border-purple-300 hover:shadow-[0_20px_40px_rgba(168,85,247,0.08)]',
+    iconHover: 'group-hover:scale-110 group-hover:rotate-3 duration-300'
   },
 ];
 
@@ -274,51 +389,51 @@ export default function HomePage() {
       {/* ==================== QUICK ACCESS PORTAL BAR ==================== */}
       <section className="relative py-12 px-4">
         <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          <Link href="/book-appointment" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:bg-slate-50 transition-colors group shadow-sm">
-            <div className="w-11 h-11 rounded-xl bg-sky-50 text-sarvodaya-blue flex items-center justify-center flex-shrink-0 border border-sky-100/50">
-              <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <Link href="/book-appointment" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:border-sky-300 hover:shadow-[0_12px_24px_rgba(14,165,233,0.06)] hover:-translate-y-1 transition-all duration-300 group cursor-pointer shadow-sm">
+            <div className="w-11 h-11 rounded-xl bg-sky-50 text-sarvodaya-blue flex items-center justify-center flex-shrink-0 border border-sky-100/50 group-hover:bg-sarvodaya-blue group-hover:text-white transition-all duration-300 shadow-inner">
+              <svg className="w-5.5 h-5.5 transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
               </svg>
             </div>
             <div>
-              <h3 className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-sarvodaya-blue transition-colors leading-tight">Get Health Checkup</h3>
-              <p className="text-[10px] text-gray-500 mt-0.5 leading-none">Preventive packages</p>
+              <h3 className="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-sarvodaya-blue transition-colors leading-tight">Get Health Checkup</h3>
+              <p className="text-[10px] text-gray-400 mt-0.5 leading-none font-semibold">Preventive packages</p>
             </div>
           </Link>
 
-          <Link href="/contact" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:bg-slate-50 transition-colors group shadow-sm">
-            <div className="w-11 h-11 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center flex-shrink-0 border border-cyan-100/50">
-              <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <Link href="/contact" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:border-cyan-300 hover:shadow-[0_12px_24px_rgba(6,182,212,0.06)] hover:-translate-y-1 transition-all duration-300 group cursor-pointer shadow-sm">
+            <div className="w-11 h-11 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center flex-shrink-0 border border-cyan-100/50 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300 shadow-inner">
+              <svg className="w-5.5 h-5.5 transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
               </svg>
             </div>
             <div>
-              <h3 className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-cyan-600 transition-colors leading-tight">Homecare Services</h3>
-              <p className="text-[10px] text-gray-500 mt-0.5 leading-none">Clinical care at home</p>
+              <h3 className="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-cyan-600 transition-colors leading-tight">Homecare Services</h3>
+              <p className="text-[10px] text-gray-400 mt-0.5 leading-none font-semibold">Clinical care at home</p>
             </div>
           </Link>
 
-          <Link href="/appointment-status" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:bg-slate-50 transition-colors group shadow-sm">
-            <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0 border border-purple-100/50">
-              <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <Link href="/appointment-status" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:border-purple-300 hover:shadow-[0_12px_24px_rgba(168,85,247,0.06)] hover:-translate-y-1 transition-all duration-300 group cursor-pointer shadow-sm">
+            <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0 border border-purple-100/50 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shadow-inner">
+              <svg className="w-5.5 h-5.5 transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z" />
               </svg>
             </div>
             <div>
-              <h3 className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-purple-600 transition-colors leading-tight">Book diagnostic Test</h3>
-              <p className="text-[10px] text-gray-500 mt-0.5 leading-none">Lab path tests active</p>
+              <h3 className="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-purple-600 transition-colors leading-tight">Book diagnostic Test</h3>
+              <p className="text-[10px] text-gray-400 mt-0.5 leading-none font-semibold">Lab path tests active</p>
             </div>
           </Link>
 
-          <Link href="/contact" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:bg-slate-50 transition-colors group shadow-sm">
-            <div className="w-11 h-11 rounded-xl bg-red-50 text-red-650 flex items-center justify-center flex-shrink-0 border border-red-100/50">
-              <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <Link href="/contact" className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:border-red-300 hover:shadow-[0_12px_24px_rgba(239,68,68,0.06)] hover:-translate-y-1 transition-all duration-300 group cursor-pointer shadow-sm">
+            <div className="w-11 h-11 rounded-xl bg-red-50 text-red-650 flex items-center justify-center flex-shrink-0 border border-red-100/50 group-hover:bg-red-500 group-hover:text-white transition-all duration-300 shadow-inner">
+              <svg className="w-5.5 h-5.5 transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5A2.5 2.5 0 0019 9.5V8a2 2 0 00-2-2h-3.5A1.5 1.5 0 0112 4.5V3a2 2 0 00-2-2H8a2 2 0 00-2 2v.935" />
               </svg>
             </div>
             <div>
-              <h3 className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-red-600 transition-colors leading-tight">International Patients</h3>
-              <p className="text-[10px] text-gray-500 mt-0.5 leading-none">Specialized assistance</p>
+              <h3 className="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-red-600 transition-colors leading-tight">International Patients</h3>
+              <p className="text-[10px] text-gray-400 mt-0.5 leading-none font-semibold">Specialized assistance</p>
             </div>
           </Link>
         </div>
@@ -344,11 +459,14 @@ export default function HomePage() {
             {hospitalFeatures.map((feat) => {
               const IconComp = feat.icon;
               return (
-                <div key={feat.title} className="rounded-3xl border border-slate-200/60 bg-white p-7 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(15,70,92,0.06)] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 border ${feat.style}`}>
-                    <IconComp className="w-6 h-6" />
+                <div 
+                  key={feat.title} 
+                  className={`rounded-3xl border border-slate-200/60 bg-white p-7 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:-translate-y-1.5 transition-all duration-350 group cursor-default ${feat.hoverClass}`}
+                >
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 border transition-all duration-300 ${feat.style}`}>
+                    <IconComp className={`w-6 h-6 transition-transform duration-300 ${feat.iconHover}`} />
                   </div>
-                  <h3 className="font-extrabold text-slate-900 text-base mb-2">{feat.title}</h3>
+                  <h3 className="font-extrabold text-slate-900 text-base mb-2 group-hover:text-slate-950 transition-colors">{feat.title}</h3>
                   <p className="text-slate-600 text-xs leading-relaxed font-medium">{feat.description}</p>
                 </div>
               );
@@ -372,54 +490,24 @@ export default function HomePage() {
               </div>
 
               {/* 3x3 Grid of Specialties */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 md:gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
                 {departments.map((dept) => {
+                  const IconComp = dept.icon || IconGeneralMedicine;
+                  const styles = dept.styles || {
+                    bg: 'hover:bg-blue-50/25',
+                    border: 'hover:border-blue-300 hover:shadow-[0_12px_24px_rgba(59,130,246,0.08)]',
+                    iconBg: 'bg-blue-50 text-blue-600 group-hover:bg-blue-500 group-hover:text-white'
+                  };
                   return (
                     <Link
                       key={dept.id}
                       href={`/book-appointment?query=${encodeURIComponent(dept.name)}`}
-                      className="flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:border-sarvodaya-blue hover:shadow-md transition-all group cursor-pointer"
+                      className={`flex items-center gap-3.5 p-4 bg-white border border-gray-150 rounded-2xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer shadow-sm ${styles.bg} ${styles.border}`}
                     >
-                      <div className="w-10 h-10 rounded-xl bg-sky-50 text-sarvodaya-blue flex items-center justify-center flex-shrink-0 group-hover:bg-sarvodaya-blue group-hover:text-white transition-colors duration-300">
-                        {dept.id === 'dept-emergency' ? (
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                          </svg>
-                        ) : dept.id === 'dept-cardiology' ? (
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                          </svg>
-                        ) : dept.id === 'dept-orthopedics' ? (
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                          </svg>
-                        ) : dept.id === 'dept-neurology' ? (
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                          </svg>
-                        ) : dept.id === 'dept-pediatrics' ? (
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        ) : dept.id === 'dept-general' ? (
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z" />
-                          </svg>
-                        ) : dept.id === 'dept-gynecology' ? (
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                          </svg>
-                        ) : dept.id === 'dept-oncology' ? (
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                          </svg>
-                        ) : (
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517" />
-                          </svg>
-                        )}
+                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300 shadow-sm ${styles.iconBg}`}>
+                        <IconComp className="w-5.5 h-5.5 transition-transform group-hover:scale-110 duration-300" />
                       </div>
-                      <span className="text-[13px] font-bold text-gray-800 group-hover:text-sarvodaya-blue transition-colors leading-tight">
+                      <span className="text-[13px] font-extrabold text-slate-800 transition-colors leading-tight group-hover:text-slate-900">
                         {dept.name}
                       </span>
                     </Link>
@@ -463,9 +551,9 @@ export default function HomePage() {
               <div className="relative z-10">
                 <div className="relative">
                   <select
-                    value={selectedOrgan}
-                    onChange={e => setSelectedOrgan(e.target.value)}
-                    className="w-full pl-4 pr-10 py-3.5 bg-white border border-gray-200 rounded-2xl text-xs text-gray-900 font-extrabold focus:outline-none focus:ring-2 focus:ring-sarvodaya-orange focus:border-sarvodaya-orange appearance-none cursor-pointer hover:bg-slate-50 transition-all shadow-sm"
+                     value={selectedOrgan}
+                     onChange={e => setSelectedOrgan(e.target.value)}
+                     className="w-full pl-4 pr-10 py-3.5 bg-white border border-gray-200 rounded-2xl text-xs text-gray-900 font-extrabold focus:outline-none focus:ring-2 focus:ring-sarvodaya-orange focus:border-sarvodaya-orange appearance-none cursor-pointer hover:bg-slate-50 transition-all shadow-sm"
                   >
                     <option value="">Select</option>
                     <option value="brain">Brain / Head / Spinal Cord</option>
@@ -492,58 +580,45 @@ export default function HomePage() {
               {/* Dynamic recommendation output */}
               <div className="flex-1 flex flex-col justify-center min-h-[120px] relative z-10">
                 {recommendedSpecialty ? (
-                  <div className="space-y-4 animate-scale-in">
-                    <div className="grid grid-cols-1 gap-3">
-                      <Link
-                        href={`/book-appointment?query=${encodeURIComponent(recommendedSpecialty.dept)}`}
-                        className="flex items-center gap-4 p-4 bg-white border border-gray-150 rounded-2xl hover:border-sarvodaya-blue hover:shadow-lg transition-all group cursor-pointer shadow-sm"
-                      >
-                        <div className="w-11 h-11 rounded-xl bg-sky-50 text-sarvodaya-blue flex items-center justify-center flex-shrink-0 group-hover:bg-sarvodaya-blue group-hover:text-white transition-colors duration-300">
-                          {recommendedSpecialty.dept.includes('Orthopedics') ? (
-                            <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                            </svg>
-                          ) : recommendedSpecialty.dept.includes('Cardiology') ? (
-                            <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                          ) : recommendedSpecialty.dept.includes('Neurology') ? (
-                            <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                            </svg>
-                          ) : recommendedSpecialty.dept.includes('Gynecology') ? (
-                            <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                          ) : recommendedSpecialty.dept.includes('Oncology') ? (
-                            <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                            </svg>
-                          ) : (
-                            <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z" />
-                            </svg>
-                          )}
-                        </div>
-                        <div className="flex-1 flex justify-between items-center">
-                          <div>
-                            <div className="flex items-center gap-1.5">
-                              <h4 className="text-[13px] font-black text-gray-900 group-hover:text-sarvodaya-blue transition-colors leading-tight">
-                                {recommendedSpecialty.dept}
-                              </h4>
-                              <span className="text-[8px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded font-black uppercase">Match</span>
+                  (() => {
+                    const matchedDept = getDeptData(recommendedSpecialty.dept);
+                    const RecommendedIconComp = matchedDept.icon || IconGeneralMedicine;
+                    const matchedStyles = matchedDept.styles || {
+                      bg: 'hover:bg-blue-50/25',
+                      border: 'hover:border-blue-300 hover:shadow-[0_12px_24px_rgba(59,130,246,0.08)]',
+                      iconBg: 'bg-blue-50 text-blue-600 group-hover:bg-blue-500 group-hover:text-white'
+                    };
+                    return (
+                      <div className="space-y-4 animate-scale-in">
+                        <div className="grid grid-cols-1 gap-3">
+                          <Link
+                            href={`/book-appointment?query=${encodeURIComponent(recommendedSpecialty.dept)}`}
+                            className={`flex items-center gap-4 p-4 bg-white border border-gray-150 rounded-2xl hover:shadow-lg hover:-translate-y-0.5 transition-all group cursor-pointer shadow-sm ${matchedStyles.bg} ${matchedStyles.border}`}
+                          >
+                            <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300 shadow-sm ${matchedStyles.iconBg}`}>
+                              <RecommendedIconComp className="w-5.5 h-5.5 transition-transform group-hover:scale-110 duration-300" />
                             </div>
-                            <p className="text-[10px] text-gray-400 mt-1 leading-tight group-hover:text-gray-500 transition-colors font-medium">
-                              {recommendedSpecialty.desc}
-                            </p>
-                          </div>
-                          <span className="text-[10px] font-extrabold text-sarvodaya-blue bg-sky-50 group-hover:bg-sarvodaya-blue group-hover:text-white px-2.5 py-1.5 rounded-xl transition-all whitespace-nowrap shadow-sm group-hover:translate-x-1">
-                            Book Slot
-                          </span>
+                            <div className="flex-1 flex justify-between items-center">
+                              <div>
+                                <div className="flex items-center gap-1.5">
+                                  <h4 className="text-[13px] font-black text-gray-900 group-hover:text-slate-900 transition-colors leading-tight">
+                                    {recommendedSpecialty.dept}
+                                  </h4>
+                                  <span className="text-[8px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded font-black uppercase">Match</span>
+                                </div>
+                                <p className="text-[10px] text-gray-400 mt-1 leading-tight group-hover:text-gray-500 transition-colors font-medium">
+                                  {recommendedSpecialty.desc}
+                                </p>
+                              </div>
+                              <span className="text-[10px] font-extrabold text-sarvodaya-blue bg-sky-50 group-hover:bg-sarvodaya-blue group-hover:text-white px-2.5 py-1.5 rounded-xl transition-all whitespace-nowrap shadow-sm group-hover:translate-x-1">
+                                Book Slot
+                              </span>
+                            </div>
+                          </Link>
                         </div>
-                      </Link>
-                    </div>
-                  </div>
+                      </div>
+                    );
+                  })()
                 ) : (
                   <div className="border border-dashed border-sky-200 rounded-2xl p-6 text-center text-gray-400 bg-white/50 shadow-inner">
                     <svg className="w-8 h-8 text-sky-300 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -563,41 +638,45 @@ export default function HomePage() {
       </section>
 
       {/* ==================== PREVENTIVE HEALTH SCREENING PACKAGES ==================== */}
-      <section className="section bg-slate-50/50 py-24 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-b from-slate-50/60 via-white to-slate-50/60 py-24 border-b border-gray-100 overflow-hidden">
+        {/* Soft Organic Blur Blobs */}
+        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-sarvodaya-orange/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-sky-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-sarvodaya-orange/10 text-sarvodaya-orange rounded-full text-xs font-bold tracking-wider mb-4 border border-sarvodaya-orange/20">
-              <IconSparkles className="w-3.5 h-3.5" />
+              <IconSparkles className="w-3.5 h-3.5 animate-pulse" />
               Preventive Care
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
               Preventive Health Packages
             </h2>
-            <p className="text-gray-500 text-sm mt-3 leading-relaxed">
+            <p className="text-slate-500 text-sm mt-3 leading-relaxed">
               Early detection saves lives. Choose from our curated medical checkups designed for you and your family.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             {/* Package 1 */}
-            <div className="bg-white rounded-3xl border border-gray-150 p-6 shadow-sm hover:shadow-xl hover:border-sarvodaya-blue/30 transition-all duration-300 hover-lift flex flex-col justify-between">
+            <div className="bg-white rounded-3xl border border-gray-200/80 p-7 shadow-sm hover:shadow-[0_20px_40px_rgba(15,70,92,0.06)] hover:border-sky-300 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group">
               <div>
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex justify-between items-start mb-6">
                   <div>
-                    <span className="text-[10px] bg-sky-50 text-sarvodaya-blue px-2.5 py-1 rounded-lg font-bold uppercase tracking-wider">Annual Wellness</span>
-                    <h3 className="text-lg font-black text-gray-900 mt-2">Basic Health Checkup</h3>
+                    <span className="text-[10px] bg-sky-50 text-sarvodaya-blue border border-sky-100/50 px-2.5 py-1 rounded-lg font-extrabold uppercase tracking-wider">Annual Wellness</span>
+                    <h3 className="text-lg font-black text-slate-900 mt-2.5">Basic Health Checkup</h3>
                   </div>
                   <div className="text-right">
-                    <p className="text-[10px] text-gray-400 line-through font-semibold leading-none">₹1,999</p>
+                    <p className="text-[10px] text-gray-400 line-through font-bold leading-none">₹1,999</p>
                     <p className="text-xl font-black text-sarvodaya-blue mt-1">₹999</p>
                   </div>
                 </div>
-                <p className="text-gray-500 text-xs mb-6">A complete diagnostic panel matching key health indicators.</p>
+                <p className="text-gray-500 text-xs mb-6 font-medium leading-relaxed">A complete diagnostic panel matching key health indicators.</p>
                 
                 <hr className="border-gray-100 my-4" />
                 
-                <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">Includes 24 Parameters:</h4>
-                <ul className="space-y-2.5 mb-8">
+                <h4 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-4.5">Includes 24 Parameters:</h4>
+                <ul className="space-y-3 mb-8">
                   {[
                     "Complete Blood Count (CBC)",
                     "Blood Sugar Fasting (FBS)",
@@ -605,8 +684,8 @@ export default function HomePage() {
                     "Serum Creatinine (Kidney)",
                     "General Physician Consultation"
                   ].map((test, index) => (
-                    <li key={index} className="flex items-center gap-2 text-xs text-gray-600 font-medium">
-                      <svg className="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <li key={index} className="flex items-center gap-3 text-xs text-slate-600 font-medium">
+                      <svg className="w-4.5 h-4.5 text-emerald-500 bg-emerald-50 p-0.5 rounded-full flex-shrink-0 shadow-inner" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                       {test}
@@ -614,7 +693,7 @@ export default function HomePage() {
                   ))}
                 </ul>
               </div>
-              <Link href="/book-appointment?package=basic-health" className="w-full py-3 bg-slate-50 hover:bg-sarvodaya-blue hover:text-white text-gray-700 text-xs font-bold rounded-2xl text-center shadow-sm transition-all flex items-center justify-center gap-1.5 border border-gray-200 hover:border-sarvodaya-blue">
+              <Link href="/book-appointment?package=basic-health" className="w-full py-3.5 bg-slate-50 hover:bg-sarvodaya-blue hover:text-white text-slate-700 text-xs font-black rounded-2xl text-center shadow-sm transition-all duration-300 flex items-center justify-center gap-1.5 border border-slate-200 hover:border-sarvodaya-blue hover:-translate-y-0.5">
                 Book Package Now
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -622,28 +701,28 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Package 2 */}
-            <div className="bg-white rounded-3xl border-2 border-sarvodaya-blue p-6 shadow-md hover:shadow-xl transition-all duration-300 hover-lift relative flex flex-col justify-between">
-              <span className="absolute -top-3.5 left-6 bg-gradient-to-r from-sarvodaya-orange to-amber-500 text-white text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
+            {/* Package 2 (Best Seller - Premium Dark Gold Mode) */}
+            <div className="bg-slate-900 border border-slate-800 text-slate-100 p-7 rounded-3xl shadow-xl hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] hover:shadow-rose-500/5 hover:-translate-y-1.5 transition-all duration-300 relative flex flex-col justify-between group overflow-hidden">
+              <span className="absolute -top-3.5 left-6 bg-gradient-to-r from-sarvodaya-orange to-amber-500 text-white text-[9.5px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg border border-white/10">
                 ★ Best Selling
               </span>
               <div>
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex justify-between items-start mb-6 mt-2">
                   <div>
-                    <span className="text-[10px] bg-rose-50 text-rose-600 px-2.5 py-1 rounded-lg font-bold uppercase tracking-wider">Cardiac Care</span>
-                    <h3 className="text-lg font-black text-gray-900 mt-2">Executive Cardiac Check</h3>
+                    <span className="text-[10px] bg-rose-500/10 text-rose-350 border border-rose-500/20 px-2.5 py-1 rounded-lg font-extrabold uppercase tracking-wider">Cardiac Care</span>
+                    <h3 className="text-lg font-black text-white mt-2.5">Executive Cardiac Check</h3>
                   </div>
                   <div className="text-right">
-                    <p className="text-[10px] text-gray-400 line-through font-semibold leading-none">₹4,999</p>
-                    <p className="text-xl font-black text-rose-600 mt-1">₹2,499</p>
+                    <p className="text-[10px] text-slate-500 line-through font-bold leading-none">₹4,999</p>
+                    <p className="text-xl font-black text-rose-400 mt-1">₹2,499</p>
                   </div>
                 </div>
-                <p className="text-gray-500 text-xs mb-6">Designed to evaluate your cardiac function and lipid profile metrics.</p>
+                <p className="text-slate-400 text-xs mb-6 font-medium leading-relaxed">Designed to evaluate your cardiac function and lipid profile metrics.</p>
                 
-                <hr className="border-gray-100 my-4" />
+                <hr className="border-slate-800 my-4" />
                 
-                <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">Includes Cardiac Suite:</h4>
-                <ul className="space-y-2.5 mb-8">
+                <h4 className="text-xs font-extrabold text-slate-200 uppercase tracking-wider mb-4.5">Includes Cardiac Suite:</h4>
+                <ul className="space-y-3 mb-8">
                   {[
                     "Electrocardiogram (ECG)",
                     "Complete Lipid Profile Screening",
@@ -651,8 +730,8 @@ export default function HomePage() {
                     "HbA1c & Blood Sugar Levels",
                     "Senior Cardiologist Consultation"
                   ].map((test, index) => (
-                    <li key={index} className="flex items-center gap-2 text-xs text-gray-600 font-medium">
-                      <svg className="w-4 h-4 text-rose-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <li key={index} className="flex items-center gap-3 text-xs text-slate-350 font-medium">
+                      <svg className="w-4.5 h-4.5 text-rose-400 bg-rose-500/15 p-0.5 rounded-full flex-shrink-0 shadow-inner" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                       {test}
@@ -660,33 +739,33 @@ export default function HomePage() {
                   ))}
                 </ul>
               </div>
-              <Link href="/book-appointment?package=cardiac-care" className="w-full py-3 bg-sarvodaya-blue hover:bg-sarvodaya-dark text-white text-xs font-bold rounded-2xl text-center shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5 border border-transparent">
+              <Link href="/book-appointment?package=cardiac-care" className="w-full py-3.5 bg-gradient-to-r from-sarvodaya-orange to-amber-500 hover:from-sarvodaya-orange-hover hover:to-amber-600 text-white text-xs font-black rounded-2xl text-center shadow-lg transition-all duration-300 flex items-center justify-center gap-1.5 border border-transparent hover:-translate-y-0.5">
                 Book Package Now
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
             </div>
 
             {/* Package 3 */}
-            <div className="bg-white rounded-3xl border border-gray-150 p-6 shadow-sm hover:shadow-xl hover:border-sarvodaya-blue/30 transition-all duration-300 hover-lift flex flex-col justify-between">
+            <div className="bg-white rounded-3xl border border-gray-200/80 p-7 shadow-sm hover:shadow-[0_20px_40px_rgba(15,70,92,0.06)] hover:border-sky-300 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group">
               <div>
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex justify-between items-start mb-6">
                   <div>
-                    <span className="text-[10px] bg-amber-50 text-amber-600 px-2.5 py-1 rounded-lg font-bold uppercase tracking-wider">Senior Citizen Special</span>
-                    <h3 className="text-lg font-black text-gray-900 mt-2">Senior Active Care</h3>
+                    <span className="text-[10px] bg-amber-50 text-amber-650 border border-amber-100/50 px-2.5 py-1 rounded-lg font-extrabold uppercase tracking-wider">Senior Citizen Special</span>
+                    <h3 className="text-lg font-black text-slate-900 mt-2.5">Senior Active Care</h3>
                   </div>
                   <div className="text-right">
-                    <p className="text-[10px] text-gray-400 line-through font-semibold leading-none">₹3,999</p>
+                    <p className="text-[10px] text-gray-400 line-through font-bold leading-none">₹3,999</p>
                     <p className="text-xl font-black text-amber-600 mt-1">₹1,999</p>
                   </div>
                 </div>
-                <p className="text-gray-500 text-xs mb-6">Comprehensive diagnostic panel focused on bones, liver, and kidneys.</p>
+                <p className="text-gray-500 text-xs mb-6 font-medium leading-relaxed">Comprehensive diagnostic panel focused on bones, liver, and kidneys.</p>
                 
                 <hr className="border-gray-100 my-4" />
                 
-                <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">Includes Elder Panel:</h4>
-                <ul className="space-y-2.5 mb-8">
+                <h4 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-4.5">Includes Elder Panel:</h4>
+                <ul className="space-y-3 mb-8">
                   {[
                     "Kidney & Liver Function Screening",
                     "Bone Health (Calcium & Vit D3)",
@@ -694,8 +773,8 @@ export default function HomePage() {
                     "Complete Blood Profile (CBC)",
                     "Senior Consultant Physician Review"
                   ].map((test, index) => (
-                    <li key={index} className="flex items-center gap-2 text-xs text-gray-600 font-medium">
-                      <svg className="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <li key={index} className="flex items-center gap-3 text-xs text-slate-600 font-medium">
+                      <svg className="w-4.5 h-4.5 text-amber-500 bg-amber-50 p-0.5 rounded-full flex-shrink-0 shadow-inner" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                       {test}
@@ -703,7 +782,7 @@ export default function HomePage() {
                   ))}
                 </ul>
               </div>
-              <Link href="/book-appointment?package=senior-care" className="w-full py-3 bg-slate-50 hover:bg-sarvodaya-blue hover:text-white text-gray-700 text-xs font-bold rounded-2xl text-center shadow-sm transition-all flex items-center justify-center gap-1.5 border border-gray-200 hover:border-sarvodaya-blue">
+              <Link href="/book-appointment?package=senior-care" className="w-full py-3.5 bg-slate-50 hover:bg-sarvodaya-blue hover:text-white text-slate-700 text-xs font-black rounded-2xl text-center shadow-sm transition-all duration-300 flex items-center justify-center gap-1.5 border border-slate-200 hover:border-sarvodaya-blue hover:-translate-y-0.5">
                 Book Package Now
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

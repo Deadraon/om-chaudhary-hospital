@@ -5,8 +5,8 @@ import React from 'react';
 export function IconEmergency({ className = "w-6 h-6" }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m0-6V7" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5h6v4h4v6h-4v4H9v-4H5v-6h4V5z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 12h3l2-3 2 6 2-3h9" />
     </svg>
   );
 }
@@ -23,8 +23,7 @@ export function IconCardiology({ className = "w-6 h-6" }) {
 export function IconOrthopedics({ className = "w-6 h-6" }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h8m-8 3h8m-6-6h4m-4 3h4" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M18.5 7.5a2.5 2.5 0 10-3.5-3.5L12 7 9 4a2.5 2.5 0 10-3.5 3.5L8.5 11l-3 3a2.5 2.5 0 103.5 3.5l3.5-3.5 3 3a2.5 2.5 0 103.5-3.5l-3.5-3.5 3-3z" />
     </svg>
   );
 }
@@ -176,6 +175,25 @@ export function IconCompassion({ className = "w-6 h-6" }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+    </svg>
+  );
+}
+
+export function IconOncology({ className = "w-6 h-6" }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 21c3.5-7 6-11 6-15a4 4 0 118 0c0 4-2.5 8-6 15" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M18 21c-3.5-7-6-11-6-15" />
+    </svg>
+  );
+}
+
+export function IconUrology({ className = "w-6 h-6" }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8 6c-3 1-4 4-4 7s2 5 4 6c1.5.7 3-.3 3-2V8c0-1.7-1.5-2.7-3-2z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M16 6c3 1 4 4 4 7s-2 5-4 6c-1.5.7-3-.3-3-2V8c0-1.7 1.5-2.7 3-2z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 16c1 1.5 2.5 2 3 4m3-4c-1 1.5-2.5 2-3 4" />
     </svg>
   );
 }
