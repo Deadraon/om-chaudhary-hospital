@@ -144,11 +144,22 @@ export async function POST(request) {
     if (action === 'check-in') {
       // Check if already checked in today
       const existing = await queryD1First(
-        'SELECT id FROM attendance WHERE user_id = ? AND date = ?',
+        'SELECT id, status FROM attendance WHERE user_id = ? AND date = ?',
         [currentUser.userId, dateStr]
       );
 
       if (existing) {
+        if (existing.status === 'on_leave' || existing.status === 'absent') {
+          const cancelNotes = notes
+            ? `${notes} (Leave/Absence cancelled - Checked in remotely)`
+            : 'Leave/Absence cancelled - Checked in remotely';
+          await queryD1(`
+            UPDATE attendance
+            SET check_in = ?, status = 'present', notes = ?
+            WHERE id = ?
+          `, [timeStr, cancelNotes, existing.id]);
+          return NextResponse.json({ success: true, checkInTime: timeStr, status: 'present' });
+        }
         return NextResponse.json({ error: 'Already checked in for today' }, { status: 400 });
       }
 

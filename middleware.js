@@ -66,9 +66,17 @@ async function verifyHS256(token, secretStr) {
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
 
+  // Set request headers for downstream layout pathname checks
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-pathname', pathname);
+
   // Only protect /dashboard/* routes
   if (!pathname.startsWith('/dashboard')) {
-    return NextResponse.next();
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      }
+    });
   }
 
   // Get token from cookie
@@ -128,8 +136,18 @@ export async function middleware(request) {
       return NextResponse.redirect(new URL(correctDashboard, request.url));
     }
 
-    // Attach user info to headers for downstream use
-    const response = NextResponse.next();
+    // Attach user info to request headers for downstream server component use
+    requestHeaders.set('x-user-id', payload.userId || '');
+    requestHeaders.set('x-user-role', payload.role || '');
+    requestHeaders.set('x-user-name', payload.name || '');
+
+    const response = NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      }
+    });
+
+    // Also set them on response headers for double compatibility
     response.headers.set('x-user-id', payload.userId || '');
     response.headers.set('x-user-role', payload.role || '');
     response.headers.set('x-user-name', payload.name || '');
@@ -141,5 +159,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.svg$).*)'],
 };
